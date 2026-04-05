@@ -15,6 +15,8 @@
   },
   "dependencies": {
     "@arco-design/web-react": "2.50.0",
+    "@block-kit/utils": "^1.0.16",
+    "echarts": "^6.0.0",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
