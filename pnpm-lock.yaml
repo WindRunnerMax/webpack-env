@@ -781,6 +781,46 @@ importers:
         specifier: 1.6.0
         version: 1.6.0
 
+  packages/stock-treading:
+    dependencies:
+      '@arco-design/web-react':
+        specifier: 2.50.0
+        version: 2.50.0(@types/react@17.0.2)(react-dom@17.0.2)(react@17.0.2)
+      react:
+        specifier: 17.0.2
+        version: 17.0.2
+      react-dom:
+        specifier: 17.0.2
+        version: 17.0.2(react@17.0.2)
+    devDependencies:
+      '@rspack/cli':
+        specifier: 0.2.5
+        version: 0.2.5(react-refresh@0.14.0)(webpack@5.56.1)
+      '@rspack/plugin-html':
+        specifier: 0.2.5
+        version: 0.2.5(@rspack/core@0.2.5)
+      '@types/chrome':
+        specifier: 0.0.287
+        version: 0.0.287
+      '@types/react':
+        specifier: 17.0.2
+        version: 17.0.2
+      '@types/react-dom':
+        specifier: 17.0.2
+        version: 17.0.2
+      less:
+        specifier: 3.0.0
+        version: 3.0.0
+      less-loader:
+        specifier: 6.0.0
+        version: 6.0.0(webpack@5.56.1)
+      sass:
+        specifier: 1.52.3
+        version: 1.52.3
+      sass-loader:
+        specifier: 13.3.2
+        version: 13.3.2(sass@1.52.3)(webpack@5.56.1)
+
   packages/stream-delta:
     dependencies:
       '@block-kit/delta':
@@ -817,22 +857,6 @@ importers:
       '@block-kit/utils':
         specifier: ^1.0.16
         version: 1.0.16
-      '@nestjs/common':
-        specifier: 11.0.1
-        version: 11.0.1(reflect-metadata@0.2.2)(rxjs@7.8.1)
-      '@nestjs/core':
-        specifier: 11.0.1
-        version: 11.0.1(@nestjs/common@11.0.1)(@nestjs/platform-express@11.0.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
-      '@nestjs/platform-express':
-        specifier: 11.0.1
-        version: 11.0.1(@nestjs/common@11.0.1)(@nestjs/core@11.0.1)
-    devDependencies:
-      '@nestjs/cli':
-        specifier: ^11.0.0
-        version: 11.0.10(@types/node@20.11.10)
-
-  packages/tasks-queue:
-    dependencies:
       '@nestjs/common':
         specifier: 11.0.1
         version: 11.0.1(reflect-metadata@0.2.2)(rxjs@7.8.1)
@@ -1576,12 +1600,12 @@ packages:
       b-tween: 0.3.3
       b-validate: 1.5.3
       compute-scroll-into-view: 1.0.20
-      dayjs: 1.11.10
+      dayjs: 1.11.13
       lodash: 4.17.21
       number-precision: 1.6.0
       react: 17.0.1
       react-dom: 17.0.1(react@17.0.1)
-      react-focus-lock: 2.9.6(@types/react@17.0.1)(react@17.0.1)
+      react-focus-lock: 2.13.2(@types/react@17.0.1)(react@17.0.1)
       react-transition-group: 4.4.5(react-dom@17.0.1)(react@17.0.1)
       resize-observer-polyfill: 1.5.1
       scroll-into-view-if-needed: 2.2.20
@@ -1601,12 +1625,12 @@ packages:
       b-tween: 0.3.3
       b-validate: 1.5.3
       compute-scroll-into-view: 1.0.20
-      dayjs: 1.11.10
+      dayjs: 1.11.13
       lodash: 4.17.21
       number-precision: 1.6.0
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
-      react-focus-lock: 2.9.6(@types/react@17.0.1)(react@17.0.2)
+      react-focus-lock: 2.13.2(@types/react@17.0.1)(react@17.0.2)
       react-transition-group: 4.4.5(react-dom@17.0.2)(react@17.0.2)
       resize-observer-polyfill: 1.5.1
       scroll-into-view-if-needed: 2.2.20
@@ -1626,12 +1650,12 @@ packages:
       b-tween: 0.3.3
       b-validate: 1.5.3
       compute-scroll-into-view: 1.0.20
-      dayjs: 1.11.10
+      dayjs: 1.11.13
       lodash: 4.17.21
       number-precision: 1.6.0
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
-      react-focus-lock: 2.9.6(@types/react@17.0.2)(react@17.0.2)
+      react-focus-lock: 2.13.2(@types/react@17.0.2)(react@17.0.2)
       react-transition-group: 4.4.5(react-dom@17.0.2)(react@17.0.2)
       resize-observer-polyfill: 1.5.1
       scroll-into-view-if-needed: 2.2.20
@@ -1656,7 +1680,7 @@ packages:
       number-precision: 1.6.0
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
-      react-focus-lock: 2.9.6(@types/react@17.0.1)(react@17.0.2)
+      react-focus-lock: 2.9.6(react@17.0.2)
       react-transition-group: 4.4.5(react-dom@17.0.2)(react@17.0.2)
       resize-observer-polyfill: 1.5.1
       scroll-into-view-if-needed: 2.2.20
@@ -6098,16 +6122,16 @@ packages:
       '@rspack/binding': 0.2.5
       '@rspack/dev-client': 0.2.5(react-refresh@0.14.0)(webpack@5.56.1)
       '@swc/helpers': 0.5.1
-      browserslist: 4.23.0
+      browserslist: 4.27.0
       compare-versions: 6.0.0-rc.1
       enhanced-resolve: 5.12.0
       graceful-fs: 4.2.10
       neo-async: 2.6.2
       react-refresh: 0.14.0
-      schema-utils: 4.2.0
+      schema-utils: 4.3.3
       tapable: 2.2.1
       util: 0.12.5
-      watchpack: 2.4.0
+      watchpack: 2.4.4
       webpack-sources: 3.2.3
       zod: 3.22.4
       zod-validation-error: 1.2.0(zod@3.22.4)
@@ -6632,6 +6656,13 @@ packages:
 
   /@types/chrome@0.0.241:
     resolution: {integrity: sha512-3WxC2D8zhyDnCU1GxyznoyUulLH6ReLWUWQm5LSM7S1rvV9w+k8TUNbWrFavk6zz2E1ws05lNawnSa7rK5kY8Q==}
+    dependencies:
+      '@types/filesystem': 0.0.36
+      '@types/har-format': 1.2.15
+    dev: true
+
+  /@types/chrome@0.0.287:
+    resolution: {integrity: sha512-wWhBNPNXZHwycHKNYnexUcpSbrihVZu++0rdp6GEk5ZgAglenLx+RwdEouh6FrHS0XQiOxSd62yaujM1OoQlZQ==}
     dependencies:
       '@types/filesystem': 0.0.36
       '@types/har-format': 1.2.15
@@ -8463,6 +8494,14 @@ packages:
       acorn: ^8
     dependencies:
       acorn: 8.11.2
+    dev: true
+
+  /acorn-import-assertions@1.9.0(acorn@8.15.0):
+    resolution: {integrity: sha512-cmMwop9x+8KFhxvKrKfPYmN6/pKTYYHBqLa0DfvVZcKMJWNyWLnaqND7dx/qn66R7ewM1UX5XMaDVP5wlVTaVA==}
+    peerDependencies:
+      acorn: ^8
+    dependencies:
+      acorn: 8.15.0
     dev: true
 
   /acorn-import-phases@1.0.4(acorn@8.15.0):
@@ -10908,6 +10947,7 @@ packages:
       readdirp: 3.6.0
     optionalDependencies:
       fsevents: 2.3.3
+    dev: true
 
   /chokidar@3.6.0:
     resolution: {integrity: sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw==}
@@ -15612,7 +15652,7 @@ packages:
       entities: 4.5.0
       param-case: 3.0.4
       relateurl: 0.2.7
-      terser: 5.26.0
+      terser: 5.44.0
     dev: true
 
   /html-minifier@3.5.21:
@@ -22375,6 +22415,44 @@ packages:
     resolution: {integrity: sha512-/6UZ2qgEyH2aqzYZgQPxEnz33NJ2gNsnHA2o5+o4wW9bLM/JYQitNP9xPhsXwC08hMMovfGe/8retsdDsczPRg==}
     dev: false
 
+  /react-focus-lock@2.13.2(@types/react@17.0.1)(react@17.0.1):
+    resolution: {integrity: sha512-T/7bsofxYqnod2xadvuwjGKHOoL5GH7/EIPI5UyEvaU/c2CcphvGI371opFtuY/SYdbMsNiuF4HsHQ50nA/TKQ==}
+    peerDependencies:
+      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.23.5
+      '@types/react': 17.0.1
+      focus-lock: 1.3.5
+      prop-types: 15.8.1
+      react: 17.0.1
+      react-clientside-effect: 1.2.6(react@17.0.1)
+      use-callback-ref: 1.3.2(@types/react@17.0.1)(react@17.0.1)
+      use-sidecar: 1.1.2(@types/react@17.0.1)(react@17.0.1)
+    dev: false
+
+  /react-focus-lock@2.13.2(@types/react@17.0.1)(react@17.0.2):
+    resolution: {integrity: sha512-T/7bsofxYqnod2xadvuwjGKHOoL5GH7/EIPI5UyEvaU/c2CcphvGI371opFtuY/SYdbMsNiuF4HsHQ50nA/TKQ==}
+    peerDependencies:
+      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.23.5
+      '@types/react': 17.0.1
+      focus-lock: 1.3.5
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-clientside-effect: 1.2.6(react@17.0.2)
+      use-callback-ref: 1.3.2(@types/react@17.0.1)(react@17.0.2)
+      use-sidecar: 1.1.2(@types/react@17.0.1)(react@17.0.2)
+    dev: false
+
   /react-focus-lock@2.13.2(@types/react@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-T/7bsofxYqnod2xadvuwjGKHOoL5GH7/EIPI5UyEvaU/c2CcphvGI371opFtuY/SYdbMsNiuF4HsHQ50nA/TKQ==}
     peerDependencies:
@@ -22413,7 +22491,7 @@ packages:
       use-sidecar: 1.1.2(@types/react@17.0.2)(react@17.0.2)
     dev: false
 
-  /react-focus-lock@2.9.6(@types/react@17.0.1)(react@17.0.1):
+  /react-focus-lock@2.9.6(react@17.0.2):
     resolution: {integrity: sha512-B7gYnCjHNrNYwY2juS71dHbf0+UpXXojt02svxybj8N5bxceAkzPChKEncHuratjUHkIFNCn06k2qj1DRlzTug==}
     peerDependencies:
       '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -22423,51 +22501,12 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.23.5
-      '@types/react': 17.0.1
-      focus-lock: 1.0.0
-      prop-types: 15.8.1
-      react: 17.0.1
-      react-clientside-effect: 1.2.6(react@17.0.1)
-      use-callback-ref: 1.3.1(@types/react@17.0.1)(react@17.0.1)
-      use-sidecar: 1.1.2(@types/react@17.0.1)(react@17.0.1)
-    dev: false
-
-  /react-focus-lock@2.9.6(@types/react@17.0.1)(react@17.0.2):
-    resolution: {integrity: sha512-B7gYnCjHNrNYwY2juS71dHbf0+UpXXojt02svxybj8N5bxceAkzPChKEncHuratjUHkIFNCn06k2qj1DRlzTug==}
-    peerDependencies:
-      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-    dependencies:
-      '@babel/runtime': 7.23.5
-      '@types/react': 17.0.1
-      focus-lock: 1.0.0
-      prop-types: 15.8.1
-      react: 17.0.2
-      react-clientside-effect: 1.2.6(react@17.0.2)
-      use-callback-ref: 1.3.1(@types/react@17.0.1)(react@17.0.2)
-      use-sidecar: 1.1.2(@types/react@17.0.1)(react@17.0.2)
-    dev: false
-
-  /react-focus-lock@2.9.6(@types/react@17.0.2)(react@17.0.2):
-    resolution: {integrity: sha512-B7gYnCjHNrNYwY2juS71dHbf0+UpXXojt02svxybj8N5bxceAkzPChKEncHuratjUHkIFNCn06k2qj1DRlzTug==}
-    peerDependencies:
-      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-    dependencies:
-      '@babel/runtime': 7.23.5
-      '@types/react': 17.0.2
       focus-lock: 1.0.0
       prop-types: 15.8.1
       react: 17.0.2
       react-clientside-effect: 1.2.6(react@17.0.2)
       use-callback-ref: 1.3.1(@types/react@17.0.2)(react@17.0.2)
-      use-sidecar: 1.1.2(@types/react@17.0.2)(react@17.0.2)
+      use-sidecar: 1.1.2(@types/react@17.0.1)(react@17.0.2)
     dev: false
 
   /react-focus-trap@2.7.2:
@@ -23455,6 +23494,30 @@ packages:
       webpack: 4.44.2
     dev: false
 
+  /sass-loader@13.3.2(sass@1.52.3)(webpack@5.56.1):
+    resolution: {integrity: sha512-CQbKl57kdEv+KDLquhC+gE3pXt74LEAzm+tzywcA0/aHZuub8wTErbjAoNI57rPUWRYRNC5WUnNl8eGJNbDdwg==}
+    engines: {node: '>= 14.15.0'}
+    peerDependencies:
+      fibers: '>= 3.1.0'
+      node-sass: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0
+      sass: ^1.3.0
+      sass-embedded: '*'
+      webpack: ^5.0.0
+    peerDependenciesMeta:
+      fibers:
+        optional: true
+      node-sass:
+        optional: true
+      sass:
+        optional: true
+      sass-embedded:
+        optional: true
+    dependencies:
+      neo-async: 2.6.2
+      sass: 1.52.3
+      webpack: 5.56.1(webpack-cli@4.8.0)
+    dev: true
+
   /sass-loader@13.3.3(sass@1.52.3)(webpack@5.56.1):
     resolution: {integrity: sha512-mt5YN2F1MOZr3d/wBRcZxeFgwgkH44wVc2zohO2YF6JiOMkiXe4BYRZpSu2sO1g71mo/j16txzUhsKZlqjVGzA==}
     engines: {node: '>= 14.15.0'}
@@ -23492,7 +23555,7 @@ packages:
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
-      chokidar: 3.5.3
+      chokidar: 3.6.0
       immutable: 4.3.4
       source-map-js: 1.2.0
 
@@ -24966,6 +25029,31 @@ packages:
       - bluebird
     dev: false
 
+  /terser-webpack-plugin@5.3.14(@swc/core@1.4.14)(webpack@5.76.0):
+    resolution: {integrity: sha512-vkZjpUjb6OMS7dhV+tILUW6BhpDR7P2L/aQSAv+Uwk+m8KATX9EccViHTJR2qDtACKPIYndLGCyl3FMo+r2LMw==}
+    engines: {node: '>= 10.13.0'}
+    peerDependencies:
+      '@swc/core': '*'
+      esbuild: '*'
+      uglify-js: '*'
+      webpack: ^5.1.0
+    peerDependenciesMeta:
+      '@swc/core':
+        optional: true
+      esbuild:
+        optional: true
+      uglify-js:
+        optional: true
+    dependencies:
+      '@jridgewell/trace-mapping': 0.3.25
+      '@swc/core': 1.4.14
+      jest-worker: 27.5.1
+      schema-utils: 4.3.3
+      serialize-javascript: 6.0.2
+      terser: 5.44.0
+      webpack: 5.76.0(@swc/core@1.4.14)
+    dev: true
+
   /terser-webpack-plugin@5.3.14(webpack@5.100.2):
     resolution: {integrity: sha512-vkZjpUjb6OMS7dhV+tILUW6BhpDR7P2L/aQSAv+Uwk+m8KATX9EccViHTJR2qDtACKPIYndLGCyl3FMo+r2LMw==}
     engines: {node: '>= 10.13.0'}
@@ -24988,6 +25076,30 @@ packages:
       serialize-javascript: 6.0.2
       terser: 5.44.0
       webpack: 5.100.2
+    dev: true
+
+  /terser-webpack-plugin@5.3.14(webpack@5.76.0):
+    resolution: {integrity: sha512-vkZjpUjb6OMS7dhV+tILUW6BhpDR7P2L/aQSAv+Uwk+m8KATX9EccViHTJR2qDtACKPIYndLGCyl3FMo+r2LMw==}
+    engines: {node: '>= 10.13.0'}
+    peerDependencies:
+      '@swc/core': '*'
+      esbuild: '*'
+      uglify-js: '*'
+      webpack: ^5.1.0
+    peerDependenciesMeta:
+      '@swc/core':
+        optional: true
+      esbuild:
+        optional: true
+      uglify-js:
+        optional: true
+    dependencies:
+      '@jridgewell/trace-mapping': 0.3.25
+      jest-worker: 27.5.1
+      schema-utils: 4.3.3
+      serialize-javascript: 6.0.2
+      terser: 5.44.0
+      webpack: 5.76.0
     dev: true
 
   /terser-webpack-plugin@5.3.9(@swc/core@1.4.14)(webpack@5.56.1):
@@ -25015,31 +25127,6 @@ packages:
       webpack: 5.56.1(@swc/core@1.4.14)
     dev: true
 
-  /terser-webpack-plugin@5.3.9(@swc/core@1.4.14)(webpack@5.76.0):
-    resolution: {integrity: sha512-ZuXsqE07EcggTWQjXUj+Aot/OMcD0bMKGgF63f7UxYcu5/AJF53aIpK1YoP5xR9l6s/Hy2b+t1AM0bLNPRuhwA==}
-    engines: {node: '>= 10.13.0'}
-    peerDependencies:
-      '@swc/core': '*'
-      esbuild: '*'
-      uglify-js: '*'
-      webpack: ^5.1.0
-    peerDependenciesMeta:
-      '@swc/core':
-        optional: true
-      esbuild:
-        optional: true
-      uglify-js:
-        optional: true
-    dependencies:
-      '@jridgewell/trace-mapping': 0.3.25
-      '@swc/core': 1.4.14
-      jest-worker: 27.5.1
-      schema-utils: 3.3.0
-      serialize-javascript: 6.0.1
-      terser: 5.26.0
-      webpack: 5.76.0(@swc/core@1.4.14)
-    dev: true
-
   /terser-webpack-plugin@5.3.9(webpack@5.56.1):
     resolution: {integrity: sha512-ZuXsqE07EcggTWQjXUj+Aot/OMcD0bMKGgF63f7UxYcu5/AJF53aIpK1YoP5xR9l6s/Hy2b+t1AM0bLNPRuhwA==}
     engines: {node: '>= 10.13.0'}
@@ -25062,30 +25149,6 @@ packages:
       serialize-javascript: 6.0.1
       terser: 5.26.0
       webpack: 5.56.1(webpack-cli@4.8.0)
-    dev: true
-
-  /terser-webpack-plugin@5.3.9(webpack@5.76.0):
-    resolution: {integrity: sha512-ZuXsqE07EcggTWQjXUj+Aot/OMcD0bMKGgF63f7UxYcu5/AJF53aIpK1YoP5xR9l6s/Hy2b+t1AM0bLNPRuhwA==}
-    engines: {node: '>= 10.13.0'}
-    peerDependencies:
-      '@swc/core': '*'
-      esbuild: '*'
-      uglify-js: '*'
-      webpack: ^5.1.0
-    peerDependenciesMeta:
-      '@swc/core':
-        optional: true
-      esbuild:
-        optional: true
-      uglify-js:
-        optional: true
-    dependencies:
-      '@jridgewell/trace-mapping': 0.3.25
-      jest-worker: 27.5.1
-      schema-utils: 3.3.0
-      serialize-javascript: 6.0.1
-      terser: 5.26.0
-      webpack: 5.76.0
     dev: true
 
   /terser@3.17.0:
@@ -25949,8 +26012,23 @@ packages:
       punycode: 1.4.1
       qs: 6.14.0
 
-  /use-callback-ref@1.3.1(@types/react@17.0.1)(react@17.0.1):
+  /use-callback-ref@1.3.1(@types/react@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-Lg4Vx1XZQauB42Hw3kK7JM6yjVjgFmFC5/Ab797s79aARomD2nEErc4mCgM8EZrARLmmbWpi5DGCadmK50DcAQ==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+    dependencies:
+      '@types/react': 17.0.2
+      react: 17.0.2
+      tslib: 2.6.2
+    dev: false
+
+  /use-callback-ref@1.3.2(@types/react@17.0.1)(react@17.0.1):
+    resolution: {integrity: sha512-elOQwe6Q8gqZgDA8mrh44qRTQqpIHDcZ3hXTLjBe1i4ph8XpNJnO+aQf3NaG+lriLopI4HMx9VjQLfPQ6vhnoA==}
     engines: {node: '>=10'}
     peerDependencies:
       '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -25964,8 +26042,8 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /use-callback-ref@1.3.1(@types/react@17.0.1)(react@17.0.2):
-    resolution: {integrity: sha512-Lg4Vx1XZQauB42Hw3kK7JM6yjVjgFmFC5/Ab797s79aARomD2nEErc4mCgM8EZrARLmmbWpi5DGCadmK50DcAQ==}
+  /use-callback-ref@1.3.2(@types/react@17.0.1)(react@17.0.2):
+    resolution: {integrity: sha512-elOQwe6Q8gqZgDA8mrh44qRTQqpIHDcZ3hXTLjBe1i4ph8XpNJnO+aQf3NaG+lriLopI4HMx9VjQLfPQ6vhnoA==}
     engines: {node: '>=10'}
     peerDependencies:
       '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -25975,21 +26053,6 @@ packages:
         optional: true
     dependencies:
       '@types/react': 17.0.1
-      react: 17.0.2
-      tslib: 2.6.2
-    dev: false
-
-  /use-callback-ref@1.3.1(@types/react@17.0.2)(react@17.0.2):
-    resolution: {integrity: sha512-Lg4Vx1XZQauB42Hw3kK7JM6yjVjgFmFC5/Ab797s79aARomD2nEErc4mCgM8EZrARLmmbWpi5DGCadmK50DcAQ==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-    dependencies:
-      '@types/react': 17.0.2
       react: 17.0.2
       tslib: 2.6.2
     dev: false
@@ -26625,7 +26688,7 @@ packages:
     engines: {node: '>= 10.13.0'}
     hasBin: true
     dependencies:
-      acorn: 8.11.2
+      acorn: 8.15.0
       acorn-walk: 8.3.1
       chalk: 4.1.2
       commander: 7.2.0
@@ -26757,7 +26820,7 @@ packages:
       memfs: 3.5.3
       mime-types: 2.1.35
       range-parser: 1.2.1
-      schema-utils: 4.3.3
+      schema-utils: 4.2.0
       webpack: 5.76.0
     dev: true
 
@@ -26774,7 +26837,7 @@ packages:
       memfs: 3.5.3
       mime-types: 2.1.35
       range-parser: 1.2.1
-      schema-utils: 4.2.0
+      schema-utils: 4.3.3
       webpack: 5.76.0
     dev: true
 
@@ -26911,7 +26974,7 @@ packages:
       open: 8.4.2
       p-retry: 4.6.2
       rimraf: 3.0.2
-      schema-utils: 4.2.0
+      schema-utils: 4.3.3
       selfsigned: 2.4.1
       serve-index: 1.9.1(supports-color@6.1.0)
       sockjs: 0.3.24
@@ -27245,11 +27308,11 @@ packages:
       '@webassemblyjs/ast': 1.11.1
       '@webassemblyjs/wasm-edit': 1.11.1
       '@webassemblyjs/wasm-parser': 1.11.1
-      acorn: 8.11.2
-      acorn-import-assertions: 1.9.0(acorn@8.11.2)
-      browserslist: 4.23.0
+      acorn: 8.15.0
+      acorn-import-assertions: 1.9.0(acorn@8.15.0)
+      browserslist: 4.27.0
       chrome-trace-event: 1.0.3
-      enhanced-resolve: 5.15.0
+      enhanced-resolve: 5.18.3
       es-module-lexer: 0.9.3
       eslint-scope: 5.1.1
       events: 3.3.0
@@ -27261,9 +27324,9 @@ packages:
       neo-async: 2.6.2
       schema-utils: 3.3.0
       tapable: 2.2.1
-      terser-webpack-plugin: 5.3.9(webpack@5.76.0)
-      watchpack: 2.4.0
-      webpack-sources: 3.2.3
+      terser-webpack-plugin: 5.3.14(webpack@5.76.0)
+      watchpack: 2.4.4
+      webpack-sources: 3.3.3
     transitivePeerDependencies:
       - '@swc/core'
       - esbuild
@@ -27285,11 +27348,11 @@ packages:
       '@webassemblyjs/ast': 1.11.1
       '@webassemblyjs/wasm-edit': 1.11.1
       '@webassemblyjs/wasm-parser': 1.11.1
-      acorn: 8.11.2
-      acorn-import-assertions: 1.9.0(acorn@8.11.2)
-      browserslist: 4.23.0
+      acorn: 8.15.0
+      acorn-import-assertions: 1.9.0(acorn@8.15.0)
+      browserslist: 4.27.0
       chrome-trace-event: 1.0.3
-      enhanced-resolve: 5.15.0
+      enhanced-resolve: 5.18.3
       es-module-lexer: 0.9.3
       eslint-scope: 5.1.1
       events: 3.3.0
@@ -27301,9 +27364,9 @@ packages:
       neo-async: 2.6.2
       schema-utils: 3.3.0
       tapable: 2.2.1
-      terser-webpack-plugin: 5.3.9(@swc/core@1.4.14)(webpack@5.76.0)
-      watchpack: 2.4.0
-      webpack-sources: 3.2.3
+      terser-webpack-plugin: 5.3.14(@swc/core@1.4.14)(webpack@5.76.0)
+      watchpack: 2.4.4
+      webpack-sources: 3.3.3
     transitivePeerDependencies:
       - '@swc/core'
       - esbuild
@@ -27847,7 +27910,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       cliui: 7.0.4
-      escalade: 3.1.1
+      escalade: 3.2.0
       get-caller-file: 2.0.5
       require-directory: 2.1.1
       string-width: 4.2.3
@@ -27860,7 +27923,7 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       cliui: 8.0.1
-      escalade: 3.1.1
+      escalade: 3.2.0
       get-caller-file: 2.0.5
       require-directory: 2.1.1
       string-width: 4.2.3
