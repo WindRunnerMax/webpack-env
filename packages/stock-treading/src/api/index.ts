@@ -1,10 +1,14 @@
+import { DateTime } from "@block-kit/utils";
+
 import type { DailyKline } from "../types/stock";
-import { csStockFetch } from "./cs-stock";
-import { tenStockFetch } from "./ten-stock";
+import { fetchCsStock } from "./cs-stock";
+import { fetchSnowStock } from "./snow-stock";
+import { fetchTencentFund } from "./tencent-fund";
+import { fetchTencentStock } from "./tencent-stock";
 
 export type FetchProps = {
   /** 索引代码 */
-  index: string;
+  code: string;
   /**
    * 开始日期
    * - YYYYMMDD
@@ -14,20 +18,26 @@ export type FetchProps = {
    * 结束日期
    * - YYYYMMDD
    */
-  end: string;
+  end?: string;
   /**
    * 数据来源
    */
-  source?: "cs" | "ten-stock" | "ten-fund";
+  source?: "cs" | "ten-stock" | "ten-fund" | "snow-stock";
 };
 
 export const fetchStockKline = async (props: FetchProps): Promise<DailyKline[]> => {
-  const { index, start, end, source = "cs" } = props;
+  const { code: code, start, end = new DateTime().format("yyyyMMdd"), source = "cs" } = props;
   if (source === "cs") {
-    return csStockFetch(index, start, end);
+    return fetchCsStock(code, start, end);
   }
   if (source === "ten-stock") {
-    return tenStockFetch(index, start, end);
+    return fetchTencentStock(code, start, end);
+  }
+  if (source === "ten-fund") {
+    return fetchTencentFund(code);
+  }
+  if (source === "snow-stock") {
+    return fetchSnowStock(code, end);
   }
   throw new Error(`Unsupported source: ${source}`);
 };

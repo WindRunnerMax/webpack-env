@@ -11,9 +11,7 @@ export const ChartBox: FC<{
     <div className="part">
       <div className="title">{props.title}</div>
       <div className="chart-container">
-        <div className="chart">
-          <DailyKlineChart {...props.chartProps} />
-        </div>
+        <DailyKlineChart {...props.chartProps} />
       </div>
     </div>
   );

@@ -14,4 +14,6 @@ export type DailyKline = {
    * - 相较昨日收盘价
    */
   change: number;
+  /** 单位净值(仅基金) */
+  worth: number;
 };

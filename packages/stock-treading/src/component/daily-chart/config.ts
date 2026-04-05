@@ -34,43 +34,41 @@ export const getDailyChartConfig = (source: DailyKline[], slice: number = 0) => 
         if (!params || params.length === 0) return "";
         const dataIndex = params[0].dataIndex;
         const item = data[dataIndex];
-        let ma250Value = "";
+        let maValue: number = 0;
         const ma250Param = params.find((p: P.Any) => p.seriesName === "MA250");
-        if (ma250Param && ma250Param.value != null) {
-          ma250Value = `<div>250日均线: ${ma250Param.value.toFixed(2)}</div>`;
+        if (ma250Param && ma250Param.value !== null) {
+          maValue = ma250Param.value;
+        }
+        let maRatio: number = 0;
+        if (ma250Param.value && ma250Param.value !== null) {
+          maRatio = ((item.close - ma250Param.value) / ma250Param.value) * 100;
         }
         return `
-            <div style="padding: 8px;">
-              <div style="font-weight: bold; margin-bottom: 4px;">${item.date}</div>
-              <div>开盘价: ${item.open.toFixed(2)}</div>
-              <div>收盘价: ${item.close.toFixed(2)}</div>
-              <div>最高价: ${item.high.toFixed(2)}</div>
-              <div>最低价: ${item.low.toFixed(2)}</div>
-              <div style="color: ${item.change >= 0 ? "#ef5350" : "#26a69a"}">
-                涨跌幅: ${item.change >= 0 ? "+" : ""}${item.change.toFixed(2)}%
+            <div style="padding: 1px;">
+              <div style="font-weight: bold; ">${item.date}</div>
+              <div>开盘价: ${item.open} 收盘价: ${item.close}</div>
+              <div>最低价: ${item.low} 最高价: ${item.high.toFixed(2)}</div>
+              <div>250日均线: ${maValue.toFixed(4)}</div>
+              <div style="display:flex; gap: 10px;">
+                <div style="color: ${item.change >= 0 ? "#ef5350" : "#26a69a"}">
+                  涨跌幅: ${item.change >= 0 ? "+" : ""}${item.change.toFixed(2)}%
+                </div>
+                <div style="color: ${maRatio >= 0 ? "#ef5350" : "#26a69a"}">
+                  均线偏离: ${maRatio >= 0 ? "+" : ""}${maRatio.toFixed(2)}%
+                </div>
               </div>
-              ${ma250Value}
             </div>
           `;
       },
     },
-    grid: [
-      {
-        left: "0",
-        right: "0",
-        top: "0",
-        height: "100%",
-      },
-    ],
+    grid: [{ left: "0", right: "0", top: "0", height: "100%" }],
     xAxis: [
       {
         type: "category",
         data: dates,
         boundaryGap: false,
         axisLine: { onZero: false },
-        splitLine: {
-          show: true,
-        },
+        splitLine: { show: true },
         min: "dataMin",
         max: "dataMax",
       },
@@ -98,10 +96,7 @@ export const getDailyChartConfig = (source: DailyKline[], slice: number = 0) => 
         type: "line",
         data: maValues,
         smooth: true,
-        lineStyle: {
-          width: 1,
-          color: "#ff9800",
-        },
+        lineStyle: { width: 1, color: "#ff9800" },
         symbol: "none",
       },
     ],

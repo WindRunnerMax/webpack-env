@@ -9,11 +9,11 @@ import { getDailyChartConfig } from "./config";
 
 export interface DailyKlineChartProps {
   /** 索引代码 */
-  index: string;
+  code: string;
   /** 开始日期 - YYYYMMDD */
   start: string;
   /** 结束日期 - YYYYMMDD */
-  end: string;
+  end?: string;
   /** 数据来源 */
   source?: FetchProps["source"];
   /** 图表高度 */
@@ -25,11 +25,11 @@ export interface DailyKlineChartProps {
 }
 
 export const DailyKlineChart: React.FC<DailyKlineChartProps> = ({
-  index,
+  code,
   start,
   end,
   source = "cs",
-  height = 400,
+  height = 200,
   width = "100%",
   slice = 0,
 }) => {
@@ -43,7 +43,7 @@ export const DailyKlineChart: React.FC<DailyKlineChartProps> = ({
     const fetchData = async () => {
       try {
         setLoading(true);
-        const result = await fetchStockKline({ index, start, end, source });
+        const result = await fetchStockKline({ code, start, end, source });
         setData(result);
       } catch (error) {
         console.error("Failed to fetch stock data:", error);
@@ -52,7 +52,7 @@ export const DailyKlineChart: React.FC<DailyKlineChartProps> = ({
       }
     };
     fetchData();
-  }, [index, start, end, source, slice]);
+  }, [code, start, end, source, slice]);
 
   useEffect(() => {
     if (!chartRef.current || loading || data.length === 0) return;

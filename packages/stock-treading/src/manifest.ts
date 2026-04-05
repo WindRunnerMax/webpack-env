@@ -22,7 +22,7 @@ const __MANIFEST__ = {
     service_worker: "worker.js",
   },
   host_permissions: ["https://*/*", "http://*/*", "file://*/*"],
-  permissions: ["activeTab", "tabs", "scripting", "management"],
+  permissions: ["activeTab", "tabs", "scripting", "management", "cookies", "storage"],
   minimum_chrome_version: "88.0",
 };
 
