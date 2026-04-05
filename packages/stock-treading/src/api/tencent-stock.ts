@@ -31,6 +31,6 @@ export const fetchTencentStock = async (
       high: Number(item.high ?? item.last),
       low: Number(item.low ?? item.last),
       change: !isNil(lastClose) ? ((item.last - lastClose) / lastClose) * 100 : 0,
-    };
+    } as DailyKline;
   });
 };

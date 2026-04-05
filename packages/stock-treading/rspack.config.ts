@@ -12,13 +12,13 @@ import { ManifestPlugin } from "./script/manifest";
 const config: Configuration = {
   context: __dirname,
   entry: {
-    background: "./src/index.tsx",
+    stock: "./src/index.tsx",
     worker: "./src/worker.ts",
   },
   plugins: [
     new HtmlPlugin({
-      filename: "background.html",
-      template: "./public/background.html",
+      filename: "stock.html",
+      template: "./public/stock.html",
       inject: false,
     }),
     new FilesPlugin(),

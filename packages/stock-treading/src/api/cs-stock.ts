@@ -26,7 +26,8 @@ export const fetchCsStock = async (
       close: item.close,
       high: item.high ?? item.close,
       low: item.low ?? item.close,
+      volume: item.tradingVol,
       change: !isNil(lastClose) ? ((item.close - lastClose) / lastClose) * 100 : 0,
-    };
+    } as DailyKline;
   });
 };

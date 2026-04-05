@@ -22,7 +22,7 @@ export type FetchProps = {
   /**
    * 数据来源
    */
-  source?: "cs" | "ten-stock" | "ten-fund" | "snow-stock";
+  source?: "cs" | "tencent-stock" | "tencent-fund" | "snow-stock";
 };
 
 export const fetchStockKline = async (props: FetchProps): Promise<DailyKline[]> => {
@@ -30,10 +30,10 @@ export const fetchStockKline = async (props: FetchProps): Promise<DailyKline[]> 
   if (source === "cs") {
     return fetchCsStock(code, start, end);
   }
-  if (source === "ten-stock") {
+  if (source === "tencent-stock") {
     return fetchTencentStock(code, start, end);
   }
-  if (source === "ten-fund") {
+  if (source === "tencent-fund") {
     return fetchTencentFund(code);
   }
   if (source === "snow-stock") {

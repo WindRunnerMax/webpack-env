@@ -25,6 +25,6 @@ export const fetchTencentFund = async (index: string): Promise<DailyKline[]> => 
       low: Number(close),
       worth: Number(worth),
       change: !isNil(lastClose) ? ((close - lastClose) / lastClose) * 100 : 0,
-    };
+    } as DailyKline;
   });
 };

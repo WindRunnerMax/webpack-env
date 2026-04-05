@@ -43,22 +43,25 @@ export const getDailyChartConfig = (source: DailyKline[], slice: number = 0) => 
         if (ma250Param.value && ma250Param.value !== null) {
           maRatio = ((item.close - ma250Param.value) / ma250Param.value) * 100;
         }
-        return `
-            <div style="padding: 1px;">
-              <div style="font-weight: bold; ">${item.date}</div>
-              <div>开盘价: ${item.open} 收盘价: ${item.close}</div>
-              <div>最低价: ${item.low} 最高价: ${item.high.toFixed(2)}</div>
-              <div>250日均线: ${maValue.toFixed(4)}</div>
-              <div style="display:flex; gap: 10px;">
-                <div style="color: ${item.change >= 0 ? "#ef5350" : "#26a69a"}">
-                  涨跌幅: ${item.change >= 0 ? "+" : ""}${item.change.toFixed(2)}%
-                </div>
-                <div style="color: ${maRatio >= 0 ? "#ef5350" : "#26a69a"}">
-                  均线偏离: ${maRatio >= 0 ? "+" : ""}${maRatio.toFixed(2)}%
-                </div>
-              </div>
-            </div>
-          `;
+        return (
+          `<div style="padding: 1px;">` +
+          `  <div style="font-weight: bold; ">${item.date}</div>` +
+          `  <div>开盘价: ${item.open} 收盘价: ${item.close}</div>` +
+          `  <div>最低价: ${item.low} 最高价: ${item.high.toFixed(2)}</div>` +
+          `  <div>` +
+          `    ${item.volume ? `成交量: ${item.volume.toFixed(2)}` : ""}` +
+          `    250MA: ${maValue.toFixed(maValue > 10000 ? 2 : 4)}` +
+          `  </div>` +
+          `  <div style="display:flex; gap: 10px;">` +
+          `    <div style="color: ${item.change >= 0 ? "#ef5350" : "#26a69a"}">` +
+          `      涨跌幅: ${item.change >= 0 ? "+" : ""}${item.change.toFixed(2)}%` +
+          `    </div>` +
+          `    <div style="color: ${maRatio >= 0 ? "#ef5350" : "#26a69a"}">` +
+          `      均线偏离: ${maRatio >= 0 ? "+" : ""}${maRatio.toFixed(2)}%` +
+          `    </div>` +
+          `  </div>` +
+          `</div>`
+        );
       },
     },
     grid: [{ left: "0", right: "0", top: "0", height: "100%" }],

@@ -50,7 +50,8 @@ export const fetchSnowStock = async (index: string, endDate: string): Promise<Da
       close: close,
       high: high ?? close,
       low: low ?? close,
+      volume: item[1] ? item[1] / 10000 / 100 : void 0,
       change: !isNil(lastClose) ? ((close - lastClose) / lastClose) * 100 : 0,
-    };
+    } as DailyKline;
   });
 };
