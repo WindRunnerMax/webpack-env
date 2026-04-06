@@ -16,6 +16,4 @@ export type DailyKline = {
   change: number;
   /** 成交量 */
   volume?: number;
-  /** 单位净值(仅基金) */
-  worth: number;
 };

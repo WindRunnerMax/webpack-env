@@ -5,6 +5,7 @@ import { DateTime, isNil } from "@block-kit/utils";
 import type { P } from "@block-kit/utils/dist/es/types";
 
 import type { DailyKline } from "../types/stock";
+import { getHeaders } from "../utils/request";
 
 const baseUrl = "https://stock.xueqiu.com/v5/stock/chart/kline.json";
 
@@ -43,7 +44,10 @@ export const fetchSnowStock = async (index: string, endDate: DateTime): Promise<
   const start = new DateTime(endDate.format("yyyy-MM-dd"));
   const timestamp = start.getTime();
   const res = await fetch(
-    `${baseUrl}?symbol=${index}&begin=${timestamp}&period=day&type=before&count=-${400}&indicator=kline,pe,pb,ps,pcf,market_capital,agt,ggt,balance`
+    `${baseUrl}?symbol=${index}&begin=${timestamp}&period=day&type=before&count=-${400}&indicator=kline,pe,pb,ps,pcf,market_capital,agt,ggt,balance`,
+    {
+      headers: getHeaders(),
+    }
   );
   const data = await res.json();
   return data.data.item.map((item: P.Any, index: number) => {
