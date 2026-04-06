@@ -6,8 +6,8 @@ import { Fragment, useEffect, useState } from "react";
 
 import { fetchStockKline } from "../../api";
 import type { DailyKline } from "../../types/stock";
-import type { DailyKlineChartProps } from "../daily-chart";
-import { DailyKlineChart } from "../daily-chart";
+import type { DailyKlineChartProps } from "../candlestick";
+import { DailyKlineChart } from "../candlestick";
 
 export const FundChart: FC<
   Omit<DailyKlineChartProps, "data"> & {

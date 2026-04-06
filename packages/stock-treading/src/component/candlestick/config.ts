@@ -64,12 +64,19 @@ export const getDailyChartConfig = (source: DailyKline[], slice: number = 0) => 
         );
       },
     },
-    grid: [{ left: "0", right: "0", top: "0", height: "100%" }],
+    grid: [
+      {
+        left: "0",
+        right: "0",
+        top: "0",
+        height: "100%",
+      },
+    ],
     xAxis: [
       {
         type: "category",
         data: dates,
-        boundaryGap: false,
+        boundaryGap: true,
         axisLine: { onZero: false },
         splitLine: { show: true },
         min: "dataMin",

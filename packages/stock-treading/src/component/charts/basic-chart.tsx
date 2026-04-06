@@ -7,8 +7,8 @@ import { useEffect, useState } from "react";
 import type { FetchProps } from "../../api";
 import { fetchStockKline } from "../../api";
 import type { DailyKline } from "../../types/stock";
-import type { DailyKlineChartProps } from "../daily-chart";
-import { DailyKlineChart } from "../daily-chart";
+import type { DailyKlineChartProps } from "../candlestick";
+import { DailyKlineChart } from "../candlestick";
 
 export const BasicChart: FC<
   Omit<DailyKlineChartProps, "data"> & {
