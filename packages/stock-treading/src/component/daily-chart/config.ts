@@ -46,11 +46,11 @@ export const getDailyChartConfig = (source: DailyKline[], slice: number = 0) => 
         return (
           `<div style="padding: 1px;">` +
           `  <div style="font-weight: bold; ">${item.date}</div>` +
-          `  <div>开盘价: ${item.open} 收盘价: ${item.close}</div>` +
           `  <div>最低价: ${item.low} 最高价: ${item.high}</div>` +
+          `  <div>开盘价: ${item.open} 收盘价: ${item.close}</div>` +
           `  <div>` +
           `    ${item.volume ? `成交量: ${item.volume.toFixed(2)}` : ""}` +
-          `    250MA: ${maValue.toFixed(maValue > 10000 ? 2 : 4)}` +
+          `    250MA: ${maValue?.toFixed(maValue > 10000 ? 2 : 4) || "0"}` +
           `  </div>` +
           `  <div style="display:flex; gap: 10px;">` +
           `    <div style="color: ${item.change >= 0 ? "#ef5350" : "#26a69a"}">` +

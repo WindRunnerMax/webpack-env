@@ -1,4 +1,4 @@
-# webpack-simple-environment
+# webpack-env
 `webpack/vite/rspack`搭建的简单环境，主要为博客相关代码使用，每篇博客都配置有不同的代码路径作为演示示例。
 
 
@@ -146,6 +146,11 @@
 <tr>
 <td>深入理解 Sticky 粘性定位</td>
 <td><a href="./packages/doc-sticky">packages/doc-sticky</a></td>
+</tr>
+
+<tr>
+<td>中证红利低波全收益相关指数</td>
+<td><a href="./packages/stock-treading">packages/stock-treading</a></td>
 </tr>
 
 <tr>
