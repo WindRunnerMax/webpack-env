@@ -13,12 +13,12 @@ export type FetchProps = {
    * 开始日期
    * - YYYYMMDD
    */
-  start: string;
+  start: DateTime;
   /**
    * 结束日期
    * - YYYYMMDD
    */
-  end?: string;
+  end?: DateTime;
   /**
    * 数据来源
    */
@@ -26,7 +26,7 @@ export type FetchProps = {
 };
 
 export const fetchStockKline = async (props: FetchProps): Promise<DailyKline[]> => {
-  const { code: code, start, end = new DateTime().format("yyyyMMdd"), source = "cs" } = props;
+  const { code: code, start, end = new DateTime(), source = "cs" } = props;
   if (source === "cs") {
     return fetchCsStock(code, start, end);
   }

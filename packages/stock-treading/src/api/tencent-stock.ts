@@ -10,13 +10,11 @@ const baseUrl = "https://proxy.finance.qq.com/cgi/cgi-bin/stockinfoquery/kline/a
 
 export const fetchTencentStock = async (
   index: string,
-  startDate: string,
-  endDate: string
+  startDate: DateTime,
+  endDate: DateTime
 ): Promise<DailyKline[]> => {
-  const start = new DateTime(startDate.replace(/^(\d{4})(\d{2})(\d{2})$/, "$1-$2-$3"));
-  const end = new DateTime(endDate.replace(/^(\d{4})(\d{2})(\d{2})$/, "$1-$2-$3"));
-  const s = start.format("yyyy-MM-dd");
-  const e = end.format("yyyy-MM-dd");
+  const s = startDate.format("yyyy-MM-dd");
+  const e = endDate.format("yyyy-MM-dd");
   const res = await fetch(
     `${baseUrl}?code=${index}&fromDate=${s}&toDate=${e}&ktype=day&limit=${400}`
   );

@@ -23,18 +23,24 @@ const syncCookies = async () => {
     const iframeCookieCheck = async () => {
       index++;
       const login = await isLogin();
-      if (login) return resolve();
-      if (index > 30) return reject("sync cookies timeout");
+      if (login) {
+        iframe.remove();
+        return resolve();
+      }
+      if (index > 30) {
+        iframe.remove();
+        return reject("sync cookies timeout");
+      }
       setTimeout(iframeCookieCheck, 1000);
     };
     iframeCookieCheck();
   });
 };
 
-export const fetchSnowStock = async (index: string, endDate: string): Promise<DailyKline[]> => {
+export const fetchSnowStock = async (index: string, endDate: DateTime): Promise<DailyKline[]> => {
   const login = await isLogin();
   if (!login) await syncCookies();
-  const start = new DateTime(endDate.replace(/^(\d{4})(\d{2})(\d{2})$/, "$1-$2-$3"));
+  const start = new DateTime(endDate.format("yyyy-MM-dd"));
   const timestamp = start.getTime();
   const res = await fetch(
     `${baseUrl}?symbol=${index}&begin=${timestamp}&period=day&type=before&count=-${400}&indicator=kline,pe,pb,ps,pcf,market_capital,agt,ggt,balance`

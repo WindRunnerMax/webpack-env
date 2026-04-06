@@ -1,13 +1,14 @@
 import "./styles/index.less";
 import "@arco-design/web-react/es/style/index.less";
 
+import { DateTime } from "@block-kit/utils";
 import ReactDOM from "react-dom";
 
 import { BasicChart } from "./component/charts/basic-chart";
 import { FundChart } from "./component/charts/fund-chart";
 
 const App = () => {
-  const start = "20240101";
+  const start = new DateTime().deferMonth(-24);
   const slice = 100;
 
   return (
@@ -15,7 +16,7 @@ const App = () => {
       <BasicChart title="H30269 红利低波指数" code="H30269" start={start} slice={slice} />
       <BasicChart title="H20269 红利低波全收益指数" code="H20269" start={start} slice={slice} />
       <BasicChart
-        title="H512890 华泰柏瑞中证红利低波"
+        title="H512890 华泰柏瑞中证红利低波(前复权)"
         code="SH512890"
         start={start}
         slice={slice}
@@ -28,7 +29,7 @@ const App = () => {
         slice={slice}
       />
       <BasicChart
-        title="H563020 易方达中证红利低波"
+        title="H563020 易方达中证红利低波(前复权)"
         code="SH563020"
         start={start}
         slice={slice}

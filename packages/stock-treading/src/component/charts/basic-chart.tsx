@@ -1,3 +1,6 @@
+import { IconSync } from "@arco-design/web-react/icon";
+import type { DateTime } from "@block-kit/utils";
+import { useMemoFn } from "@block-kit/utils/dist/es/hooks";
 import type { FC } from "react";
 import { useEffect, useState } from "react";
 
@@ -12,10 +15,10 @@ export const BasicChart: FC<
     title: string;
     /** 索引代码 */
     code: string;
-    /** 开始日期 - YYYYMMDD */
-    start: string;
-    /** 结束日期 - YYYYMMDD */
-    end?: string;
+    /** 开始日期 */
+    start: DateTime;
+    /** 结束日期 */
+    end?: DateTime;
     source?: FetchProps["source"];
   }
 > = props => {
@@ -23,25 +26,31 @@ export const BasicChart: FC<
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<DailyKline[]>([]);
 
+  const fetchData = useMemoFn(async () => {
+    try {
+      setLoading(true);
+      const result = await fetchStockKline({ code, start, end, source });
+      setData(result);
+    } catch (error) {
+      console.error("Failed to fetch stock data:", error);
+    } finally {
+      setLoading(false);
+    }
+  });
+
   // 请求数据
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const result = await fetchStockKline({ code, start, end, source });
-        setData(result);
-      } catch (error) {
-        console.error("Failed to fetch stock data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchData();
-  }, [code, start, end, slice, source]);
+  }, [fetchData]);
 
   return (
     <div className="part">
-      <div className="title">{props.title}</div>
+      <div className="title">
+        <span>{props.title}</span>
+        <span className="operation">
+          <IconSync className="" onClick={fetchData} />
+        </span>
+      </div>
       <div className="chart-container">
         {loading ? (
           <div style={{ width, height }}>加载中...</div>
