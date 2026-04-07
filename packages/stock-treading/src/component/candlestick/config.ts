@@ -3,27 +3,12 @@ import type { EChartsOption } from "echarts";
 
 import type { DailyKline } from "../../types/stock";
 
-export const getDailyChartConfig = (source: DailyKline[], slice: number = 0) => {
-  const data = slice > 0 ? source.slice(-slice) : source;
-  // 准备数据
-  const dates = data.map(item => item.date);
-  const klineData = data.map(item => [item.open, item.close, item.low, item.high]);
-
-  // 计算 250 日均线
-  const MA = 250;
-  let sum = 0;
-  let maValues: (number | null)[] = [];
-  for (let i = 0; i < source.length; i++) {
-    sum = sum + source[i].close;
-    if (i < MA - 1) {
-      maValues.push(null);
-      continue;
-    }
-    maValues.push(sum / MA);
-    sum = sum - source[i - MA + 1].close;
-  }
-  maValues = slice > 0 ? maValues.slice(-slice) : maValues;
-
+export const getDailyChartOptions = (
+  data: DailyKline[],
+  dates: string[],
+  klineData: number[][],
+  maValues: (number | null)[]
+) => {
   const option: EChartsOption = {
     tooltip: {
       trigger: "axis",

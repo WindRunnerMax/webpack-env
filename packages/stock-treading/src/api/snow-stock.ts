@@ -1,7 +1,7 @@
 // https://xueqiu.com/S/SH512890
 // https://stock.xueqiu.com/v5/stock/chart/kline.json?symbol=SH512890&begin=1775466294362&period=day&type=before&count=-284&indicator=kline,pe,pb,ps,pcf,market_capital,agt,ggt,balance
 
-import { DateTime, isNil } from "@block-kit/utils";
+import { DateTime, isNil, sleep } from "@block-kit/utils";
 import type { P } from "@block-kit/utils/dist/es/types";
 
 import type { DailyKline } from "../types/stock";
@@ -25,7 +25,9 @@ const syncCookies = async () => {
       index++;
       const login = await isLogin();
       if (login) {
-        iframe.remove();
+        iframe.contentWindow?.close();
+        iframe.src = "about:blank";
+        sleep(1000).then(() => iframe.remove());
         return resolve();
       }
       if (index > 30) {
@@ -41,18 +43,21 @@ const syncCookies = async () => {
 export const fetchSnowStock = async (index: string, endDate: DateTime): Promise<DailyKline[]> => {
   const login = await isLogin();
   if (!login) await syncCookies();
+  let code = index;
+  if (code.startsWith("H")) code = "S" + code;
+  if (code.startsWith("Z")) code = "S" + code;
   const start = new DateTime(endDate.format("yyyy-MM-dd"));
   const timestamp = start.getTime();
   const res = await fetch(
-    `${baseUrl}?symbol=${index}&begin=${timestamp}&period=day&type=before&count=-${400}&indicator=kline,pe,pb,ps,pcf,market_capital,agt,ggt,balance`,
+    `${baseUrl}?symbol=${code}&begin=${timestamp}&period=day&type=before&count=-${400}&indicator=kline,pe,pb,ps,pcf,market_capital,agt,ggt,balance`,
     {
       headers: getHeaders(),
     }
   );
   const data = await res.json();
-  return data.data.item.map((item: P.Any, index: number) => {
+  return data.data.item.map((item: P.Any, i: number) => {
     const [timestamp, , open, high, low, close] = item;
-    const lastItem = data.data.item[index - 1];
+    const lastItem = data.data.item[i - 1];
     const lastClose = lastItem?.[5];
     return {
       date: new DateTime(timestamp).format("yyyyMMdd"),

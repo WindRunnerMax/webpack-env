@@ -1,7 +1,7 @@
 // https://gu.qq.com/jj020602
 // https://stockjs.finance.qq.com/fundUnitNavAll/data/year_all/020602.js
 
-import { isNil } from "@block-kit/utils";
+import { DateTime, isNil } from "@block-kit/utils";
 import type { P } from "@block-kit/utils/dist/es/types";
 
 import type { DailyKline } from "../types/stock";
@@ -13,7 +13,8 @@ export const fetchTencentFund = async (
   index: string,
   source: "tencent-fund" | "tencent-fund-worth"
 ): Promise<DailyKline[]> => {
-  const res = await fetch(`${baseUrl}/${index}.js`, {
+  const date = new DateTime().format();
+  const res = await fetch(`${baseUrl}/${index}.js?${date}`, {
     headers: getHeaders(),
   });
   const text = await res.text();

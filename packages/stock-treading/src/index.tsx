@@ -13,11 +13,24 @@ const App = () => {
 
   return (
     <div className="body">
-      <BasicChart title="H30269 红利低波指数" code="H30269" start={start} slice={slice} />
+      <BasicChart
+        title="H30269 红利低波指数"
+        code="CSIH30269"
+        start={start}
+        slice={slice}
+        source="snow-stock"
+      />
       <BasicChart title="H20269 红利低波全收益指数" code="H20269" start={start} slice={slice} />
       <BasicChart
         title="H512890 华泰柏瑞红利低波ETF(前复权)"
-        code="SH512890"
+        code="H512890"
+        start={start}
+        slice={slice}
+        source="snow-stock"
+      />
+      <BasicChart
+        title="H563020 易方达红利低波ETF(前复权)"
+        code="H563020"
         start={start}
         slice={slice}
         source="snow-stock"
@@ -27,13 +40,6 @@ const App = () => {
         code="007466"
         start={start}
         slice={slice}
-      />
-      <BasicChart
-        title="H563020 易方达红利低波ETF(前复权)"
-        code="SH563020"
-        start={start}
-        slice={slice}
-        source="snow-stock"
       />
       <FundChart title="020602 易方达红利低波联接基金" code="020602" start={start} slice={slice} />
     </div>
