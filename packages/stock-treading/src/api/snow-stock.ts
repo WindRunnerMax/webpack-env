@@ -40,16 +40,22 @@ const syncCookies = async () => {
   });
 };
 
-export const fetchSnowStock = async (index: string, endDate: DateTime): Promise<DailyKline[]> => {
+export const fetchSnowStock = async (
+  index: string,
+  startDate: DateTime,
+  endDate: DateTime
+): Promise<DailyKline[]> => {
   const login = await isLogin();
   if (!login) await syncCookies();
   let code = index;
   if (code.startsWith("H")) code = "S" + code;
   if (code.startsWith("Z")) code = "S" + code;
-  const start = new DateTime(endDate.format("yyyy-MM-dd"));
-  const timestamp = start.getTime();
+  const end = new DateTime(endDate.format("yyyy-MM-dd"));
+  const timestamp = end.getTime();
+  const diff = startDate.diff(endDate);
+  const offset = Math.floor((diff.days * 250) / 365);
   const res = await fetch(
-    `${baseUrl}?symbol=${code}&begin=${timestamp}&period=day&type=before&count=-${400}&indicator=kline,pe,pb,ps,pcf,market_capital,agt,ggt,balance`,
+    `${baseUrl}?symbol=${code}&begin=${timestamp}&period=day&type=before&count=-${offset}&indicator=kline,pe,pb,ps,pcf,market_capital,agt,ggt,balance`,
     {
       headers: getHeaders(),
     }

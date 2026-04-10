@@ -11,7 +11,7 @@ import { Console } from "./component/console";
 
 const App = () => {
   const [activeKey, setActiveKey] = useState(0);
-  const start = new DateTime().deferMonth(-24);
+  const start = new DateTime().deferMonth(-18);
   const slice = 100;
 
   return (

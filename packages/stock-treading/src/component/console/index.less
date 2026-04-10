@@ -1,10 +1,17 @@
 .console-container {
-  margin-left: 30px;
+  margin-left: 60px;
   position: sticky;
   top: 20px;
+  user-select: none;
 
-  >strong {
-    margin-left: -5px;
+  > strong {
+    display: inline-block;
+    margin-left: -3px;
+    margin-top: 3px;
+
+    &:first-child {
+      margin-top: 0;
+    }
   }
 
   > div {

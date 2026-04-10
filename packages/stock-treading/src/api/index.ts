@@ -37,7 +37,7 @@ export const fetchStockKline = async (props: FetchProps): Promise<DailyKline[]> 
     return fetchTencentFund(code, source);
   }
   if (source === "snow-stock") {
-    return fetchSnowStock(code, end);
+    return fetchSnowStock(code, start, end);
   }
   throw new Error(`Unsupported source: ${source}`);
 };
