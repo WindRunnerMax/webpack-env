@@ -1,3 +1,12 @@
+/* stylelint-disable CssSyntaxError */
+@import '../../node_modules/@block-kit/utils/dist/style/vars.less';
+
+
+body{
+  .min-scrollbar();
+  scrollbar-gutter: stable;
+}
+
 .body {
   padding: 10px;
 
@@ -8,57 +17,13 @@
   .part:first-child {
     margin-top: 0;
   }
+}
 
-  .title {
-    align-items: center;
-    display: flex;
-    font-size: 16px;
-    font-weight: bold;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-
-  .operation {
-    align-items: center;
-    display: flex;
-    font-size: 14px;
-    font-weight: normal;
-    gap: 10px;
-    margin-top: 3px;
-  }
-
-  .operation .arco-icon {
-    color: var(--color-text-2);
-    cursor: pointer;
-  }
-
-  .operation .date-picker {
-    width: 130px;
-  }
-
-  .operation .sliding-select {
-    width: 70px;
-  }
-
-  .chart-container {
-    display: flex;
+.body{
+  display: flex;
+  align-items: flex-start;
+  
+  .candlestick{
     width: 70%;
   }
-}
-
-.arco-tabs {
-  overflow: visible;
-
-  .arco-tabs-header {
-    width: 130px;
-  }
-}
-
-.arco-tabs-header-nav-vertical {
-  position: sticky;
-  top: 10px;
-}
-
-.arco-tabs-header-nav-line.arco-tabs-header-nav-vertical .arco-tabs-header-title {
-  padding-left: 10px;
 }

@@ -1,3 +1,5 @@
+import "./index.less";
+
 import { DatePicker, Select } from "@arco-design/web-react";
 import { IconSync } from "@arco-design/web-react/icon";
 import { DateTime } from "@block-kit/utils";
