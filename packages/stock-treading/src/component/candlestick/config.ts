@@ -7,7 +7,8 @@ export const getDailyChartOptions = (
   data: DailyKline[],
   dates: string[],
   klineData: number[][],
-  maValues: (number | null)[]
+  maValues: (number | null)[],
+  ma: number
 ) => {
   const option: EChartsOption = {
     tooltip: {
@@ -20,13 +21,13 @@ export const getDailyChartOptions = (
         const dataIndex = params[0].dataIndex;
         const item = data[dataIndex];
         let maValue: number = 0;
-        const ma250Param = params.find((p: P.Any) => p.seriesName === "MA250");
-        if (ma250Param && ma250Param.value !== null) {
-          maValue = ma250Param.value;
+        const maParam = params.find((p: P.Any) => p.seriesName === "MA");
+        if (maParam && maParam.value !== null) {
+          maValue = maParam.value;
         }
         let maRatio: number = 0;
-        if (ma250Param.value && ma250Param.value !== null) {
-          maRatio = ((item.close - ma250Param.value) / ma250Param.value) * 100;
+        if (maParam.value && maParam.value !== null) {
+          maRatio = ((item.close - maParam.value) / maParam.value) * 100;
         }
         return (
           `<div style="padding: 1px;">` +
@@ -35,7 +36,7 @@ export const getDailyChartOptions = (
           `  <div>开盘价: ${item.open} 收盘价: ${item.close}</div>` +
           `  <div>` +
           `    ${item.volume ? `成交量: ${item.volume.toFixed(2)}` : ""}` +
-          `    250MA: ${maValue?.toFixed(maValue > 10000 ? 2 : 4) || "0"}` +
+          `    ${ma}MA: ${maValue?.toFixed(maValue > 10000 ? 2 : 4) || "0"}` +
           `  </div>` +
           `  <div style="display:flex; gap: 10px;">` +
           `    <div style="color: ${item.change >= 0 ? "#ef5350" : "#26a69a"}">` +
@@ -87,7 +88,7 @@ export const getDailyChartOptions = (
         },
       },
       {
-        name: "MA250",
+        name: "MA",
         type: "line",
         data: maValues,
         smooth: true,

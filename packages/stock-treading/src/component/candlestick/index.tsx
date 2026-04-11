@@ -14,42 +14,42 @@ export interface DailyKlineChartProps {
   slice?: number;
   /** 数据 */
   data: DailyKline[];
+  /** 日均线 */
+  ma?: number;
 }
 
 export const DailyKlineChart: React.FC<DailyKlineChartProps> = props => {
-  const { height = 200, width = "100%", slice = 0 } = props;
+  const { height = 200, width = "100%", ma: maPreset = 250 } = props;
   const chartRef = useRef<HTMLDivElement>(null);
   const chartInstance = useRef<ECharts | null>(null);
 
   const { dates, klineData, maValues, data } = useMemo(() => {
+    const slice = props.slice || 0;
     const source = props.data;
     const data = slice > 0 ? props.data.slice(-slice) : props.data;
-    // 准备数据
     const dates = data.map(item => item.date);
     const klineData = data.map(item => [item.open, item.close, item.low, item.high]);
-    // 计算 250 日均线
-    const MA = 250;
     let sum = 0;
     let maValues: (number | null)[] = [];
     for (let i = 0; i < source.length; i++) {
       sum = sum + source[i].close;
-      if (i < MA - 1) {
+      if (i < maPreset - 1) {
         maValues.push(null);
         continue;
       }
-      maValues.push(sum / MA);
-      sum = sum - source[i - MA + 1].close;
+      maValues.push(sum / maPreset);
+      sum = sum - source[i - maPreset + 1].close;
     }
     maValues = slice > 0 ? maValues.slice(-slice) : maValues;
     return { data, dates, klineData, maValues };
-  }, [props.data, slice]);
+  }, [props.data, props.slice, maPreset]);
 
   useEffect(() => {
     if (!chartRef.current || data.length === 0) return;
     // 初始化图表
     if (!chartInstance.current) chartInstance.current = init(chartRef.current);
     // 配置选项
-    const option = getDailyChartOptions(data, dates, klineData, maValues);
+    const option = getDailyChartOptions(data, dates, klineData, maValues, maPreset);
     chartInstance.current.setOption(option);
     // 响应式调整
     const handleResize = () => chartInstance.current?.resize();
@@ -57,7 +57,7 @@ export const DailyKlineChart: React.FC<DailyKlineChartProps> = props => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [data, dates, klineData, maValues, slice]);
+  }, [data, dates, klineData, maValues, maPreset]);
 
   useEffect(() => {
     return () => {

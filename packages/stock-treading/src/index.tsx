@@ -33,15 +33,15 @@ const App = () => {
               slice={slice}
             />
             <BasicChart
-              title="H512890 华泰柏瑞红利低波ETF(前复权)"
-              code="H512890"
+              title="H563020 易方达红利低波ETF(前复权)"
+              code="H563020"
               start={start}
               slice={slice}
               source="snow-stock"
             />
             <BasicChart
-              title="H563020 易方达红利低波ETF(前复权)"
-              code="H563020"
+              title="H512890 华泰柏瑞红利低波ETF(前复权)"
+              code="H512890"
               start={start}
               slice={slice}
               source="snow-stock"
@@ -57,12 +57,14 @@ const App = () => {
               start={start}
               slice={slice}
               source="snow-stock"
+              ma={200}
             />
             <BasicChart
               title="H20955 红利低波100全收益指数"
               code="H20955"
               start={start}
               slice={slice}
+              ma={200}
             />
             <BasicChart
               title="Z159307 博时红利低波ETF(前复权)"
@@ -77,12 +79,6 @@ const App = () => {
         {activeKey === 2 && (
           <Fragment>
             <FundChart
-              title="007466 华泰柏瑞红利低波联接基金"
-              code="007466"
-              start={start}
-              slice={slice}
-            />
-            <FundChart
               title="020602 易方达红利低波联接基金"
               code="020602"
               start={start}
@@ -94,9 +90,16 @@ const App = () => {
               start={start}
               slice={slice}
             />
+            <FundChart
+              title="007466 华泰柏瑞红利低波联接基金"
+              code="007466"
+              start={start}
+              slice={slice}
+            />
           </Fragment>
         )}
       </div>
+
       <Console radio={activeKey} onChange={setActiveKey} />
     </div>
   );

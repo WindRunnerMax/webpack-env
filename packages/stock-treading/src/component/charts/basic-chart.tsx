@@ -22,6 +22,7 @@ export const BasicChart: FC<
     start: DateTime;
     /** 结束日期 */
     end?: DateTime;
+    ma?: number;
     source?: FetchProps["source"];
   }
 > = props => {
@@ -30,6 +31,7 @@ export const BasicChart: FC<
   const [data, setData] = useState<DailyKline[]>([]);
   const start = useRef(props.start);
   const sliding = useRef(props.slice || 0);
+  const ma = useRef(props.ma || 250);
 
   const fetchData = useMemoFn(async () => {
     try {
@@ -80,7 +82,16 @@ export const BasicChart: FC<
               { label: "100", value: 100 },
               { label: "200", value: 200 },
               { label: "300", value: 300 },
-              { label: "400", value: 400 },
+            ]}
+          ></Select>
+          <Select
+            size="mini"
+            className="ma-select"
+            defaultValue={ma.current}
+            onChange={v => (ma.current = v) && fetchData()}
+            options={[
+              { label: "200MA", value: 200 },
+              { label: "250MA", value: 250 },
             ]}
           ></Select>
           <IconSync onClick={fetchData} />
@@ -90,7 +101,13 @@ export const BasicChart: FC<
         {loading ? (
           <div style={{ width, height }}>加载中...</div>
         ) : (
-          <DailyKlineChart data={data} slice={sliding.current} height={height} width={width} />
+          <DailyKlineChart
+            data={data}
+            slice={sliding.current}
+            height={height}
+            width={width}
+            ma={ma.current}
+          />
         )}
       </div>
     </div>
