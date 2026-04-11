@@ -1,0 +1,43 @@
+name: stock-treading runelease
+
+on:
+  push:
+    tags:
+      - "stock-treading@*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: install node-v16
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16.16.0"
+
+      - name: build binary
+        run: |
+          node -v
+          npm install -g pnpm@8.11.0
+          pnpm -F stock-treading install --registry=https://registry.npmjs.org/
+          pnpm -F stock-treading run build
+          pnpm -F stock-treading run zip
+
+      - name: create release and upload assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            packages/stock-treading/.zip/st.zip
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
