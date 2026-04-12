@@ -12,8 +12,9 @@ import { ManifestPlugin } from "./script/manifest";
 const config: Configuration = {
   context: __dirname,
   entry: {
-    stock: "./src/index.tsx",
-    worker: "./src/worker.ts",
+    inject: "./src/modules/inject.ts",
+    stock: "./src/modules/stock.tsx",
+    worker: "./src/modules/worker.ts",
   },
   plugins: [
     new HtmlPlugin({

@@ -5,7 +5,7 @@ const fs = require("fs/promises");
 exports.ManifestPlugin = class ManifestPlugin {
   constructor() {
     tsNode.register();
-    this.manifest = path.resolve(`src/manifest.ts`);
+    this.manifest = path.resolve(`src/modules/manifest.ts`);
   }
 
   apply(compiler) {

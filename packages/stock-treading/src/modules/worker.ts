@@ -1,6 +1,6 @@
 import { DateTime } from "@block-kit/utils/dist/es/date-time";
 
-import { ALARM_NAME, NOTIFY_TIME } from "./utils/constant";
+import { ALARM_NAME, NOTIFY_TIME } from "../utils/constant";
 
 chrome.action.onClicked.addListener(() => {
   chrome.tabs.create({
@@ -25,3 +25,14 @@ chrome.alarms.onAlarm.addListener(alarm => {
     showNotification();
   }
 });
+
+chrome.scripting.registerContentScripts([
+  {
+    matches: ["<all_urls>"],
+    runAt: "document_start",
+    world: "MAIN",
+    allFrames: true,
+    js: ["inject.js"],
+    id: "inject",
+  },
+]);

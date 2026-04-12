@@ -1,3 +1,5 @@
+import { DateTime } from "@block-kit/utils";
+
 import { ALARM_NAME } from "../../utils/constant";
 
 const setPeriodMinuteAlarm = async () => {
@@ -6,12 +8,13 @@ const setPeriodMinuteAlarm = async () => {
     console.log("Alarm 检查已存在", exist);
     return void 0;
   }
+  const when = new DateTime();
+  when.nextMinute(1);
   await chrome.alarms.create(ALARM_NAME, {
+    when: when.getTime(),
     periodInMinutes: 1,
   });
 };
-
-// 监听闹钟触发
 
 export const getAlarmSetting = async () => {
   const enable = await chrome.storage.local.get(ALARM_NAME);
