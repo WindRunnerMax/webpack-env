@@ -4,10 +4,10 @@
 import { DateTime, isNil, sleep } from "@block-kit/utils";
 import type { P } from "@block-kit/utils/dist/es/types";
 
-import type { DailyKline } from "../types/stock";
 import { getHeaders } from "../../shared/utils/request";
+import type { DailyKline } from "../types/stock";
 
-const baseUrl = "https://stock.xueqiu.com/v5/stock/chart/kline.json";
+export const SNOW_URL = "https://stock.xueqiu.com/v5/stock/chart/kline.json";
 
 const isLogin = async () => {
   const cookie = await chrome.cookies.get({ url: "https://xueqiu.com", name: "xq_a_token" });
@@ -55,7 +55,7 @@ export const fetchSnowStock = async (
   const diff = startDate.diff(endDate);
   const offset = Math.floor((diff.days * 250) / 365);
   const res = await fetch(
-    `${baseUrl}?symbol=${code}&begin=${timestamp}&period=day&type=before&count=-${offset}&indicator=kline,pe,pb,ps,pcf,market_capital,agt,ggt,balance`,
+    `${SNOW_URL}?symbol=${code}&begin=${timestamp}&period=day&type=before&count=-${offset}&indicator=kline,pe,pb,ps,pcf,market_capital,agt,ggt,balance`,
     {
       headers: getHeaders(),
     }

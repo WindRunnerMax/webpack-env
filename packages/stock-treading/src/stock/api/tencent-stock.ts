@@ -4,10 +4,10 @@
 import { DateTime, isNil } from "@block-kit/utils";
 import type { P } from "@block-kit/utils/dist/es/types";
 
-import type { DailyKline } from "../types/stock";
 import { getHeaders } from "../../shared/utils/request";
+import type { DailyKline } from "../types/stock";
 
-const baseUrl = "https://proxy.finance.qq.com/cgi/cgi-bin/stockinfoquery/kline/app/get";
+export const T_STOCK_URL = "https://proxy.finance.qq.com/cgi/cgi-bin/stockinfoquery/kline/app/get";
 
 export const fetchTencentStock = async (
   index: string,
@@ -17,7 +17,7 @@ export const fetchTencentStock = async (
   const s = startDate.format("yyyy-MM-dd");
   const e = endDate.format("yyyy-MM-dd");
   const res = await fetch(
-    `${baseUrl}?code=${index}&fromDate=${s}&toDate=${e}&ktype=day&limit=${400}`,
+    `${T_STOCK_URL}?code=${index}&fromDate=${s}&toDate=${e}&ktype=day&limit=${400}`,
     {
       headers: getHeaders(),
     }

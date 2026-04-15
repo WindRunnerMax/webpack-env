@@ -1,7 +1,7 @@
 import { DateTime } from "@block-kit/utils/dist/es/date-time";
 
 import { MATCH_INJECT } from "../shared/constant/inject";
-import { ALARM_NAME, NOTIFY_HH, NOTIFY_MM } from "../shared/constant/worker";
+import { ALARM_NAME, NOTIFY_HH, NOTIFY_MM, RELOAD_FLAG } from "../shared/constant/worker";
 
 chrome.action.onClicked.addListener(() => {
   chrome.tabs.create({
@@ -23,7 +23,7 @@ chrome.alarms.onAlarm.addListener(alarm => {
   const now = new DateTime();
   const h = now.getHours();
   const m = now.getMinutes();
-  console.log("Alarm", h, m, alarm);
+  console.log("Alarm", `${h}:${m}`, alarm);
   if (alarm.name === ALARM_NAME && h === NOTIFY_HH && Math.abs(m - NOTIFY_MM) <= 1) {
     showNotification();
   }
@@ -45,7 +45,10 @@ chrome.scripting
   });
 
 chrome.runtime.onInstalled.addListener(async details => {
-  if (details.reason === "update") {
+  console.log("Installed", details);
+  const storage = await chrome.storage.local.get([RELOAD_FLAG]);
+  chrome.storage.local.remove(RELOAD_FLAG);
+  if (details.reason === "update" && storage[RELOAD_FLAG]) {
     chrome.tabs.create({
       url: chrome.runtime.getURL("stock.html"),
     });

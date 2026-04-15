@@ -5,10 +5,10 @@ import type { DateTime } from "@block-kit/utils";
 import { isNil } from "@block-kit/utils";
 import type { P } from "@block-kit/utils/dist/es/types";
 
-import type { DailyKline } from "../types/stock";
 import { getHeaders } from "../../shared/utils/request";
+import type { DailyKline } from "../types/stock";
 
-const csIndexUrl = "https://www.csindex.com.cn/csindex-home/perf/index-perf";
+export const CS_URL = "https://www.csindex.com.cn/csindex-home/perf/index-perf";
 
 export const fetchCsStock = async (
   index: string,
@@ -17,7 +17,7 @@ export const fetchCsStock = async (
 ): Promise<DailyKline[]> => {
   const start = startDate.format("yyyyMMdd");
   const end = endDate.format("yyyyMMdd");
-  const res = await fetch(`${csIndexUrl}?indexCode=${index}&startDate=${start}&endDate=${end}`, {
+  const res = await fetch(`${CS_URL}?indexCode=${index}&startDate=${start}&endDate=${end}`, {
     headers: getHeaders(),
   });
   const data = await res.json();

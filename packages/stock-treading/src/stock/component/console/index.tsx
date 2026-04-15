@@ -1,10 +1,16 @@
 import "./index.less";
 
-import { Button, Radio } from "@arco-design/web-react";
-import { IconCheck, IconMinus, IconRefresh } from "@arco-design/web-react/icon";
+import { Button, Message, Radio } from "@arco-design/web-react";
+import { IconCheck, IconEraser, IconMinus, IconRefresh } from "@arco-design/web-react/icon";
 import type { FC } from "react";
 import { useLayoutEffect, useState } from "react";
 
+import { RELOAD_FLAG } from "../../../shared/constant/worker";
+import { removeAllCookies } from "../../../shared/utils/cookie";
+import { CS_URL } from "../../api/cs-stock";
+import { SNOW_URL } from "../../api/snow-stock";
+import { T_FUND_URL } from "../../api/tencent-fund";
+import { T_STOCK_URL } from "../../api/tencent-stock";
 import { getAlarmSetting, setAlarmSetting } from "./alarm";
 const RadioGroup = Radio.Group;
 
@@ -23,6 +29,19 @@ export const Console: FC<{
     setAlarmSetting(checked);
   };
 
+  const onClearCookie = async () => {
+    removeAllCookies(CS_URL);
+    removeAllCookies(SNOW_URL);
+    removeAllCookies(T_FUND_URL);
+    removeAllCookies(T_STOCK_URL);
+    Message.success("DONE");
+  };
+
+  const onReload = async () => {
+    await chrome.storage.local.set({ [RELOAD_FLAG]: true });
+    chrome.runtime.reload();
+  };
+
   return (
     <div className="console-container">
       <strong>红利低波类型</strong>
@@ -31,7 +50,7 @@ export const Console: FC<{
         <Radio value={1}>红利低波100</Radio>
         <Radio value={2}>联结基金</Radio>
       </RadioGroup>
-      <strong>常用操作</strong>
+      <strong>扩展操作</strong>
       <div className="operations">
         <Button
           size="mini"
@@ -40,7 +59,10 @@ export const Console: FC<{
         >
           14:45 通知提醒
         </Button>
-        <Button size="mini" icon={<IconRefresh />} onClick={() => chrome.runtime.reload()}>
+        <Button size="mini" icon={<IconEraser />} onClick={onClearCookie}>
+          清理 Cookies
+        </Button>
+        <Button size="mini" icon={<IconRefresh />} onClick={onReload}>
           重载浏览器扩展
         </Button>
       </div>

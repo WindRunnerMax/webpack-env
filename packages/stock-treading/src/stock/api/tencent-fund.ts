@@ -4,17 +4,17 @@
 import { DateTime, isNil } from "@block-kit/utils";
 import type { P } from "@block-kit/utils/dist/es/types";
 
-import type { DailyKline } from "../types/stock";
 import { getHeaders } from "../../shared/utils/request";
+import type { DailyKline } from "../types/stock";
 
-const baseUrl = "https://stockjs.finance.qq.com/fundUnitNavAll/data/year_all";
+export const T_FUND_URL = "https://stockjs.finance.qq.com/fundUnitNavAll/data/year_all";
 
 export const fetchTencentFund = async (
   index: string,
   source: "tencent-fund" | "tencent-fund-worth"
 ): Promise<DailyKline[]> => {
   const date = new DateTime().format();
-  const res = await fetch(`${baseUrl}/${index}.js?${date}`, {
+  const res = await fetch(`${T_FUND_URL}/${index}.js?${date}`, {
     headers: getHeaders(),
   });
   const text = await res.text();
