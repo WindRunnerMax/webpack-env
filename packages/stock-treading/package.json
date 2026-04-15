@@ -1,6 +1,6 @@
 {
   "name": "stock-treading",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "author": "Czy",
   "license": "MIT",
   "sideEffects": false,
@@ -30,6 +30,9 @@
     "less": "3.0.0",
     "less-loader": "6.0.0",
     "sass": "1.52.3",
+    "ts-node": "10.9.2",
+    "@types/node": "20.11.10",
+    "typescript": "5.3.2",
     "sass-loader": "13.3.2"
   }
 }

@@ -3,9 +3,12 @@ const tsNode = require("ts-node");
 const fs = require("fs/promises");
 
 exports.ManifestPlugin = class ManifestPlugin {
-  constructor() {
+  constructor(options) {
     tsNode.register();
-    this.manifest = path.resolve(`src/modules/manifest.ts`);
+    this.manifest = options.manifest;
+    if(!this.manifest) {
+      throw new Error("manifest is required"); 
+    }
   }
 
   apply(compiler) {

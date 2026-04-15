@@ -6,7 +6,7 @@ import { isNil } from "@block-kit/utils";
 import type { P } from "@block-kit/utils/dist/es/types";
 
 import type { DailyKline } from "../types/stock";
-import { getHeaders } from "../utils/request";
+import { getHeaders } from "../../shared/utils/request";
 
 const csIndexUrl = "https://www.csindex.com.cn/csindex-home/perf/index-perf";
 

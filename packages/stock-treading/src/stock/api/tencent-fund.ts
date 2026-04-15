@@ -5,7 +5,7 @@ import { DateTime, isNil } from "@block-kit/utils";
 import type { P } from "@block-kit/utils/dist/es/types";
 
 import type { DailyKline } from "../types/stock";
-import { getHeaders } from "../utils/request";
+import { getHeaders } from "../../shared/utils/request";
 
 const baseUrl = "https://stockjs.finance.qq.com/fundUnitNavAll/data/year_all";
 

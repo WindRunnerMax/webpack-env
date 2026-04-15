@@ -12,9 +12,9 @@ import { ManifestPlugin } from "./script/manifest";
 const config: Configuration = {
   context: __dirname,
   entry: {
-    inject: "./src/modules/inject.ts",
-    stock: "./src/modules/stock.tsx",
-    worker: "./src/modules/worker.ts",
+    inject: "./src/inject/index.ts",
+    stock: "./src/stock/index.tsx",
+    worker: "./src/worker/index.ts",
   },
   plugins: [
     new HtmlPlugin({
@@ -23,7 +23,9 @@ const config: Configuration = {
       inject: false,
     }),
     new FilesPlugin(),
-    new ManifestPlugin(),
+    new ManifestPlugin({
+      manifest: path.resolve(`src/manifest/index.ts`),
+    }),
   ],
   builtins: {
     define: {

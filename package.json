@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "lint-es": "eslint --fix --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore .",
-    "lint-style": "stylelint \"**/*.{css,scss,sass}\" --fix --ignore-path .gitignore"
+    "lint-style": "stylelint \"**/*.{css,scss,sass}\" --fix --ignore-path .gitignore",
+    "clean": "find . -name \"node_modules\" -type d -prune -exec rm -rf {} +"
   },
   "repository": {
     "type": "git",

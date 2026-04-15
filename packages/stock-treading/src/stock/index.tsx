@@ -1,13 +1,13 @@
-import "../styles/index.less";
+import "./styles/index.less";
 import "@arco-design/web-react/es/style/index.less";
 
 import { DateTime } from "@block-kit/utils";
 import { Fragment, useState } from "react";
 import ReactDOM from "react-dom";
 
-import { BasicChart } from "../component/charts/basic-chart";
-import { FundChart } from "../component/charts/fund-chart";
-import { Console } from "../component/console";
+import { BasicChart } from "./component/charts/basic-chart";
+import { FundChart } from "./component/charts/fund-chart";
+import { Console } from "./component/console";
 
 const App = () => {
   const [activeKey, setActiveKey] = useState(0);

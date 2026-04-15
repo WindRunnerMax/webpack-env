@@ -5,7 +5,7 @@ import { DateTime, isNil, sleep } from "@block-kit/utils";
 import type { P } from "@block-kit/utils/dist/es/types";
 
 import type { DailyKline } from "../types/stock";
-import { getHeaders } from "../utils/request";
+import { getHeaders } from "../../shared/utils/request";
 
 const baseUrl = "https://stock.xueqiu.com/v5/stock/chart/kline.json";
 

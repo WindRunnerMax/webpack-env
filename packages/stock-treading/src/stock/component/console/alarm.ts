@@ -1,6 +1,6 @@
 import { DateTime } from "@block-kit/utils";
 
-import { ALARM_NAME } from "../../utils/constant";
+import { ALARM_NAME, NOTIFY_MM } from "../../../shared/constant/worker";
 
 const setPeriodMinuteAlarm = async () => {
   const exist = await chrome.alarms.get(ALARM_NAME);
@@ -9,10 +9,14 @@ const setPeriodMinuteAlarm = async () => {
     return void 0;
   }
   const when = new DateTime();
-  when.nextMinute(1);
+  const hh = when.getHours();
+  const mm = when.getMinutes();
+  when.setMinutes(NOTIFY_MM);
+  when.setSeconds(0, 0);
+  if (mm >= NOTIFY_MM) when.setHours(hh + 1);
   await chrome.alarms.create(ALARM_NAME, {
     when: when.getTime(),
-    periodInMinutes: 1,
+    periodInMinutes: 15,
   });
 };
 
