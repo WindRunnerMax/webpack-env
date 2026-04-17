@@ -53,9 +53,8 @@ export const fetchSnowStock = async (
   const end = new DateTime(endDate.format("yyyy-MM-dd"));
   const timestamp = end.getTime();
   const diff = startDate.diff(endDate);
-  const offset = Math.floor((diff.days * 250) / 365);
   const res = await fetch(
-    `${SNOW_URL}?symbol=${code}&begin=${timestamp}&period=day&type=before&count=-${offset}&indicator=kline,pe,pb,ps,pcf,market_capital,agt,ggt,balance`,
+    `${SNOW_URL}?symbol=${code}&begin=${timestamp}&period=day&type=before&count=-${diff.days}&indicator=kline,pe,pb,ps,pcf,market_capital,agt,ggt,balance`,
     {
       headers: getHeaders(),
     }

@@ -1,6 +1,6 @@
 import "./index.less";
 
-import { DatePicker, Select } from "@arco-design/web-react";
+import { Select } from "@arco-design/web-react";
 import { IconSync } from "@arco-design/web-react/icon";
 import { DateTime } from "@block-kit/utils";
 import { useMemoFn } from "@block-kit/utils/dist/es/hooks";
@@ -19,26 +19,29 @@ export const BasicChart: FC<
     /** 索引代码 */
     code: string;
     /** 开始日期 */
-    start: DateTime;
+    start?: DateTime;
     /** 结束日期 */
     end?: DateTime;
     ma?: number;
     source?: FetchProps["source"];
   }
 > = props => {
-  const { code, end, height = 200, width = "100%", source } = props;
+  const { code, height = 200, width = "100%", source } = props;
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<DailyKline[]>([]);
-  const start = useRef(props.start);
   const sliding = useRef(props.slice || 0);
   const ma = useRef(props.ma || 250);
 
   const fetchData = useMemoFn(async () => {
     try {
       setLoading(true);
+      const end = props.end || new DateTime();
+      const start = props.start
+        ? props.start
+        : end.clone().deferDay(-sliding.current - ma.current * 2);
       const result = await fetchStockKline({
         code,
-        start: start.current,
+        start,
         end,
         source,
       });
@@ -55,24 +58,11 @@ export const BasicChart: FC<
     fetchData();
   }, [fetchData]);
 
-  const handleStartDateChange = (date: string) => {
-    start.current = new DateTime(date);
-    fetchData();
-  };
-
   return (
     <div className="part">
       <div className="title">
         <span>{props.title}</span>
         <span className="operation">
-          <DatePicker
-            defaultValue={start.current.getTime()}
-            placeholder="起始日期"
-            className="date-picker"
-            size="mini"
-            allowClear={false}
-            onChange={handleStartDateChange}
-          />
           <Select
             size="mini"
             className="sliding-select"
@@ -82,6 +72,8 @@ export const BasicChart: FC<
               { label: "100", value: 100 },
               { label: "200", value: 200 },
               { label: "300", value: 300 },
+              { label: "400", value: 400 },
+              { label: "500", value: 500 },
             ]}
           ></Select>
           <Select
@@ -107,7 +99,7 @@ export const BasicChart: FC<
             height={height}
             width={width}
             ma={ma.current}
-          />
+          ></DailyKlineChart>
         )}
       </div>
     </div>

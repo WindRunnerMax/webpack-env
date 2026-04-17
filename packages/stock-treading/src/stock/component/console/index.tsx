@@ -71,6 +71,9 @@ export const Console: FC<{
         <a href="https://funddb.cn/tool/fear" target="_blank" rel="noopener noreferrer">
           恐贪指数
         </a>
+        <a href="https://funddb.cn/site/fed" target="_blank" rel="noopener noreferrer">
+          股债性价比
+        </a>
         <a
           href="https://funddb.cn/site/index?_q=红利低波"
           target="_blank"
