@@ -1,1 +1,1 @@
-export const MATCH_INJECT = ["*://funddb.cn/*"];
+export const MATCH_INJECT = ["*://funddb.cn/*", "*://xueqiu.com/*"];

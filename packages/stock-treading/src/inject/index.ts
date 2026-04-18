@@ -6,6 +6,7 @@ const log = console.log;
 const XHROSend = XMLHttpRequest.prototype.send;
 const XHROOpen = XMLHttpRequest.prototype.open;
 const search = new URLSearchParams(location.search);
+const InitFunctionConstructor = window.Function.prototype.constructor;
 
 if (location.host === "funddb.cn" && location.pathname === "/site/index") {
   const onOpen = function (...args: unknown[]) {
@@ -45,4 +46,20 @@ if (location.host === "funddb.cn" && location.pathname === "/site/index") {
 
   XMLHttpRequest.prototype.open = onOpen;
   XMLHttpRequest.prototype.send = onSend;
+}
+
+if (location.host === "xueqiu.com") {
+  // eslint-disable-next-line no-inner-declarations
+  function hookedFunctionConstructor(...args: unknown[]) {
+    if (args[0] == "debugger") {
+      return function () {};
+    }
+    for (const arg of args) {
+      if (typeof arg !== "string" || !arg.includes("debugger;")) {
+        return function () {};
+      }
+    }
+    return InitFunctionConstructor(...args);
+  }
+  window.Function.prototype.constructor = hookedFunctionConstructor;
 }

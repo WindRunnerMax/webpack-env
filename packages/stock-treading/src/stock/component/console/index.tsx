@@ -1,7 +1,13 @@
 import "./index.less";
 
 import { Button, Message, Radio } from "@arco-design/web-react";
-import { IconCheck, IconEraser, IconMinus, IconRefresh } from "@arco-design/web-react/icon";
+import {
+  IconCheck,
+  IconEraser,
+  IconMinus,
+  IconRefresh,
+  IconSync,
+} from "@arco-design/web-react/icon";
 import type { FC } from "react";
 import { useLayoutEffect, useState } from "react";
 
@@ -11,6 +17,7 @@ import { CS_URL } from "../../api/cs-stock";
 import { SNOW_URL } from "../../api/snow-stock";
 import { T_FUND_URL } from "../../api/tencent-fund";
 import { T_STOCK_URL } from "../../api/tencent-stock";
+import { useGlobalContext } from "../../context/global";
 import { getAlarmSetting, setAlarmSetting } from "./alarm";
 const RadioGroup = Radio.Group;
 
@@ -18,6 +25,7 @@ export const Console: FC<{
   radio: number;
   onChange: (value: number) => void;
 }> = props => {
+  const { forceUpdate } = useGlobalContext();
   const [enableAlarm, setEnableAlarm] = useState(false);
 
   useLayoutEffect(() => {
@@ -58,6 +66,9 @@ export const Console: FC<{
           onClick={() => onAlarmEnableChange(!enableAlarm)}
         >
           14:45 通知提醒
+        </Button>
+        <Button size="mini" icon={<IconSync />} onClick={forceUpdate}>
+          刷新当前图表
         </Button>
         <Button size="mini" icon={<IconEraser />} onClick={onClearCookie}>
           清理 Cookies

@@ -1,14 +1,18 @@
 .body {
-  .title {
+  .heading-container {
     align-items: center;
     display: flex;
-    font-size: 16px;
-    font-weight: bold;
     gap: 10px;
+    // justify-content: space-between;
     margin-bottom: 10px;
   }
 
-  .operation {
+  .title-content {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .nav-left {
     align-items: center;
     display: flex;
     font-size: 14px;
@@ -17,20 +21,18 @@
     margin-top: 3px;
   }
 
-  .operation .arco-icon {
+  .sync-icon.arco-icon {
     color: var(--color-text-2);
     cursor: pointer;
+    font-size: 16px;
+    margin-top: 3px;
   }
 
-  .operation .date-picker {
-    width: 130px;
+  .nav-left .sliding-select {
+    width: 120px;
   }
 
-  .operation .sliding-select {
-    width: 70px;
-  }
-
-  .operation .ma-select {
-    width: 80px;
+  .nav-left .ma-select {
+    width: 120px;
   }
 }

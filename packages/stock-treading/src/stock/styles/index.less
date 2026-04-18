@@ -23,9 +23,16 @@ body{
 
 .body{
   display: flex;
+  @width: 220px;
   align-items: flex-start;
-  
+
   .candlestick{
-    width: 80%;
+    width: calc(100% - @width);
+    // border-right: 1px solid var(--color-border-2);
+  }
+
+  .console-container{
+    flex-shrink: 0;
+    width: @width;
   }
 }

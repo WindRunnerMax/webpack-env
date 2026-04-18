@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from "react";
 
 import type { FetchProps } from "../../api";
 import { fetchStockKline } from "../../api";
+import { useGlobalContext } from "../../context/global";
 import type { DailyKline } from "../../types/stock";
 import type { DailyKlineChartProps } from "../candlestick";
 import { DailyKlineChart } from "../candlestick";
@@ -26,7 +27,8 @@ export const BasicChart: FC<
     source?: FetchProps["source"];
   }
 > = props => {
-  const { code, height = 200, width = "100%", source } = props;
+  const { code, height = 230, width = "100%", source } = props;
+  const { updateIndex } = useGlobalContext();
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<DailyKline[]>([]);
   const sliding = useRef(props.slice || 0);
@@ -56,13 +58,13 @@ export const BasicChart: FC<
   // 请求数据
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  }, [fetchData, updateIndex]);
 
   return (
     <div className="part">
-      <div className="title">
-        <span>{props.title}</span>
-        <span className="operation">
+      <div className="heading-container">
+        <span className="nav-left">
+          <span className="title-content">{props.title}</span>
           <Select
             size="mini"
             className="sliding-select"
@@ -86,8 +88,8 @@ export const BasicChart: FC<
               { label: "250MA", value: 250 },
             ]}
           ></Select>
-          <IconSync onClick={fetchData} />
         </span>
+        <IconSync className="sync-icon" onClick={fetchData} />
       </div>
       <div className="chart-container">
         {loading ? (
