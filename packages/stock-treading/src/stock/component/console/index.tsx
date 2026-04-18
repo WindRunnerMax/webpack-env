@@ -56,7 +56,7 @@ export const Console: FC<{
       <RadioGroup direction="vertical" onChange={props.onChange} defaultValue={props.radio}>
         <Radio value={0}>红利低波</Radio>
         <Radio value={1}>红利低波100</Radio>
-        <Radio value={2}>联结基金</Radio>
+        <Radio value={2}>场外联结基金</Radio>
       </RadioGroup>
       <strong>扩展操作</strong>
       <div className="operations">
