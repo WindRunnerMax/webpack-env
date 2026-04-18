@@ -14,8 +14,9 @@ let resolveLock: F.Plain | null = null;
 let promiseLock: Promise<void> | null = null;
 
 const isLoggedIn = async () => {
-  const cookie = await chrome.cookies.get({ url: "https://xueqiu.com", name: "xq_a_token" });
-  return !!cookie;
+  const a = await chrome.cookies.get({ url: "https://xueqiu.com", name: "xq_a_token" });
+  const b = await chrome.cookies.get({ url: "https://xueqiu.com", name: "u" });
+  return !!a && !!b;
 };
 
 const syncCookies = async () => {

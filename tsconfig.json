@@ -2,11 +2,13 @@
   "compilerOptions": {
     "target": "ES2015",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "types": ["node"],
     "newLine": "lf",
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "downlevelIteration": true,
+    "ignoreDeprecations":"6.0",
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
