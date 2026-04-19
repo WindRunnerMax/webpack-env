@@ -6,6 +6,7 @@ import https from "https";
 import { URL } from "url";
 
 import { daysToWorkingDays } from "../src/shared/utils/date";
+import type { DailyKline } from "./utils";
 
 /**
 (await chrome.cookies.get({ url: "https://xueqiu.com", name: "xq_a_token" })).value;
@@ -24,7 +25,7 @@ export const fetchKLine = (
   const { ma: maPreset = 250 } = options || {};
   const end = new DateTime(endDate);
   const diff = new DateTime(startDate).diff(end);
-  const offset = daysToWorkingDays(diff.days) + 250;
+  const offset = daysToWorkingDays(diff.days) + maPreset;
   const uri = `https://stock.xueqiu.com/v5/stock/chart/kline.json?symbol=${code}&begin=${end.getTime()}&period=day&type=before&count=-${offset}&indicator=kline,pe,pb,ps,pcf,market_capital,agt,ggt,balance`;
   console.log("Fetch", uri);
   return new Promise((resolve, reject) => {
@@ -92,26 +93,4 @@ export const fetchKLine = (
 
     req.end();
   });
-};
-
-export type DailyKline = {
-  /** 日期 */
-  date: string;
-  /** 开盘价 */
-  open: number;
-  /** 收盘价 */
-  close: number;
-  /** 最高价 */
-  high: number;
-  /** 最低价 */
-  low: number;
-  /**
-   * 涨跌幅(%)
-   * - 相较昨日收盘价
-   */
-  change: number;
-  /** 成交量 */
-  volume?: number;
-  /** 250 MA */
-  ma: number;
 };

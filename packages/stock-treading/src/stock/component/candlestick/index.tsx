@@ -1,4 +1,5 @@
-import type { ECharts } from "echarts";
+import { useMemoFn } from "@block-kit/utils/dist/es/hooks";
+import type { ECElementEvent, ECharts } from "echarts";
 import { init } from "echarts";
 import React, { useEffect, useMemo, useRef } from "react";
 
@@ -44,19 +45,28 @@ export const DailyKlineChart: React.FC<DailyKlineChartProps> = props => {
     return { data, dates, klineData, maValues };
   }, [props.data, props.slice, maPreset]);
 
+  const onClickElement = useMemoFn((params: ECElementEvent) => {
+    console.log("Candlestick:", params);
+  });
+
   useEffect(() => {
-    if (!chartRef.current || data.length === 0) return;
-    // 初始化图表
-    if (!chartInstance.current) chartInstance.current = init(chartRef.current);
-    // 配置选项
-    const option = getDailyChartOptions(data, dates, klineData, maValues, maPreset);
-    chartInstance.current.setOption(option);
-    // 响应式调整
-    const handleResize = () => chartInstance.current?.resize();
+    if (!chartInstance.current) {
+      chartInstance.current = init(chartRef.current);
+    }
+    const chart = chartInstance.current;
+    const handleResize = () => chart.resize();
+    chart.on("click", onClickElement);
     window.addEventListener("resize", handleResize);
     return () => {
+      chart.off("click", onClickElement);
       window.removeEventListener("resize", handleResize);
     };
+  }, [onClickElement]);
+
+  useEffect(() => {
+    if (!chartInstance.current) return void 0;
+    const option = getDailyChartOptions(data, dates, klineData, maValues, maPreset);
+    chartInstance.current.setOption(option);
   }, [data, dates, klineData, maValues, maPreset]);
 
   useEffect(() => {
@@ -66,5 +76,5 @@ export const DailyKlineChart: React.FC<DailyKlineChartProps> = props => {
     };
   }, []);
 
-  return <div ref={chartRef} style={{ width, height }} />;
+  return <div className="chart-canvas" ref={chartRef} style={{ width, height }} />;
 };
