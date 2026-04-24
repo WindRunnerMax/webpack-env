@@ -10,5 +10,6 @@
     "undoable",
     "vite",
     "webrtc"
-  ]
+  ],
+  "js/ts.tsdk.path": "node_modules/typescript/lib"
 }

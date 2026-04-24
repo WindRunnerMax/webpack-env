@@ -39,10 +39,10 @@ export const getDailyChartOptions = (
           `    ${ma}MA: ${maValue?.toFixed(maValue > 10000 ? 2 : 4) || "0"}` +
           `  </div>` +
           `  <div style="display:flex; gap: 10px;">` +
-          `    <div style="color: ${item.change >= 0 ? "#ef5350" : "#26a69a"}">` +
+          `    <div style="color: ${item.change >= 0 ? "#F53F3F" : "#00B42A"}">` +
           `      涨跌幅: ${item.change >= 0 ? "+" : ""}${item.change.toFixed(2)}%` +
           `    </div>` +
-          `    <div style="color: ${maRatio >= 0 ? "#ef5350" : "#26a69a"}">` +
+          `    <div style="color: ${maRatio >= 0 ? "#F53F3F" : "#00B42A"}">` +
           `      均线偏离: ${maRatio >= 0 ? "+" : ""}${maRatio.toFixed(2)}%` +
           `    </div>` +
           `  </div>` +
@@ -81,10 +81,10 @@ export const getDailyChartOptions = (
         type: "candlestick",
         data: klineData,
         itemStyle: {
-          color: "#ff0400",
-          color0: "#26a69a",
-          borderColor: "#ef5350",
-          borderColor0: "#26a69a",
+          color: "#F53F3F",
+          color0: "#00B42A",
+          borderColor: "#F53F3F",
+          borderColor0: "#00B42A",
         },
       },
       {
@@ -92,7 +92,7 @@ export const getDailyChartOptions = (
         type: "line",
         data: maValues,
         smooth: true,
-        lineStyle: { width: 1, color: "#ff9800" },
+        lineStyle: { width: 1, color: "#165DFF" },
         symbol: "none",
       },
     ],

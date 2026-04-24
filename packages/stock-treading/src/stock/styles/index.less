@@ -1,10 +1,13 @@
 /* stylelint-disable CssSyntaxError */
-@import '../../../node_modules/@block-kit/utils/dist/style/vars.less';
+@import "../../../node_modules/@block-kit/utils/dist/style/vars.less";
 
-
-body{
+html,
+body {
   .min-scrollbar();
   scrollbar-gutter: stable;
+}
+
+body {
   overflow-x: hidden;
   overflow-y: scroll;
 }
@@ -21,17 +24,17 @@ body{
   }
 }
 
-.body{
+.body {
   display: flex;
   @width: 220px;
   align-items: flex-start;
 
-  .candlestick{
+  .candlestick {
     width: calc(100% - @width);
     // border-right: 1px solid var(--color-border-2);
   }
 
-  .console-container{
+  .console-container {
     flex-shrink: 0;
     width: @width;
   }

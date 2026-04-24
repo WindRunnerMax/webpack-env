@@ -18,6 +18,18 @@ const setPeriodMinuteAlarm = async () => {
     when: when.getTime(),
     periodInMinutes: 15,
   });
+  chrome.notifications.create(
+    {
+      type: "basic",
+      iconUrl: chrome.runtime.getURL("static/icon.png"),
+      title: "定时提醒",
+      message: `闹钟设置成功`,
+      requireInteraction: false,
+    },
+    noticeId => {
+      setTimeout(() => chrome.notifications.clear(noticeId), 5000);
+    }
+  );
 };
 
 export const getAlarmSetting = async () => {
