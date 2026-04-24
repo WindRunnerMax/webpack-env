@@ -37,7 +37,10 @@ const syncCookies = async () => {
       iframe.contentWindow?.close();
       iframe.src = "about:blank";
       sleep(1000).then(() => iframe.remove());
-      resolveLock && resolveLock() && (promiseLock = null);
+      if (resolveLock) {
+        resolveLock();
+        promiseLock = null;
+      }
       return resolve();
     }
     if (index > 30) {

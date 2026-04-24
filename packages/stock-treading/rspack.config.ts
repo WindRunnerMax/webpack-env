@@ -14,13 +14,21 @@ const config: Configuration = {
   entry: {
     inject: "./src/inject/index.ts",
     stock: "./src/stock/index.tsx",
+    measure: "./src/measure/index.tsx",
     worker: "./src/worker/index.ts",
   },
   plugins: [
     new HtmlPlugin({
       filename: "stock.html",
-      template: "./public/stock.html",
-      inject: false,
+      template: "./public/base.html",
+      inject: true,
+      chunks: ["stock"],
+    }),
+    new HtmlPlugin({
+      filename: "measure.html",
+      template: "./public/base.html",
+      inject: true,
+      chunks: ["measure"],
     }),
     new FilesPlugin(),
     new ManifestPlugin({

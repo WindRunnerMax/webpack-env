@@ -1,8 +1,41 @@
-/* stylelint-disable CssSyntaxError */
-@import '../../../node_modules/@block-kit/utils/dist/style/vars.less';
+@import './body.less';
 
-html,
-body {
-  .min-scrollbar();
-  scrollbar-gutter: stable;
+.container {
+  margin-left: 10px;
+  margin-top: 20px;
+
+  .content-area {
+    border: 1px solid var(--color-border-2);
+    max-height: 100%;
+    overflow-y: auto;
+    padding: 20px 5px;
+    scrollbar-color: #ddd transparent;
+    scrollbar-gutter: stable;
+    scrollbar-width: thin;
+    white-space: pre-wrap;
+    width: 600px;
+  }
+}
+
+.flex-row {
+  display: flex;
+}
+
+.arco-form-item {
+  .arco-radio {
+    margin-right: 10px;
+  }
+
+  .arco-input-group-wrapper {
+    width: 200px;
+  }
+}
+
+.secondary-form {
+  margin-bottom: 0;
+
+  .arco-form-label-item {
+    flex-shrink: 0;
+    min-width: 70px;
+  }
 }
