@@ -1,9 +1,8 @@
 {
-  "name": "markdown-it-bullet-details",
+  "name": "markdown-it-bullet-summary",
   "version": "1.0.0",
   "scripts": {
-    "dev": "rspack serve --config ./rspack.config.ts",
-    "build": "rspack build --config ./rspack.config.ts"
+    "dev": "rspack serve --config ./example/rspack.config.ts"
   },
   "dependencies": {
     "@arco-design/web-react": "2.50.0",

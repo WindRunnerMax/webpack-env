@@ -1,0 +1,70 @@
+/* stylelint-disable selector-max-id */
+* {
+  box-sizing: border-box;
+  scrollbar-color: #ddd transparent;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 6px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #ccc;
+}
+
+body,
+html,
+#root {
+  height: 100%;
+}
+
+.markdown-it-container {
+  display: flex;
+  height: 100%;
+  padding: 10px 20px;
+  position: relative;
+}
+
+.markdown-it-editor,
+.markdown-it-preview {
+  border: 1px solid var(--color-border-3);
+  border-radius: 4px;
+  height: 100%;
+  margin: 0 10px;
+  overflow: auto;
+  width: 50%;
+}
+
+.markdown-it-editor {
+  line-height: 1.5;
+  resize: none;
+}
+
+.markdown-it-preview-source {
+  white-space: pre-wrap;
+}
+
+.markdown-it-preview-mode {
+  display: flex;
+  gap: 5px;
+  position: absolute;
+  right: 40px;
+  top: 15px;
+}
+
+.markdown-it-preview-mode span {
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.markdown-it-preview-mode span:hover {
+  color: rgb(var(--arcoblue-6));
+}

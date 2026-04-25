@@ -39,10 +39,10 @@ export const getDailyChartOptions = (
           `    ${ma}MA: ${maValue?.toFixed(maValue > 10000 ? 2 : 4) || "0"}` +
           `  </div>` +
           `  <div style="display:flex; gap: 10px;">` +
-          `    <div style="color: ${item.change >= 0 ? "#F53F3F" : "#009A29"}">` +
+          `    <div style="color: ${item.change >= 0 ? "#F53F3F" : "#00B42A"}">` +
           `      涨跌幅: ${item.change >= 0 ? "+" : ""}${item.change.toFixed(2)}%` +
           `    </div>` +
-          `    <div style="color: ${maRatio >= 0 ? "#F53F3F" : "#009A29"}">` +
+          `    <div style="color: ${maRatio >= 0 ? "#F53F3F" : "#00B42A"}">` +
           `      均线偏离: ${maRatio >= 0 ? "+" : ""}${maRatio.toFixed(2)}%` +
           `    </div>` +
           `  </div>` +

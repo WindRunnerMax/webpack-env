@@ -399,7 +399,7 @@ importers:
         specifier: 29.1.2
         version: 29.1.2(@babel/core@7.20.12)(babel-jest@29.4.1)(jest@29.4.1)(typescript@5.3.2)
 
-  packages/markdown-it-bullet-details:
+  packages/markdown-it-bullet-summary:
     dependencies:
       '@arco-design/web-react':
         specifier: 2.50.0
@@ -26649,7 +26649,7 @@ packages:
       memfs: 3.5.3
       mime-types: 2.1.35
       range-parser: 1.2.1
-      schema-utils: 4.2.0
+      schema-utils: 4.3.3
       webpack: 5.76.0
     dev: true
 
