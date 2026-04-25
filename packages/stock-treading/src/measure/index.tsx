@@ -1,31 +1,34 @@
 import "./styles/index.less";
 import "@arco-design/web-react/es/style/index.less";
 
-import { Button, DatePicker, Form, InputNumber, Radio, Space } from "@arco-design/web-react";
-import { useLayoutEffect, useRef } from "react";
+import { Button, DatePicker, Form, InputNumber, Link, Radio, Space } from "@arco-design/web-react";
+import { useLayoutEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 
 import type { PresetFormTypes } from "./utils/constant";
-import { PRESET_50, PRESET_100 } from "./utils/constant";
+import { PRESET_50_1, PRESET_50_2, PRESET_100_1, PRESET_100_2 } from "./utils/constant";
 import { alignKlineData, fetchMeasureKline } from "./utils/kline";
 import { writeContentByKline } from "./utils/write";
 
 const App = () => {
   const ref = useRef<HTMLDivElement>(null);
+  const [loading, setLoading] = useState(false);
   const [form] = Form.useForm();
 
   useLayoutEffect(() => {
-    form.setFieldsValue(PRESET_50);
+    form.setFieldsValue(PRESET_50_1);
     ref.current && (ref.current.style.maxHeight = ref.current.clientHeight + "px");
   }, [form]);
 
   const submit = async () => {
+    setLoading(true);
     const p: PresetFormTypes = await form.validate();
     const base1 = await fetchMeasureKline(p.base, p.start, p.ma);
     const etf1 = await fetchMeasureKline(p.etf, p.start, p.ma);
     const [base, etf] = alignKlineData(p.start, base1, etf1);
     writeContentByKline(ref.current!, base, etf, p);
     ref.current && (ref.current.scrollTop = ref.current.scrollHeight);
+    setLoading(false);
   };
 
   return (
@@ -41,15 +44,15 @@ const App = () => {
         <Form.Item label="基线" field="base">
           <Radio.Group>
             <Radio value="CSIH30269">红利低波</Radio>
-            <Radio value="CSI930955">红利低波100</Radio>
+            <Radio value="CSI930955">红利低波 100</Radio>
           </Radio.Group>
         </Form.Item>
         <Form.Item label="ETF" field="etf">
           <Radio.Group>
-            <Radio value="SH563020">易方达(50)</Radio>
-            <Radio value="SH512890">华泰柏瑞(50)</Radio>
-            <Radio value="SZ159307">博时(100)</Radio>
-            <Radio value="SZ159307">天弘(100)</Radio>
+            <Radio value="SH563020">易方达 50</Radio>
+            <Radio value="SH512890">华泰柏瑞 50</Radio>
+            <Radio value="SZ159307">博时 100</Radio>
+            <Radio value="SZ159549">天弘 100</Radio>
           </Radio.Group>
         </Form.Item>
         <Form.Item label="起始日" field="start">
@@ -62,7 +65,7 @@ const App = () => {
           </Radio.Group>
         </Form.Item>
         <Form.Item label="ETF 偏移" field="offset">
-          <InputNumber />
+          <InputNumber step={0.001} />
         </Form.Item>
         <Form.Item label="微调持仓" className="secondary-form">
           <Form.Item label="最小值" field="light.min">
@@ -93,13 +96,20 @@ const App = () => {
             <Radio value="both">两侧交易</Radio>
           </Radio.Group>
         </Form.Item>
+        <Form.Item label="数据预设">
+          <Space size={10}>
+            <Link onClick={() => form.setFieldsValue(PRESET_50_1)}>易方达 50</Link>
+            <Link onClick={() => form.setFieldsValue(PRESET_50_2)}>华泰柏瑞 50</Link>
+            <Link onClick={() => form.setFieldsValue(PRESET_100_1)}>博时 100</Link>
+            <Link onClick={() => form.setFieldsValue(PRESET_100_2)}>天弘 100</Link>
+          </Space>
+        </Form.Item>
         <Form.Item label={<></>} className="secondary-form">
-          <Space size={20}>
-            <Button type="primary" onClick={submit}>
-              计算
+          <Space size={10}>
+            <Button type="primary" onClick={submit} loading={loading}>
+              计算数据
             </Button>
-            <Button onClick={() => form.setFieldsValue(PRESET_50)}>预设红利低波</Button>
-            <Button onClick={() => form.setFieldsValue(PRESET_100)}>预设红利低波100</Button>
+            <Button onClick={() => (ref.current!.innerHTML = "")}>清理日志</Button>
           </Space>
         </Form.Item>
       </Form>

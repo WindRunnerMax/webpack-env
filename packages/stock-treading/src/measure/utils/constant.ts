@@ -17,12 +17,8 @@ export type PresetFormTypes = {
   loc: string;
 };
 
-export const PRESET_50 = {
-  "base": "CSIH30269",
-  "etf": "SH563020",
+const COMMON_PRESET = {
   "start": "2025-01-01",
-  "ma": 250,
-  "offset": 0.004,
   "light.min": 50,
   "light.radix": 100,
   "light.max": 5000,
@@ -32,17 +28,34 @@ export const PRESET_50 = {
   "loc": "left",
 };
 
-export const PRESET_100 = {
-  "base": "CSI930955",
-  "etf": "SZ159307",
-  "start": "2025-01-01",
-  "ma": 200,
-  "offset": 0.006,
-  "light.min": 50,
-  "light.radix": 100,
-  "light.max": 5000,
-  "heavy.min": 10000,
-  "heavy.radix": 1000,
-  "heavy.max": 20000,
-  "loc": "left",
+export const PRESET_50_1 = {
+  base: "CSIH30269",
+  etf: "SH563020",
+  ma: 250,
+  offset: 0.004,
+  ...COMMON_PRESET,
+};
+
+export const PRESET_50_2 = {
+  base: "CSIH30269",
+  etf: "SH512890",
+  ma: 250,
+  offset: 0,
+  ...COMMON_PRESET,
+};
+
+export const PRESET_100_1 = {
+  base: "CSI930955",
+  etf: "SZ159307",
+  ma: 200,
+  offset: 0.006,
+  ...COMMON_PRESET,
+};
+
+export const PRESET_100_2 = {
+  base: "CSI930955",
+  etf: "SZ159549",
+  ma: 200,
+  offset: 0,
+  ...COMMON_PRESET,
 };

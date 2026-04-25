@@ -6,9 +6,17 @@ import type { DailyKline } from "./kline";
 export const formatP = (num: number) => (num * 100).toFixed(4) + "%";
 
 export const appendContent = (ref: HTMLDivElement, ...content: (string | number)[]) => {
+  const string = content.join(" ") + "\n";
   const fragment = document.createDocumentFragment();
-  const text = document.createTextNode(content.join(" ") + "\n");
-  fragment.appendChild(text);
+  const text = document.createTextNode(string);
+  if (string.startsWith(">")) {
+    const span = document.createElement("span");
+    span.style.color = "#165DFF";
+    span.appendChild(text);
+    fragment.appendChild(span);
+  } else {
+    fragment.appendChild(text);
+  }
   ref.appendChild(fragment);
 };
 
@@ -29,44 +37,53 @@ export const writeContentByKline = (
     if (b.date !== e.date || isNil(b.ma) || isNil(e.ma)) {
       throw new Error(JSON.stringify(b) + "-" + JSON.stringify(e));
     }
+
     const balance = crash + profit;
     appendContent(ref, "=========", b.date, "=========");
+
     const baseMaOffset = (b.close - b.ma) / b.ma;
     const etfMaOffset = (e.close - e.ma) / e.ma - payload.offset;
     appendContent(ref, "指数 MA 偏移:", formatP(baseMaOffset));
     appendContent(ref, "ETF MA 偏移:", formatP(etfMaOffset));
+
     // change = (close - lastClose) / lastClose
     const balanceChange = balance * e.change;
     appendContent(ref, "当日涨幅", balanceChange.toFixed(2), formatP(e.change));
     profit = profit + balanceChange;
 
-    // --------- strategy ---------
-    // 仅跌时加仓, 设置为 false 则符合条件下涨跌都加仓
-    const isTodayIncr = e.change > 0;
-    if (etfMaOffset < 0 && !isTodayIncr) {
+    const isTodayIncr = e.change > 0 && b.change > 0;
+    const isTodayDesc = e.change < 0 && b.change < 0;
+    let isNeedAddition = false;
+    if (payload.loc === "both") {
+      isNeedAddition = true;
+    } else if (payload.loc === "left") {
+      isNeedAddition = isTodayDesc;
+    } else if (payload.loc === "right") {
+      isNeedAddition = isTodayIncr;
+    }
+    if (baseMaOffset < 0 && etfMaOffset < 0 && isNeedAddition) {
       const ratio = -etfMaOffset * 1000;
       const radix = 1000;
       const added = Math.min(10000 + Math.floor(ratio * radix), 20000);
       appendContent(ref, "> ETF 小于均线, 大幅加仓", added);
       crash = crash + added;
-    } else if (baseMaOffset < 0 && !isTodayIncr) {
+    }
+    if (baseMaOffset < 0 && etfMaOffset > 0 && isNeedAddition) {
       const ratio = -baseMaOffset * 1000;
       const radix = 100; /** 基准 */
       const added = Math.floor(ratio * radix);
       appendContent(ref, "> 指数小于均线, 小幅加仓", added);
       crash = crash + added;
     }
-    // --------- strategy ---------
 
-    appendContent(
-      ref,
+    const text = [
       "投入总额:",
       crash,
       "收益总额:",
       profit.toFixed(2),
       "收益率:",
-      formatP(profit / crash)
-    );
-    appendContent(ref, "");
+      formatP(crash ? profit / crash : 0),
+    ].join(" ");
+    appendContent(ref, text, "\n");
   }
 };
