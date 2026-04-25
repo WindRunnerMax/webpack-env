@@ -18,9 +18,12 @@ const App = () => {
       linkify: true,
       breaks: true,
     });
+    // @ts-expect-error for debugger
+    window.mdIt = markdownIt;
     markdownIt.use(markdownItBulletSummary);
     if (mode === "debug") {
       const tokens = markdownIt.parse(markdown, {});
+      console.log("tokens:", tokens);
       return JSON.stringify(tokens, null, 4);
     }
     return markdownIt.render(markdown);
