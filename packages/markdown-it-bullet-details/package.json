@@ -1,0 +1,21 @@
+{
+  "name": "markdown-it-bullet-details",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "rspack serve --config ./rspack.config.ts",
+    "build": "rspack build --config ./rspack.config.ts"
+  },
+  "dependencies": {
+    "@arco-design/web-react": "2.50.0",
+    "markdown-it": "^12.3.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@rspack/cli": "0.2.5",
+    "@rspack/plugin-html": "0.2.5",
+    "@types/markdown-it": "14.1.2",
+    "@types/react": "17.0.2",
+    "@types/react-dom": "17.0.2"
+  }
+}

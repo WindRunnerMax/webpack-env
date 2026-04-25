@@ -24,6 +24,7 @@
     "paths": {}
   },
   "include": ["packages/*/src/**/*.ts", "packages/*/src/**/*.tsx"],
+  "exclude": ["**/node_modules/**"],
   "ts-node": {
     "compilerOptions": {
       "module": "commonjs"

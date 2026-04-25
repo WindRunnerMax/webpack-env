@@ -1,3 +1,5 @@
+import { DateTime } from "@block-kit/utils";
+
 export type PresetFormTypes = {
   base: string;
   etf: string;
@@ -17,8 +19,11 @@ export type PresetFormTypes = {
   loc: string;
 };
 
+const start = new DateTime();
+start.setFullYear(start.getFullYear() - 1, 0, 1);
+
 const COMMON_PRESET = {
-  "start": "2025-01-01",
+  "start": start.format(),
   "light.min": 50,
   "light.radix": 100,
   "light.max": 5000,

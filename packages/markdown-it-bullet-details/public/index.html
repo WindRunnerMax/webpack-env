@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+  </head>
+  <body>
+    <% if (process.env.NODE_ENV === "production") { %>
+    <script
+      src="https://registry.npmmirror.com/react/17.0.2/files/umd/react.production.min.js"
+      type="application/javascript"
+      referrerpolicy="no-referrer"
+      crossorigin
+    ></script>
+    <script
+      src="https://registry.npmmirror.com/react-dom/17.0.2/files/umd/react-dom.production.min.js"
+      type="application/javascript"
+      referrerpolicy="no-referrer"
+      crossorigin
+    ></script>
+    <% } else { %>
+    <script
+      src="https://registry.npmmirror.com/react/17.0.2/files/umd/react.development.js"
+      type="application/javascript"
+      referrerpolicy="no-referrer"
+      crossorigin
+    ></script>
+    <script
+      src="https://registry.npmmirror.com/react-dom/17.0.2/files/umd/react-dom.development.js"
+      type="application/javascript"
+      referrerpolicy="no-referrer"
+      crossorigin
+    ></script>
+    <% } %>
+    <div id="root" class="root"></div>
+  </body>
+</html>

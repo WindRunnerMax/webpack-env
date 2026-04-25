@@ -399,6 +399,37 @@ importers:
         specifier: 29.1.2
         version: 29.1.2(@babel/core@7.20.12)(babel-jest@29.4.1)(jest@29.4.1)(typescript@5.3.2)
 
+  packages/markdown-it-bullet-details:
+    dependencies:
+      '@arco-design/web-react':
+        specifier: 2.50.0
+        version: 2.50.0(@types/react@17.0.2)(react-dom@17.0.2)(react@17.0.2)
+      markdown-it:
+        specifier: ^12.3.0
+        version: 12.3.0
+      react:
+        specifier: 17.0.2
+        version: 17.0.2
+      react-dom:
+        specifier: 17.0.2
+        version: 17.0.2(react@17.0.2)
+    devDependencies:
+      '@rspack/cli':
+        specifier: 0.2.5
+        version: 0.2.5(react-refresh@0.14.0)(webpack@5.56.1)
+      '@rspack/plugin-html':
+        specifier: 0.2.5
+        version: 0.2.5(@rspack/core@0.2.5)
+      '@types/markdown-it':
+        specifier: 14.1.2
+        version: 14.1.2
+      '@types/react':
+        specifier: 17.0.2
+        version: 17.0.2
+      '@types/react-dom':
+        specifier: 17.0.2
+        version: 17.0.2
+
   packages/markdown-it-multi-table:
     dependencies:
       argparse:
@@ -10378,7 +10409,7 @@ packages:
     dependencies:
       caniuse-lite: 1.0.30001610
       electron-to-chromium: 1.4.736
-      escalade: 3.1.1
+      escalade: 3.2.0
       node-releases: 1.1.77
     dev: false
 
@@ -13131,10 +13162,6 @@ packages:
       '@esbuild/win32-arm64': 0.25.2
       '@esbuild/win32-ia32': 0.25.2
       '@esbuild/win32-x64': 0.25.2
-
-  /escalade@3.1.1:
-    resolution: {integrity: sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw==}
-    engines: {node: '>=6'}
 
   /escalade@3.2.0:
     resolution: {integrity: sha512-WUj2qlxaQtO4g6Pq5c29GTcWGDyd8itL8zTlipgECz3JesAiiOKotd8JU6otB3PACgG6xkJUyVhboMS+bje/jA==}
@@ -20508,7 +20535,7 @@ packages:
     resolution: {integrity: sha512-WyQFAdDZpExQh32j0U0feWisZ0dmOtPl44qYmJKkq9xFWY3p+4qnRzCHeNrkeRhwPHz9bQ3mo0/yVkaply0MNw==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      browserslist: 4.23.0
+      browserslist: 4.27.0
       color: 3.2.1
       has: 1.0.3
       postcss: 7.0.39
@@ -20866,7 +20893,7 @@ packages:
     resolution: {integrity: sha512-U7e3r1SbvYzO0Jr3UT/zKBVgYYyhAz0aitvGIYOYK5CPmkNih+WDSsS5tvPrJ8YMQYlEMvsZIiqmn7HdFUaeEQ==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      browserslist: 4.23.0
+      browserslist: 4.27.0
       caniuse-api: 3.0.0
       cssnano-util-same-parent: 4.0.1
       postcss: 7.0.39
@@ -20957,7 +20984,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       alphanum-sort: 1.0.2
-      browserslist: 4.23.0
+      browserslist: 4.27.0
       cssnano-util-get-arguments: 4.0.0
       postcss: 7.0.39
       postcss-value-parser: 3.3.1
@@ -21212,7 +21239,7 @@ packages:
     resolution: {integrity: sha512-od18Uq2wCYn+vZ/qCOeutvHjB5jm57ToxRaMeNuf0nWVHaP9Hua56QyMF6fs/4FSUnVIw0CBPsU0K4LnBPwYwg==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      browserslist: 4.23.0
+      browserslist: 4.27.0
       postcss: 7.0.39
       postcss-value-parser: 3.3.1
 
@@ -21399,7 +21426,7 @@ packages:
     resolution: {integrity: sha512-gKWmR5aUulSjbzOfD9AlJiHCGH6AEVLaM0AV+aSioxUDd16qXP1PCh8d1/BGVvpdWn8k/HiK7n6TjeoXN1F7DA==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      browserslist: 4.23.0
+      browserslist: 4.27.0
       caniuse-api: 3.0.0
       has: 1.0.3
       postcss: 7.0.39
@@ -25725,7 +25752,7 @@ packages:
       browserslist: '>= 4.21.0'
     dependencies:
       browserslist: 4.23.0
-      escalade: 3.1.1
+      escalade: 3.2.0
       picocolors: 1.0.0
 
   /update-browserslist-db@1.1.4(browserslist@4.27.0):
