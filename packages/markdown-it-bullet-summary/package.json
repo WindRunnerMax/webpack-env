@@ -1,17 +1,25 @@
 {
   "name": "markdown-it-bullet-summary",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "main": "./dist/lib/index.js",
+  "types": "./dist/es/index.d.ts",
+  "module": "./dist/es/index.js",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "dev": "rspack serve --config ./example/rspack.config.ts"
+    "dev": "rspack serve --config ./example/rspack.config.ts",
+    "build": "tsc -p tsconfig.build.json && tsc -p tsconfig.lib.json"
   },
   "dependencies": {
-    "@arco-design/web-react": "2.50.0",
-    "@block-kit/ot-json": "^1.0.24",
-    "markdown-it": "^12.3.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "@block-kit/ot-json": "^1.0.24"
   },
   "devDependencies": {
+    "markdown-it": "^12.3.0",
+    "@arco-design/web-react": "2.50.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
     "@rspack/cli": "0.2.5",
     "@rspack/plugin-html": "0.2.5",
     "@types/markdown-it": "14.1.2",

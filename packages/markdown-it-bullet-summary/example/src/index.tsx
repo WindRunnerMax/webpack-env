@@ -26,6 +26,17 @@ const App = () => {
       console.log("tokens:", tokens);
       return JSON.stringify(tokens, null, 4);
     }
+    if (mode === "types") {
+      const tokens = markdownIt.parse(markdown, {});
+      const tags: string[] = [];
+      let depth = -1;
+      for (const token of tokens) {
+        token.nesting >= 0 && depth++;
+        tags.push("··".repeat(depth) + token.type);
+        token.nesting <= 0 && depth--;
+      }
+      return tags.join("\n");
+    }
     return markdownIt.render(markdown);
   }, [markdown, mode]);
 
@@ -39,12 +50,13 @@ const App = () => {
       {mode === "preview" && (
         <div className="markdown-it-preview" dangerouslySetInnerHTML={{ __html: html }}></div>
       )}
-      {(mode === "source" || mode === "debug") && (
+      {(mode === "source" || mode === "debug" || mode === "types") && (
         <div className="markdown-it-preview markdown-it-preview-source">{html}</div>
       )}
       <div className="markdown-it-preview-mode">
         <span onClick={() => setMode("preview")}>Preview</span>
         <span onClick={() => setMode("source")}>Source</span>
+        <span onClick={() => setMode("types")}>Types</span>
         <span onClick={() => setMode("debug")}>Debug</span>
       </div>
     </div>

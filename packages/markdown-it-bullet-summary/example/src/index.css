@@ -54,19 +54,16 @@ html,
 
 .markdown-it-preview-mode {
   display: flex;
-  gap: 5px;
+  gap: 10px;
   position: absolute;
   right: 40px;
   top: 15px;
 }
 
 .markdown-it-preview-mode span {
+  color: rgb(var(--arcoblue-6));
   cursor: pointer;
   font-size: 12px;
-}
-
-.markdown-it-preview-mode span:hover {
-  color: rgb(var(--arcoblue-6));
 }
 
 /** details 元素样式 **/
