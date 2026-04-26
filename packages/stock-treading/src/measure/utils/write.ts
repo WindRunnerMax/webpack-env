@@ -62,16 +62,18 @@ export const writeContentByKline = (
       isNeedAddition = isTodayIncr;
     }
     if (baseMaOffset < 0 && etfMaOffset < 0 && isNeedAddition) {
+      const h = payload.heavy;
       const ratio = -etfMaOffset * 1000;
-      const radix = 1000;
-      const added = Math.min(10000 + Math.floor(ratio * radix), 20000);
+      const radix = h.radix;
+      const added = Math.min(h.min + Math.floor(ratio * radix), h.max);
       appendContent(ref, "> ETF 小于均线, 大幅加仓", added);
       crash = crash + added;
     }
     if (baseMaOffset < 0 && etfMaOffset > 0 && isNeedAddition) {
+      const l = payload.light;
       const ratio = -baseMaOffset * 1000;
-      const radix = 100; /** 基准 */
-      const added = Math.floor(ratio * radix);
+      const radix = l.radix;
+      const added = Math.min(l.min + Math.floor(ratio * radix), l.max);
       appendContent(ref, "> 指数小于均线, 小幅加仓", added);
       crash = crash + added;
     }

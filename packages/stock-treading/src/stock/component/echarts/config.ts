@@ -3,13 +3,14 @@ import type { EChartsOption } from "echarts";
 
 import type { DailyKline } from "../../types/stock";
 
+// https://echarts.apache.org/zh/option.html#series-candlestick
 export const getDailyChartOptions = (
   data: DailyKline[],
-  dates: string[],
-  klineData: number[][],
   maValues: (number | null)[],
   ma: number
 ) => {
+  const dates = data.map(item => item.date);
+  const klineData = data.map(item => [item.open, item.close, item.low, item.high]);
   const option: EChartsOption = {
     tooltip: {
       trigger: "axis",

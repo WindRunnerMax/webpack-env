@@ -20,7 +20,7 @@ export type PresetFormTypes = {
 };
 
 const start = new DateTime();
-start.setFullYear(start.getFullYear() - 1, 0, 1);
+start.setFullYear(start.getFullYear() - 1);
 
 const COMMON_PRESET = {
   "start": start.format(),

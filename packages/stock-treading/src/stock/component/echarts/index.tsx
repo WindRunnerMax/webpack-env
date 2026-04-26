@@ -24,26 +24,35 @@ export const DailyKlineChart: React.FC<DailyKlineChartProps> = props => {
   const chartRef = useRef<HTMLDivElement>(null);
   const chartInstance = useRef<ECharts | null>(null);
 
-  const { dates, klineData, maValues, data } = useMemo(() => {
-    const slice = props.slice || 0;
+  const { maValuesSource } = useMemo(() => {
     const source = props.data;
-    const data = slice > 0 ? props.data.slice(-slice) : props.data;
-    const dates = data.map(item => item.date);
-    const klineData = data.map(item => [item.open, item.close, item.low, item.high]);
     let sum = 0;
-    let maValues: (number | null)[] = [];
+    const maValuesSource: (number | null)[] = [];
     for (let i = 0; i < source.length; i++) {
       sum = sum + source[i].close;
       if (i < maPreset - 1) {
-        maValues.push(null);
+        maValuesSource.push(null);
         continue;
       }
-      maValues.push(sum / maPreset);
+      maValuesSource.push(sum / maPreset);
       sum = sum - source[i - maPreset + 1].close;
     }
-    maValues = slice > 0 ? maValues.slice(-slice) : maValues;
-    return { data, dates, klineData, maValues };
-  }, [props.data, props.slice, maPreset]);
+    return { maValuesSource };
+  }, [props.data, maPreset]);
+
+  const { maValues, chartData } = useMemo(() => {
+    const slice = props.slice || 0;
+    if (slice > 0) {
+      return {
+        chartData: props.data.slice(-slice),
+        maValues: maValuesSource.slice(-slice),
+      };
+    }
+    return {
+      chartData: props.data,
+      maValues: maValuesSource,
+    };
+  }, [props.slice, props.data, maValuesSource]);
 
   const onClickElement = useMemoFn((params: ECElementEvent) => {
     console.log("Candlestick:", params);
@@ -65,9 +74,9 @@ export const DailyKlineChart: React.FC<DailyKlineChartProps> = props => {
 
   useEffect(() => {
     if (!chartInstance.current) return void 0;
-    const option = getDailyChartOptions(data, dates, klineData, maValues, maPreset);
+    const option = getDailyChartOptions(chartData, maValues, maPreset);
     chartInstance.current.setOption(option);
-  }, [data, dates, klineData, maValues, maPreset]);
+  }, [chartData, maValues, maPreset]);
 
   useEffect(() => {
     return () => {

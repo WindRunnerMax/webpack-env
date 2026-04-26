@@ -11,8 +11,8 @@ import type { FetchProps } from "../../api";
 import { fetchStockKline } from "../../api";
 import { useGlobalContext } from "../../context/global";
 import type { DailyKline } from "../../types/stock";
-import type { DailyKlineChartProps } from "../candlestick";
-import { DailyKlineChart } from "../candlestick";
+import type { DailyKlineChartProps } from "../echarts";
+import { DailyKlineChart } from "../echarts";
 
 export const BasicChart: FC<
   Omit<DailyKlineChartProps, "data"> & {
