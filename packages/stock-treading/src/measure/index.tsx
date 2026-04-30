@@ -15,7 +15,7 @@ import {
   START_DATE,
 } from "./utils/constant";
 import { alignKlineData, fetchMeasureKline } from "./utils/kline";
-import { writeContentByKline } from "./utils/write";
+import { transactLedgerByKline } from "./utils/transact";
 
 const App = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -30,10 +30,10 @@ const App = () => {
   const submit = async () => {
     setLoading(true);
     const p: PresetFormTypes = await form.validate();
-    const base1 = await fetchMeasureKline(p.base, p.start, p.ma);
-    const etf1 = await fetchMeasureKline(p.etf, p.start, p.ma);
+    const base1 = await fetchMeasureKline(p.base, p);
+    const etf1 = await fetchMeasureKline(p.etf, p);
     const [base, etf] = alignKlineData(p.start, base1, etf1);
-    writeContentByKline(ref.current!, base, etf, p);
+    transactLedgerByKline(ref.current!, base, etf, p);
     ref.current && (ref.current.scrollTop = ref.current.scrollHeight);
     setLoading(false);
   };

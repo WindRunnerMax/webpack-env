@@ -1,9 +1,10 @@
 import { DateTime } from "@block-kit/utils";
 
 export type PresetFormTypes = {
+  start: string;
+  end: string;
   base: string;
   etf: string;
-  start: string;
   ma: number;
   offset: number;
   light: {

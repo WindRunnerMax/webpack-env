@@ -2,6 +2,7 @@ import { DateTime } from "@block-kit/utils";
 import type { O } from "@block-kit/utils/dist/es/types";
 
 import { fetchSnowStock } from "../../stock/api/snow-stock";
+import type { PresetFormTypes } from "./constant";
 
 export type DailyKline = {
   /** 日期 */
@@ -51,21 +52,26 @@ export const alignKlineData = (start: string, base: DailyKline[], etf: DailyKlin
   return [b1, e1];
 };
 
-export const fetchMeasureKline = async (code: string, start: string, ma: number) => {
-  const s = new DateTime(start);
-  s.nextDay(-ma);
-  const res = await fetchSnowStock(code, s, new DateTime());
+export const fetchMeasureKline = async (code: string, payload: PresetFormTypes) => {
+  const s = new DateTime(payload.start);
+  s.nextDay(-payload.ma);
+  const res = await fetchSnowStock(code, s, new DateTime(payload.end));
   const source = res as DailyKline[];
   let sum = 0;
   for (let i = 0; i < source.length; i++) {
     sum = sum + source[i].close;
     source[i].change = source[i].change / 100;
-    if (i < ma - 1) {
+    if (i < payload.ma - 1) {
       source[i].ma = 0;
       continue;
     }
-    source[i].ma = sum / ma;
-    sum = sum - source[i - ma + 1].close;
+    source[i].ma = sum / payload.ma;
+    sum = sum - source[i - payload.ma + 1].close;
   }
   return source;
 };
+
+/** 格式化 2 位小数(数字) */
+export const formatR = (num: number) => Math.round(num * 100) / 100;
+/** 格式化为百分比 */
+export const formatP = (num: number, precision = 4) => (num * 100).toFixed(precision) + "%";
