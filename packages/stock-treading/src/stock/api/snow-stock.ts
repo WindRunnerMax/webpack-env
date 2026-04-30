@@ -56,7 +56,8 @@ const syncCookies = async () => {
 export const fetchSnowStock = async (
   index: string,
   startDate: DateTime,
-  endDate: DateTime
+  endDate: DateTime,
+  retry = 0
 ): Promise<DailyKline[]> => {
   const login = await isLoggedIn();
   if (!login) await syncCookies();
@@ -73,6 +74,10 @@ export const fetchSnowStock = async (
     }
   );
   const data = await res.json();
+  if (data.error_code !== 0 && retry < 2) {
+    await syncCookies();
+    return fetchSnowStock(index, startDate, endDate, retry + 1);
+  }
   return data.data.item.map((item: P.Any, i: number) => {
     const [timestamp, , open, high, low, close] = item;
     const lastItem = data.data.item[i - 1];

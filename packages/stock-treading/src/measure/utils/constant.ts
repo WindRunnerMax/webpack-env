@@ -21,16 +21,21 @@ export type PresetFormTypes = {
 
 const start = new DateTime();
 start.setFullYear(start.getFullYear() - 1);
+export const START_DATE = start.format();
+export const END_DATE = new DateTime().format();
 
 const COMMON_PRESET = {
-  "start": start.format(),
-  "light.min": 50,
-  "light.radix": 100,
-  "light.max": 5000,
-  "heavy.min": 10000,
-  "heavy.radix": 1000,
-  "heavy.max": 20000,
-  "loc": "left",
+  light: {
+    min: 100,
+    radix: 200,
+    max: 5000,
+  },
+  heavy: {
+    min: 10000,
+    radix: 1000,
+    max: 20000,
+  },
+  loc: "left",
 };
 
 export const PRESET_50_1 = {
@@ -53,7 +58,7 @@ export const PRESET_100_1 = {
   base: "CSI930955",
   etf: "SZ159307",
   ma: 200,
-  offset: 0.006,
+  offset: 0.004,
   ...COMMON_PRESET,
 };
 

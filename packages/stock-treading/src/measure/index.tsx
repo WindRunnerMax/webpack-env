@@ -6,7 +6,14 @@ import { useLayoutEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 
 import type { PresetFormTypes } from "./utils/constant";
-import { PRESET_50_1, PRESET_50_2, PRESET_100_1, PRESET_100_2 } from "./utils/constant";
+import {
+  END_DATE,
+  PRESET_50_1,
+  PRESET_50_2,
+  PRESET_100_1,
+  PRESET_100_2,
+  START_DATE,
+} from "./utils/constant";
 import { alignKlineData, fetchMeasureKline } from "./utils/kline";
 import { writeContentByKline } from "./utils/write";
 
@@ -41,6 +48,15 @@ const App = () => {
         labelCol={{ span: 4 }}
         wrapperCol={{ span: 20 }}
       >
+        <Form.Item label="日期" className="data-picker-row">
+          <Form.Item field="start" initialValue={START_DATE} noStyle>
+            <DatePicker showTime={false} style={{ width: 150 }} />
+          </Form.Item>
+          <span className="delimiter-span"></span>
+          <Form.Item field="end" initialValue={END_DATE} noStyle>
+            <DatePicker showTime={false} style={{ width: 150 }} />
+          </Form.Item>
+        </Form.Item>
         <Form.Item label="基线" field="base">
           <Radio.Group>
             <Radio value="CSIH30269">红利低波</Radio>
@@ -55,9 +71,7 @@ const App = () => {
             <Radio value="SZ159549">天弘 100</Radio>
           </Radio.Group>
         </Form.Item>
-        <Form.Item label="起始日" field="start">
-          <DatePicker showTime={false} style={{ width: 200 }} />
-        </Form.Item>
+
         <Form.Item label="均线 MA" field="ma">
           <Radio.Group>
             <Radio value={200}>200 MA</Radio>

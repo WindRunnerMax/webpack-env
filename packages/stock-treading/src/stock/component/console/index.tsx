@@ -13,6 +13,7 @@ import { useLayoutEffect, useState } from "react";
 
 import { RELOAD_FLAG } from "../../../shared/constant/worker";
 import { removeAllCookies } from "../../../shared/utils/cookie";
+import { storage } from "../../../shared/utils/storage";
 import { CS_URL } from "../../api/cs-stock";
 import { SNOW_URL } from "../../api/snow-stock";
 import { T_FUND_URL } from "../../api/tencent-fund";
@@ -46,7 +47,7 @@ export const Console: FC<{
   };
 
   const onReload = async () => {
-    await chrome.storage.local.set({ [RELOAD_FLAG]: true });
+    await storage.set(RELOAD_FLAG, true);
     chrome.runtime.reload();
   };
 

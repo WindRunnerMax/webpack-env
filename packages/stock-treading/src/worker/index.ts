@@ -2,6 +2,7 @@ import { DateTime } from "@block-kit/utils/dist/es/date-time";
 
 import { MATCH_INJECT } from "../shared/constant/inject";
 import { ALARM_NAME, NOTIFY_HH, NOTIFY_MM, RELOAD_FLAG } from "../shared/constant/worker";
+import { storage } from "../shared/utils/storage";
 
 chrome.action.onClicked.addListener(() => {
   chrome.tabs.create({
@@ -46,9 +47,9 @@ chrome.scripting
 
 chrome.runtime.onInstalled.addListener(async details => {
   console.log("Installed", details);
-  const storage = await chrome.storage.local.get([RELOAD_FLAG]);
-  chrome.storage.local.remove(RELOAD_FLAG);
-  if (details.reason === "update" && storage[RELOAD_FLAG]) {
+  const reloadFlag = await storage.get(RELOAD_FLAG);
+  storage.remove(RELOAD_FLAG);
+  if (details.reason === "update" && reloadFlag) {
     chrome.tabs.create({
       url: chrome.runtime.getURL("stock.html"),
     });
