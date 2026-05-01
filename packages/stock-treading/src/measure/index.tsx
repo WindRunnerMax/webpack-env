@@ -2,6 +2,7 @@ import "./styles/index.less";
 import "@arco-design/web-react/es/style/index.less";
 
 import { Button, DatePicker, Form, InputNumber, Link, Radio, Space } from "@arco-design/web-react";
+import { dayjs } from "@arco-design/web-react/es/_util/dayjs";
 import { useLayoutEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 
@@ -50,11 +51,31 @@ const App = () => {
       >
         <Form.Item label="日期" className="data-picker-row">
           <Form.Item field="start" initialValue={START_DATE} noStyle>
-            <DatePicker showTime={false} style={{ width: 150 }} />
+            <DatePicker
+              shortcutsPlacementLeft
+              shortcuts={[
+                { text: "一年前", value: () => dayjs().subtract(1, "year") },
+                { text: "二年前", value: () => dayjs().subtract(2, "year") },
+                { text: "三年前", value: () => dayjs().subtract(3, "year") },
+                { text: "四年前", value: () => dayjs().subtract(4, "year") },
+                { text: "五年前", value: () => dayjs().subtract(5, "year") },
+              ]}
+              showTime={false}
+              style={{ width: 150 }}
+            />
           </Form.Item>
           <span className="delimiter-span"></span>
           <Form.Item field="end" initialValue={END_DATE} noStyle>
-            <DatePicker showTime={false} style={{ width: 150 }} />
+            <DatePicker
+              showTime={false}
+              style={{ width: 150 }}
+              shortcutsPlacementLeft
+              shortcuts={[
+                { text: "今天", value: () => dayjs() },
+                { text: "今年初", value: () => dayjs().startOf("year") },
+                { text: "一年前", value: () => dayjs().subtract(1, "year") },
+              ]}
+            />
           </Form.Item>
         </Form.Item>
         <Form.Item label="基线" field="base">

@@ -1,41 +1,55 @@
+import type { IInvest } from "../types/ledger";
 import { formatP, formatR } from "../utils/kline";
 
-type Invest = { date: string; amount: number; profit: number };
-
 export class Ledger {
-  /** 历史投入总金额 */
-  public amount: number = 0;
-  /** 历史收益总金额 */
-  public profit: number = 0;
   /** 历史投入记录 */
-  public invests: Invest[] = [];
+  public invests: IInvest[] = [];
+
+  /** 投入总金额 */
+  public get invest() {
+    return this.invests.reduce((acc, cur) => acc + cur.invest, 0);
+  }
+
+  /** 收益总金额 */
+  public get profit() {
+    return this.invests.reduce((acc, cur) => acc + cur.profit, 0);
+  }
+
+  /**
+   * 资金总金额
+   * - 投入总金额 + 收益总金额
+   */
+  public get amount() {
+    return this.invest + this.profit;
+  }
 
   /**
    * 执行资金涨跌
    * - rate = (close - lastClose) / lastClose
    */
-  public moveRate(rate: number) {
-    const balanceChange = (this.amount + this.profit) * rate;
-    this.profit = this.profit + balanceChange;
+  public execMoveRate(rate: number) {
+    const change = this.amount * rate;
     this.invests.forEach(item => {
-      item.profit = item.profit + (item.amount + item.profit) * rate;
+      const amount = item.invest + item.profit;
+      item.profit = item.profit + amount * rate;
     });
-    return balanceChange;
+    return change;
   }
 
   /**
    * 增加投资记录
    */
   public addInvest(date: string, invest: number) {
-    this.invests.push({ date, amount: invest, profit: 0 });
-    this.amount = this.amount + invest;
+    this.invests.push({ date, invest, profit: 0 });
   }
 
   /**
    * 格式化收益率
    */
   public formatReturnRate() {
-    return formatP(this.amount ? this.profit / this.amount : 0);
+    const invest = this.invest;
+    const profit = this.profit;
+    return formatP(invest ? profit / invest : 0);
   }
 
   /**
@@ -44,8 +58,9 @@ export class Ledger {
   public formatInvests() {
     return this.invests.map(item => ({
       ...item,
+      invest: formatR(item.invest),
       profit: formatR(item.profit),
-      rate: formatP(item.profit / item.amount),
+      rate: formatP(item.profit / item.invest),
     }));
   }
 }
