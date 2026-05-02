@@ -12,10 +12,11 @@ import { ManifestPlugin } from "./script/manifest";
 const config: Configuration = {
   context: __dirname,
   entry: {
-    inject: "./src/inject/index.ts",
+    inject: "./src/internal/inject/index.ts",
+    worker: "./src/internal/worker/index.ts",
     stock: "./src/stock/index.tsx",
     measure: "./src/measure/index.tsx",
-    worker: "./src/worker/index.ts",
+    kline: "./src/kline/index.tsx",
   },
   plugins: [
     new HtmlPlugin({
@@ -30,9 +31,15 @@ const config: Configuration = {
       inject: true,
       chunks: ["measure"],
     }),
+    new HtmlPlugin({
+      filename: "kline.html",
+      template: "./public/base.html",
+      inject: true,
+      chunks: ["kline"],
+    }),
     new FilesPlugin(),
     new ManifestPlugin({
-      manifest: path.resolve(`src/manifest/index.ts`),
+      manifest: path.resolve(`src/internal/manifest/index.ts`),
     }),
   ],
   builtins: {

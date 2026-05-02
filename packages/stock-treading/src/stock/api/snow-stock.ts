@@ -13,13 +13,13 @@ export const SNOW_URL = "https://stock.xueqiu.com/v5/stock/chart/kline.json";
 let resolveLock: F.Plain | null = null;
 let promiseLock: Promise<void> | null = null;
 
-const isLoggedIn = async () => {
+export const isLoggedIn = async () => {
   const a = await chrome.cookies.get({ url: "https://xueqiu.com", name: "xq_a_token" });
   const b = await chrome.cookies.get({ url: "https://xueqiu.com", name: "u" });
   return !!a && !!b;
 };
 
-const syncCookies = async () => {
+export const syncCookies = async () => {
   if (promiseLock) return promiseLock;
   promiseLock = new Promise(r => (resolveLock = r));
   let resolve!: F.Plain;

@@ -28,12 +28,12 @@ export class Ledger {
    * - rate = (close - lastClose) / lastClose
    */
   public execMoveRate(rate: number) {
-    const change = this.amount * rate;
+    const amountChange = this.amount * rate;
     this.invests.forEach(item => {
       const amount = item.invest + item.profit;
       item.profit = item.profit + amount * rate;
     });
-    return change;
+    return amountChange;
   }
 
   /**

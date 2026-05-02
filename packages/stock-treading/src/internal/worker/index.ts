@@ -1,8 +1,8 @@
 import { DateTime } from "@block-kit/utils/dist/es/date-time";
 
-import { MATCH_INJECT } from "../shared/constant/inject";
-import { ALARM_NAME, NOTIFY_HH, NOTIFY_MM, RELOAD_FLAG } from "../shared/constant/worker";
-import { storage } from "../shared/utils/storage";
+import { MATCH_INJECT } from "../../shared/constant/inject";
+import { ALARM_NAME, NOTIFY_HH, NOTIFY_MM, RELOAD_FLAG } from "../../shared/constant/worker";
+import { storage } from "../../shared/utils/storage";
 
 chrome.action.onClicked.addListener(() => {
   chrome.tabs.create({
