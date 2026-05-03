@@ -71,4 +71,13 @@ export const setChartConfig = (chart: Chart) => {
       },
     },
   });
+
+  // https://klinecharts.com/guide/overlay
+  // https://klinecharts.com/api/instance/createOverlay
+  // chart.createOverlay({
+  //   name: "horizontalStraightLine",
+  //   paneId: "candle_pane",
+  //   needDefaultPointFigure: true,
+  //   points: [{ timestamp: 1751558400000, value: 1.18 }],
+  // });
 };

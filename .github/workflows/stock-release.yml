@@ -32,6 +32,8 @@ jobs:
           pnpm -F stock-treading install --ignore-workspace --registry=https://registry.npmjs.org/
           pnpm -F stock-treading run build
           pnpm -F stock-treading run zip
+        env:
+          PNPM_FROZEN_LOCKFILE: false
 
       - name: create release and upload assets
         uses: softprops/action-gh-release@v2

@@ -1,7 +1,13 @@
 import type { P } from "@block-kit/utils/dist/es/types";
 import type { EChartsOption } from "echarts";
+import { CandlestickChart, LineChart } from "echarts/charts";
+import { GridComponent, TooltipComponent } from "echarts/components";
+import { use } from "echarts/core";
+import { CanvasRenderer } from "echarts/renderers";
 
 import type { DailyKline } from "../../types/stock";
+
+use([LineChart, CandlestickChart, CanvasRenderer, TooltipComponent, GridComponent]);
 
 // https://echarts.apache.org/zh/option.html#series-candlestick
 export const getDailyChartOptions = (

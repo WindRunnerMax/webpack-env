@@ -6,7 +6,7 @@ import { Radio } from "@arco-design/web-react";
 import { useState } from "react";
 import ReactDOM from "react-dom";
 
-import { Chart } from "./components/chart";
+import { Chart } from "./modules/chart";
 
 const App = () => {
   const [radioValue, setRadioValue] = useState("SH512890");

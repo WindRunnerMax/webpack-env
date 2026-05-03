@@ -1,6 +1,6 @@
 import { useMemoFn } from "@block-kit/utils/dist/es/hooks";
-import type { ECElementEvent, ECharts } from "echarts";
-import { init } from "echarts";
+import type { ECElementEvent, EChartsType } from "echarts/core";
+import { init } from "echarts/core";
 import React, { useEffect, useMemo, useRef } from "react";
 
 import type { DailyKline } from "../../types/stock";
@@ -22,7 +22,7 @@ export interface DailyKlineChartProps {
 export const DailyKlineChart: React.FC<DailyKlineChartProps> = props => {
   const { height = 200, width = "100%", ma: maPreset = 250 } = props;
   const chartRef = useRef<HTMLDivElement>(null);
-  const chartInstance = useRef<ECharts | null>(null);
+  const chartInstance = useRef<EChartsType | null>(null);
 
   const { maValuesSource } = useMemo(() => {
     const source = props.data;
