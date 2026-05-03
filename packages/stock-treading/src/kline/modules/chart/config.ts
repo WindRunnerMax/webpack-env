@@ -3,6 +3,8 @@ import type { Chart, IndicatorTooltipData, KLineData, NeighborData, Nullable } f
 
 import { formatNumber } from "../../utils/format";
 
+export const PANEL_ID = "candle_pane";
+
 export const setChartConfig = (chart: Chart) => {
   // https://klinecharts.com/api/instance/createIndicator
   chart.createIndicator(
@@ -30,7 +32,7 @@ export const setChartConfig = (chart: Chart) => {
       },
     },
     true,
-    { id: "candle_pane" }
+    { id: PANEL_ID }
   );
 
   // https://klinecharts.com/guide/styles
@@ -71,13 +73,4 @@ export const setChartConfig = (chart: Chart) => {
       },
     },
   });
-
-  // https://klinecharts.com/guide/overlay
-  // https://klinecharts.com/api/instance/createOverlay
-  // chart.createOverlay({
-  //   name: "horizontalStraightLine",
-  //   paneId: "candle_pane",
-  //   needDefaultPointFigure: true,
-  //   points: [{ timestamp: 1751558400000, value: 1.18 }],
-  // });
 };
