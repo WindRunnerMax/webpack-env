@@ -73,7 +73,7 @@ export const rebuildLiTokens = (
   const tokens = state.tokens;
   const liToken = tokens[openIdx]!;
   const walker = createSectionWalker(tokens, openIdx);
-  // 查找 li 下的子项, 此处是向后查找, 插入不影响 i 遍历
+  // 查找 li 下的子项, 主要目的是检查其直属子元素
   for (const node of walker) {
     const k = node.idx;
     const tokenK = node.token;
@@ -86,15 +86,21 @@ export const rebuildLiTokens = (
       // 为 i - k 之间的元素创建 summary
       const sOpen = new state.Token("li_summary_open", "summary", 1);
       const sClose = new state.Token("li_summary_close", "summary", -1);
-      sOpen.level = liToken.level + 1;
-      sClose.level = liToken.level + 1;
-      actions.push({ idx: openIdx + 1, token: sOpen });
-      actions.push({ idx: k, token: sClose });
-      // 现在是 i 之后的元素, 不会影响原始遍历 li 的栈平衡
+      // 现在 peer 是 i 之后的元素, 不会影响原始遍历 li 的栈平衡
       if (peer) {
         peer.type = "li_details_close";
         peer.tag = "details";
       }
+      // 处理 summary 及其内部元素的 level
+      sOpen.level = liToken.level + 1;
+      sClose.level = liToken.level + 1;
+      for (let i = openIdx + 1; i < k; i++) {
+        const token = tokens[i];
+        token.level = (token.level || 0) + 1;
+      }
+      // 处理 summary 元素的插入位置
+      actions.push({ idx: openIdx + 1, token: sOpen });
+      actions.push({ idx: k, token: sClose });
       break;
     }
   }

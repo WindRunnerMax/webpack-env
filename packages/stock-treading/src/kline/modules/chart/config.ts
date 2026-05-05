@@ -6,35 +6,6 @@ import { formatNumber } from "../../utils/format";
 export const PANEL_ID = "candle_pane";
 
 export const setChartConfig = (chart: Chart) => {
-  // https://klinecharts.com/api/instance/createIndicator
-  chart.createIndicator(
-    {
-      name: "MA",
-      calcParams: [200, 250],
-      createTooltipDataSource: params => {
-        const { indicator, crosshair } = params;
-        const p = indicator.precision;
-        const result = indicator.result;
-        const kLineData = crosshair.kLineData!;
-        const data = result[crosshair.dataIndex!] as O.Map<number>;
-        return {
-          legends: indicator.calcParams.map((value, index) => {
-            const title = `MA${value}: `;
-            const ma = data["ma" + (index + 1)];
-            if (!ma) return { title, value: "n/a" };
-            const move = ((kLineData.close - ma) / ma) * 100;
-            return {
-              title,
-              value: ma.toFixed(p) + `[${formatNumber(move)}%]`,
-            };
-          }),
-        } as unknown as IndicatorTooltipData;
-      },
-    },
-    true,
-    { id: PANEL_ID }
-  );
-
   // https://klinecharts.com/guide/styles
   chart.setStyles({
     candle: {
@@ -73,4 +44,36 @@ export const setChartConfig = (chart: Chart) => {
       },
     },
   });
+
+  // https://klinecharts.com/api/instance/createIndicator
+  const styles = chart.getStyles();
+  const lineStyles = styles.indicator.lines;
+  chart.createIndicator(
+    {
+      name: "MA",
+      calcParams: [200, 250],
+      createTooltipDataSource: params => {
+        const { indicator, crosshair } = params;
+        const p = indicator.precision;
+        const result = indicator.result;
+        const kLineData = crosshair.kLineData!;
+        const data = result[crosshair.dataIndex!] as O.Map<number>;
+        return {
+          legends: indicator.calcParams.map((value, index) => {
+            const lineColor = lineStyles[index].color;
+            const title = `MA${value}: `;
+            const ma = data["ma" + (index + 1)];
+            if (!ma) return { title, value: "n/a" };
+            const move = ((kLineData.close - ma) / ma) * 100;
+            return {
+              title: { color: lineColor, text: title },
+              value: { color: lineColor, text: ma.toFixed(p) + `[${formatNumber(move)}%]` },
+            };
+          }),
+        } as unknown as IndicatorTooltipData;
+      },
+    },
+    true,
+    { id: PANEL_ID }
+  );
 };

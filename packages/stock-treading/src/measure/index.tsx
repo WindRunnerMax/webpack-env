@@ -6,6 +6,7 @@ import { dayjs } from "@arco-design/web-react/es/_util/dayjs";
 import { useLayoutEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 
+import { Transact } from "./modules/transact";
 import type { PresetFormTypes } from "./utils/constant";
 import {
   END_DATE,
@@ -16,7 +17,6 @@ import {
   START_DATE,
 } from "./utils/constant";
 import { alignKlineData, fetchMeasureKline } from "./utils/kline";
-import { transactLedgerByKline } from "./utils/transact";
 
 const App = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -34,7 +34,8 @@ const App = () => {
     const base1 = await fetchMeasureKline(p.base, p);
     const etf1 = await fetchMeasureKline(p.etf, p);
     const [base, etf] = alignKlineData(p.start, base1, etf1);
-    transactLedgerByKline(ref.current!, base, etf, p);
+    const transact = new Transact(ref.current!);
+    transact.apply(base, etf, p);
     ref.current && (ref.current.scrollTop = ref.current.scrollHeight);
     setLoading(false);
   };

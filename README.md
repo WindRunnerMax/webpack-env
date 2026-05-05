@@ -68,7 +68,7 @@
 </tr>
 
 <tr>
-<td>Markdown 列表折叠结构</td>
+<td><a href="https://github.com/WindRunnerMax/EveryDay/blob/master/Plugin/基于MdIt的无序列表折叠插件.md">Markdown 列表折叠结构</a></td>
 <td><a href="./packages/markdown-it-bullet-summary">packages/markdown-it-bullet-summary</a></td>
 </tr>
 

@@ -59,7 +59,7 @@ const App = () => {
       </div>
       <Chart code={radioValue} onRef={chartRef} />
       <div className="button-group">
-        <Button type="primary" onClick={onDrawHorizontalStraightLine}>
+        <Button size="small" type="primary" onClick={onDrawHorizontalStraightLine}>
           参考线
         </Button>
       </div>
