@@ -86,6 +86,7 @@ export const BasicChart: FC<
             options={[
               { label: "200MA", value: 200 },
               { label: "250MA", value: 250 },
+              { label: "300MA", value: 300 },
             ]}
           ></Select>
         </span>

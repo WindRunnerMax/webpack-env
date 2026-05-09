@@ -34,7 +34,7 @@ const COMMON_PRESET = {
   heavy: {
     min: 10000,
     radix: 1000,
-    max: 20000,
+    max: 30000,
   },
   loc: "left",
 };
