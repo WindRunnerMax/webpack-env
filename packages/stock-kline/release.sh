@@ -1,9 +1,9 @@
 #!/bin/bash
 
 version=$(echo "console.log(require(\"./package.json\").version)" | node)
-tagName=stock-treading@$version
+tagName=stock-kline@$version
 
 echo $tagName
 
-git tag -a $tagName -m "stock-treading"
+git tag -a $tagName -m "stock-kline"
 git push origin $tagName

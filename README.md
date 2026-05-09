@@ -155,7 +155,7 @@
 
 <tr>
 <td>中证红利低波全收益相关指数</td>
-<td><a href="./packages/stock-treading">packages/stock-treading</a></td>
+<td><a href="./packages/stock-kline">packages/stock-kline</a></td>
 </tr>
 
 <tr>

@@ -818,14 +818,14 @@ importers:
         specifier: 1.6.0
         version: 1.6.0
 
-  packages/stock-treading:
+  packages/stock-kline:
     dependencies:
       '@arco-design/web-react':
         specifier: 2.50.0
         version: 2.50.0(@types/react@17.0.2)(react-dom@17.0.2)(react@17.0.2)
       '@block-kit/utils':
         specifier: ^1.0.16
-        version: 1.0.16
+        version: 1.0.24
       echarts:
         specifier: ^6.0.0
         version: 6.0.0
@@ -21701,7 +21701,7 @@ packages:
     dependencies:
       nanoid: 3.3.4
       picocolors: 1.0.0
-      source-map-js: 1.0.2
+      source-map-js: 1.2.0
     dev: true
 
   /postcss@8.4.38:
@@ -23972,11 +23972,6 @@ packages:
   /source-map-js@0.6.2:
     resolution: {integrity: sha512-/3GptzWzu0+0MBQFrDKzw/DvvMTUORvgY6k6jd/VS6iCR4RDTKWH6v6WPwQoUO8667uQEf9Oe38DxAYWY5F/Ug==}
     engines: {node: '>=0.10.0'}
-
-  /source-map-js@1.0.2:
-    resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
-    engines: {node: '>=0.10.0'}
-    dev: true
 
   /source-map-js@1.2.0:
     resolution: {integrity: sha512-itJW8lvSA0TXEphiRoawsCksnlf8SyvmFzIhltqAHluXd88pkCd+cXJVHTDwdCr0IzwptSm035IHQktUu1QUMg==}
@@ -26631,7 +26626,7 @@ packages:
       memfs: 3.5.3
       mime-types: 2.1.35
       range-parser: 1.2.1
-      schema-utils: 4.2.0
+      schema-utils: 4.3.3
       webpack: 5.56.1(webpack-cli@4.10.0)
     dev: true
 
@@ -26645,7 +26640,7 @@ packages:
       memfs: 3.5.3
       mime-types: 2.1.35
       range-parser: 1.2.1
-      schema-utils: 4.2.0
+      schema-utils: 4.3.3
       webpack: 5.76.0
     dev: true
 

@@ -1,9 +1,9 @@
-name: stock-treading run release
+name: stock-kline run release
 
 on:
   push:
     tags:
-      - "stock-treading@*"
+      - "stock-kline@*"
 
 permissions:
   contents: write
@@ -29,9 +29,9 @@ jobs:
         run: |
           node -v
           npm install -g pnpm@8.11.0
-          pnpm -F stock-treading install --no-frozen-lockfile --ignore-workspace --registry=https://registry.npmjs.org/
-          pnpm -F stock-treading run build
-          pnpm -F stock-treading run zip
+          pnpm -F stock-kline install --no-frozen-lockfile --ignore-workspace --registry=https://registry.npmjs.org/
+          pnpm -F stock-kline run build
+          pnpm -F stock-kline run zip
         env:
           PNPM_FROZEN_LOCKFILE: false
 
@@ -39,7 +39,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            packages/stock-treading/.zip/st.zip
+            packages/stock-kline/.zip/stock-kline.zip
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

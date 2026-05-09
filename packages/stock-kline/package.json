@@ -1,5 +1,5 @@
 {
-  "name": "stock-treading",
+  "name": "stock-kline",
   "version": "1.1.4",
   "author": "Czy",
   "license": "MIT",
@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "NODE_ENV=development rspack build --watch",
     "build": "rm -rf build && rspack build",
-    "zip": "rm -rf .zip && mkdir -p .zip && cd build && zip -r ../.zip/st.zip .",
+    "zip": "rm -rf .zip && mkdir -p .zip && cd build && zip -r ../.zip/stock-kline.zip .",
     "lint:ts": "../../node_modules/typescript/bin/tsc --noEmit"
   },
   "repository": {

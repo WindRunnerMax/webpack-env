@@ -1,9 +1,9 @@
 // Chromium
 const __MANIFEST__ = {
   manifest_version: 3,
-  name: "Stock Trading",
+  name: "Stock Kline",
   version: "0.0.0",
-  description: "Stock Trading",
+  description: "Stock Kline",
   icons: {
     32: "static/icon.png",
     96: "static/icon.png",
