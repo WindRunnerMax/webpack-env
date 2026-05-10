@@ -1,9 +1,19 @@
 import type { O } from "@block-kit/utils/dist/es/types";
-import type { Chart, IndicatorTooltipData, KLineData, NeighborData, Nullable } from "klinecharts";
+import type {
+  Chart,
+  IndicatorTooltipData,
+  KLineData,
+  NeighborData,
+  Nullable,
+  TooltipLegend,
+} from "klinecharts";
 
 import { formatNumber } from "../../utils/format";
 
 export const PANEL_ID = "candle_pane";
+export const RED = "#F53F3F";
+export const GREEN = "#00B42A";
+export const GRAY = "#888888";
 
 export const setChartConfig = (chart: Chart) => {
   // https://klinecharts.com/guide/styles
@@ -15,32 +25,44 @@ export const setChartConfig = (chart: Chart) => {
           show: false,
         },
         legend: {
-          template: (params: NeighborData<Nullable<KLineData>>) => {
+          color: "#333",
+          template: (params: NeighborData<Nullable<KLineData>>): TooltipLegend[] => {
             const { current, prev } = params;
             const close = current?.close || 0;
             const prevClose = prev?.close || 0;
             const move = prevClose ? ((close - prevClose) / prevClose) * 100 : NaN;
+            const moveColor = move < 0 ? GREEN : RED;
             return [
               { title: "time", value: "{time}" },
               { title: "volume", value: "{volume}" },
               { title: "low", value: "{low}" },
               { title: "high", value: "{high}" },
               { title: "open", value: "{open}" },
-              { title: "Close: ", value: `{close}[${formatNumber(move)}%]` },
+              {
+                title: { text: "Close: ", color: moveColor },
+                value: { text: `{close}[${formatNumber(move)}%]`, color: moveColor },
+              },
             ];
           },
         },
       },
       bar: {
-        upColor: "#F53F3F",
-        downColor: "#00B42A",
-        noChangeColor: "#888888",
-        upBorderColor: "#F53F3F",
-        downBorderColor: "#00B42A",
-        noChangeBorderColor: "#888888",
-        upWickColor: "#F53F3F",
-        downWickColor: "#00B42A",
-        noChangeWickColor: "#888888",
+        upColor: RED,
+        downColor: GREEN,
+        noChangeColor: GRAY,
+        upBorderColor: RED,
+        downBorderColor: GREEN,
+        noChangeBorderColor: GRAY,
+        upWickColor: RED,
+        downWickColor: GREEN,
+        noChangeWickColor: GRAY,
+      },
+    },
+    indicator: {
+      tooltip: {
+        title: {
+          color: "#333",
+        },
       },
     },
   });
@@ -51,7 +73,7 @@ export const setChartConfig = (chart: Chart) => {
   chart.createIndicator(
     {
       name: "MA",
-      calcParams: [200, 250],
+      calcParams: [200, 250, 300],
       createTooltipDataSource: params => {
         const { indicator, crosshair } = params;
         const p = indicator.precision;
