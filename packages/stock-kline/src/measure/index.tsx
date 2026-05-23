@@ -24,7 +24,7 @@ const App = () => {
   const [form] = Form.useForm();
 
   useLayoutEffect(() => {
-    form.setFieldsValue(PRESET_50_1);
+    form.setFieldsValue(PRESET_50_2);
     ref.current && (ref.current.style.maxHeight = ref.current.clientHeight + "px");
   }, [form]);
 
@@ -79,12 +79,14 @@ const App = () => {
             />
           </Form.Item>
         </Form.Item>
+
         <Form.Item label="基线" field="base">
           <Radio.Group>
-            <Radio value="CSIH30269">红利低波</Radio>
+            <Radio value="CSIH30269">红利低波 50</Radio>
             <Radio value="CSI930955">红利低波 100</Radio>
           </Radio.Group>
         </Form.Item>
+
         <Form.Item label="ETF" field="etf">
           <Radio.Group>
             <Radio value="SH563020">易方达 50</Radio>
@@ -100,9 +102,15 @@ const App = () => {
             <Radio value={250}>250 MA</Radio>
           </Radio.Group>
         </Form.Item>
+
         <Form.Item label="ETF 偏移" field="offset">
-          <InputNumber step={0.001} />
+          <InputNumber prefix="-" step={0.001} />
         </Form.Item>
+
+        <Form.Item label="涨幅阈值" field="threshold">
+          <InputNumber prefix="-" step={0.001} />
+        </Form.Item>
+
         <Form.Item label="微调持仓" className="secondary-form">
           <Form.Item label="最小值" field="light.min">
             <InputNumber />
@@ -114,6 +122,7 @@ const App = () => {
             <InputNumber />
           </Form.Item>
         </Form.Item>
+
         <Form.Item label="增持仓位" className="secondary-form">
           <Form.Item label="最小值" field="heavy.min">
             <InputNumber />
@@ -125,6 +134,7 @@ const App = () => {
             <InputNumber />
           </Form.Item>
         </Form.Item>
+
         <Form.Item label="交易位置" field="loc">
           <Radio.Group>
             <Radio value="left">左侧交易</Radio>
@@ -132,6 +142,7 @@ const App = () => {
             <Radio value="both">两侧交易</Radio>
           </Radio.Group>
         </Form.Item>
+
         <Form.Item label="数据预设">
           <Space size={10}>
             <Link onClick={() => form.setFieldsValue(PRESET_50_1)}>易方达 50</Link>
@@ -140,6 +151,7 @@ const App = () => {
             <Link onClick={() => form.setFieldsValue(PRESET_100_2)}>天弘 100</Link>
           </Space>
         </Form.Item>
+
         <Form.Item label={<></>} className="secondary-form">
           <Space size={10}>
             <Button type="primary" onClick={submit} loading={loading}>

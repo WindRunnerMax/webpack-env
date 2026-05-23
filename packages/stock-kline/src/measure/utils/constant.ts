@@ -7,6 +7,7 @@ export type PresetFormTypes = {
   etf: string;
   ma: number;
   offset: number;
+  threshold: number;
   light: {
     min: number;
     radix: number;
@@ -28,15 +29,16 @@ export const END_DATE = new DateTime().format();
 const COMMON_PRESET = {
   light: {
     min: 100,
-    radix: 200,
-    max: 5000,
+    radix: 100,
+    max: 2000,
   },
   heavy: {
-    min: 10000,
+    min: 1000,
     radix: 1000,
-    max: 30000,
+    max: 20000,
   },
   loc: "left",
+  threshold: 0.003,
 };
 
 export const PRESET_50_1 = {
