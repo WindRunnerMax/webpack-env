@@ -1,15 +1,29 @@
 @import './body.less';
 
+/* stylelint-disable-next-line scss/at-rule-no-unknown */
+@gap: 15px;
+
 .container {
   padding: 10px;
+}
+
+.container .chart-menus {
+  display: flex;
+  justify-content: space-between;
 
   > .radio-group {
-    align-items: center;
     display: flex;
-    margin-bottom: 10px;
+    flex-direction: column;
+    gap: @gap;
+    margin-top: @gap;
+
+    .arco-radio {
+      margin-right: 10px;
+      width: 115px;
+    }
   }
 
   >.button-group {
-    margin-top: 20px;
+    margin-top: @gap;
   }
 }

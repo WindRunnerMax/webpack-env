@@ -23,6 +23,8 @@ export const setChartConfig = (chart: Chart) => {
         showType: "standard",
         title: {
           show: false,
+          color: "#333",
+          template: "{ticker} · {close}",
         },
         legend: {
           color: "#333",
@@ -56,6 +58,13 @@ export const setChartConfig = (chart: Chart) => {
         upWickColor: RED,
         downWickColor: GREEN,
         noChangeWickColor: GRAY,
+      },
+      priceMark: {
+        last: {
+          upColor: RED,
+          downColor: GREEN,
+          noChangeColor: GRAY,
+        },
       },
     },
     indicator: {
