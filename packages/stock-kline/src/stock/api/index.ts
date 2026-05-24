@@ -28,7 +28,11 @@ export type FetchProps = {
 export const fetchStockKline = async (props: FetchProps): Promise<DailyKline[]> => {
   const { code: code, start, end = new DateTime(), source = "cs" } = props;
   if (source === "cs") {
-    return fetchCsStock(code, start, end);
+    const s = start.clone();
+    const { days } = s.diff(end);
+    const num = Math.floor((days / 5) * 6);
+    const newStart = end.clone().deferDay(-num);
+    return fetchCsStock(code, newStart, end);
   }
   if (source === "tencent-stock") {
     return fetchTencentStock(code, start, end);
