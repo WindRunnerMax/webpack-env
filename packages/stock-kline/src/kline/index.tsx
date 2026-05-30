@@ -45,6 +45,11 @@ const App = () => {
     chart.subscribeAction("onCrosshairChange", onCrosshairChange);
   };
 
+  const onDrawRegionSegmentLine = () => {
+    const chart = chartRef.current!;
+    chart.createOverlay({ name: "segment", onSelected: console.log });
+  };
+
   return (
     <div className="container">
       <Chart code={radioValue} onRef={chartRef} />
@@ -74,6 +79,9 @@ const App = () => {
         <div className="button-group">
           <Button size="small" type="primary" onClick={onDrawHorizontalStraightLine}>
             参考线
+          </Button>
+          <Button size="small" type="primary" onClick={onDrawRegionSegmentLine}>
+            区间线
           </Button>
         </div>
       </div>

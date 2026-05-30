@@ -100,6 +100,7 @@ const App = () => {
           <Radio.Group>
             <Radio value={200}>200 MA</Radio>
             <Radio value={250}>250 MA</Radio>
+            <Radio value={300}>300 MA</Radio>
           </Radio.Group>
         </Form.Item>
 
