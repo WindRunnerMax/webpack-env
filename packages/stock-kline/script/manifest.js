@@ -6,8 +6,8 @@ exports.ManifestPlugin = class ManifestPlugin {
   constructor(options) {
     tsNode.register();
     this.manifest = options.manifest;
-    if(!this.manifest) {
-      throw new Error("manifest is required"); 
+    if (!this.manifest) {
+      throw new Error("manifest is required");
     }
   }
 

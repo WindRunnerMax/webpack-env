@@ -30,7 +30,10 @@ export class Transact {
       const amountChange = ledger.execMoveRate(moveRate);
       this.log("当日涨幅", formatR(amountChange), formatP(moveRate));
 
-      const isNeedAddition = this.inspectAddition(b.change, e.change, payload);
+      const isMatchAddSide = this.inspectAddSide(b.change, e.change, payload);
+      const isMatchAddRange = this.inspectAddRange(e.change, payload);
+
+      const isNeedAddition = isMatchAddSide && isMatchAddRange;
       if (baseMaOffset < 0 && etfMaOffset > 0 && isNeedAddition) {
         const l = payload.light;
         const basic = -baseMaOffset * 1000;
@@ -60,7 +63,7 @@ export class Transact {
     console.log(ledger.formatInvests());
   }
 
-  private inspectAddition = (bChange: number, eChange: number, payload: PresetFormTypes) => {
+  private inspectAddSide = (bChange: number, eChange: number, payload: PresetFormTypes) => {
     const loc = payload.loc;
     const isTodayIncr = eChange > 0 && bChange > 0;
     const isTodayDesc = eChange < 0 && bChange < 0;
@@ -72,9 +75,13 @@ export class Transact {
     } else if (loc === "right") {
       isNeedAddition = isTodayIncr;
     }
+    return isNeedAddition;
+  };
+
+  private inspectAddRange = (eChange: number, payload: PresetFormTypes) => {
     const threshold = payload.threshold;
     const isExceedsThreshold = eChange < 0 && -eChange > threshold;
-    return isNeedAddition && isExceedsThreshold;
+    return isExceedsThreshold;
   };
 
   private log(...content: (string | number)[]) {
