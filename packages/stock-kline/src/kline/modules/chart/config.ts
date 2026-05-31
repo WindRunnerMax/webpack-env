@@ -7,6 +7,7 @@ import type {
   Nullable,
   TooltipLegend,
 } from "klinecharts";
+import { registerOverlay } from "klinecharts";
 
 import { formatNumber } from "../../utils/format";
 
@@ -107,4 +108,37 @@ export const setChartConfig = (chart: Chart) => {
     true,
     { id: PANEL_ID }
   );
+
+  // https://github.com/klinecharts/KLineChart/tree/main/src/extension/overlay
+  registerOverlay({
+    name: "rangeLine",
+    totalStep: 3,
+    needDefaultPointFigure: true,
+    needDefaultXAxisFigure: false,
+    needDefaultYAxisFigure: true,
+    mode: "weak_magnet",
+    modeSensitivity: 1,
+    createPointFigures: props => {
+      const { coordinates } = props;
+      if (coordinates.length < 2) return [];
+      const [p1, p2] = props.overlay.points;
+      const increase = ((p2.value! - p1.value!) / p1.value!) * 100;
+      return [
+        {
+          type: "line",
+          attrs: { coordinates },
+        },
+        {
+          type: "text",
+          ignoreEvent: true,
+          attrs: {
+            x: coordinates[1].x,
+            y: coordinates[1].y,
+            text: increase.toFixed(2) + "%",
+            baseline: "bottom",
+          },
+        },
+      ];
+    },
+  });
 };

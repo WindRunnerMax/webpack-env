@@ -21,6 +21,7 @@ export const Chart: FC<{
   const debounceResize = useMemo(() => debounce(onResize, 100), [onResize]);
 
   useEffect(() => {
+    // https://github.com/klinecharts/KLineChart/blob/3ff9334/docs/%40views/api/samples
     const chart = init(ref.current!)!;
     props.onRef.current = chart;
     chartInstance.current = chart;

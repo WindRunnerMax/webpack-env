@@ -47,7 +47,7 @@ const App = () => {
 
   const onDrawRegionSegmentLine = () => {
     const chart = chartRef.current!;
-    chart.createOverlay({ name: "segment", onSelected: console.log });
+    chart.createOverlay({ name: "rangeLine" });
   };
 
   return (
