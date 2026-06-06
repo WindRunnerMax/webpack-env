@@ -109,7 +109,7 @@ export const setChartConfig = (chart: Chart) => {
     { id: PANEL_ID }
   );
 
-  // https://github.com/klinecharts/KLineChart/tree/main/src/extension/overlay
+  // https://github.com/klinecharts/KLineChart/tree/3ff933/src/extension/overlay
   registerOverlay({
     name: "rangeLine",
     totalStep: 3,

@@ -28,13 +28,13 @@ export const END_DATE = new DateTime().format();
 
 const COMMON_PRESET = {
   light: {
-    min: 100,
-    radix: 100,
-    max: 2000,
+    min: 10,
+    radix: 10,
+    max: 100,
   },
   heavy: {
-    min: 1000,
-    radix: 1000,
+    min: 100,
+    radix: 500,
     max: 20000,
   },
   loc: "left",

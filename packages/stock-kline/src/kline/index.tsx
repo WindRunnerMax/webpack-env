@@ -3,7 +3,7 @@ import "@arco-design/web-react/es/style/index.less";
 import "./styles/index.less";
 
 import { Button, Radio } from "@arco-design/web-react";
-import type { Chart as KlineChartType, Point } from "klinecharts";
+import type { Chart as KlineChartType } from "klinecharts";
 import { useRef, useState } from "react";
 import ReactDOM from "react-dom";
 
@@ -20,29 +20,13 @@ const App = () => {
     // https://klinecharts.com/api/instance/createOverlay
     // https://klinecharts.com/api/instance/subscribeAction
     // https://klinecharts.com/api/instance/convertFromPixel
-    let coordinate: Point | null = null;
-    const onCrosshairChange = (params: unknown) => {
-      const payload = params as { x: number; y: number; paneId: string };
-      const value = chart.convertFromPixel([{ x: payload.x, y: payload.y }], {
-        paneId: PANEL_ID,
-        absolute: false,
-      }) as Point[];
-      coordinate = value[0] || null;
-    };
-    const onChartClick = () => {
-      if (!coordinate) return void 0;
-      chart.createOverlay({
-        name: "horizontalStraightLine",
-        paneId: PANEL_ID,
-        needDefaultPointFigure: true,
-        points: [{ timestamp: coordinate.timestamp, value: coordinate.value }],
-      });
-      container!.removeEventListener("click", onChartClick);
-      chart.unsubscribeAction("onCrosshairChange", onCrosshairChange);
-    };
-    const container = chart.getDom();
-    container!.addEventListener("click", onChartClick);
-    chart.subscribeAction("onCrosshairChange", onCrosshairChange);
+    chart.createOverlay({
+      name: "horizontalStraightLine",
+      paneId: PANEL_ID,
+      needDefaultPointFigure: true,
+      mode: "weak_magnet",
+      modeSensitivity: 1,
+    });
   };
 
   const onDrawRegionSegmentLine = () => {
