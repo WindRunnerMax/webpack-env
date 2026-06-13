@@ -34,6 +34,26 @@ const App = () => {
     chart.createOverlay({ name: "rangeLine" });
   };
 
+  const onDrawStraightLine = () => {
+    const chart = chartRef.current!;
+    chart.createOverlay({
+      name: "straightLine",
+      mode: "weak_magnet",
+      modeSensitivity: 1,
+      needDefaultXAxisFigure: false,
+    });
+  };
+
+  const onDrawPriceChannelLine = () => {
+    const chart = chartRef.current!;
+    chart.createOverlay({
+      name: "priceChannelLine",
+      mode: "weak_magnet",
+      modeSensitivity: 1,
+      needDefaultXAxisFigure: false,
+    });
+  };
+
   return (
     <div className="container">
       <Chart code={radioValue} onRef={chartRef} />
@@ -62,10 +82,16 @@ const App = () => {
         </div>
         <div className="button-group">
           <Button size="small" type="primary" onClick={onDrawHorizontalStraightLine}>
-            参考线
+            水平线
           </Button>
           <Button size="small" type="primary" onClick={onDrawRegionSegmentLine}>
             区间线
+          </Button>
+          <Button size="small" type="primary" onClick={onDrawStraightLine}>
+            双射线
+          </Button>
+          <Button size="small" type="primary" onClick={onDrawPriceChannelLine}>
+            通道线
           </Button>
         </div>
       </div>
