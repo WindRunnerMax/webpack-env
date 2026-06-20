@@ -9,6 +9,7 @@ import ReactDOM from "react-dom";
 
 import { Chart } from "./modules/chart";
 import { PANEL_ID } from "./modules/chart/config";
+import { Search } from "./modules/search";
 
 const App = () => {
   const [radioValue, setRadioValue] = useState("SH512890");
@@ -80,19 +81,22 @@ const App = () => {
             <Radio value="SZ980092">自由现金流</Radio>
           </Radio.Group>
         </div>
-        <div className="button-group">
-          <Button size="small" type="primary" onClick={onDrawHorizontalStraightLine}>
-            水平线
-          </Button>
-          <Button size="small" type="primary" onClick={onDrawRegionSegmentLine}>
-            区间线
-          </Button>
-          <Button size="small" type="primary" onClick={onDrawStraightLine}>
-            双射线
-          </Button>
-          <Button size="small" type="primary" onClick={onDrawPriceChannelLine}>
-            通道线
-          </Button>
+        <div className="console-group">
+          <Search className="search-select" value={radioValue} onChange={setRadioValue}></Search>
+          <div className="button-group">
+            <Button size="small" type="primary" onClick={onDrawHorizontalStraightLine}>
+              水平线
+            </Button>
+            <Button size="small" type="primary" onClick={onDrawRegionSegmentLine}>
+              区间线
+            </Button>
+            <Button size="small" type="primary" onClick={onDrawStraightLine}>
+              双射线
+            </Button>
+            <Button size="small" type="primary" onClick={onDrawPriceChannelLine}>
+              通道线
+            </Button>
+          </div>
         </div>
       </div>
     </div>

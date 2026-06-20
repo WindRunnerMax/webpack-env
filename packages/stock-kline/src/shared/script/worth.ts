@@ -11,7 +11,7 @@ function calcAddAmount(
   costPrice: number,
   currentNav: number,
   targetCost: number
-) {
+): number {
   // 成本价和净值单位需一致（例如都是元）
   if (targetCost >= costPrice) {
     throw new Error("目标成本价必须低于当前成本价，补仓才能降低成本");
@@ -31,3 +31,5 @@ const 目标成本价 = 60; // 你想降到的成本
 
 const 需要加仓 = calcAddAmount(当前市值, 当前成本价, 当前净值, 目标成本价);
 console.log(`需要加仓 ${需要加仓} 元`);
+
+export {};
