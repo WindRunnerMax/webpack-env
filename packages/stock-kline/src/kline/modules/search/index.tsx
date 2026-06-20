@@ -1,5 +1,5 @@
 import { Select } from "@arco-design/web-react";
-import { cs, debounce } from "@block-kit/utils";
+import { debounce } from "@block-kit/utils";
 import type { FC } from "react";
 import { useMemo, useRef, useState } from "react";
 
@@ -26,13 +26,13 @@ export const Search: FC<{
     setFetching(false);
   };
 
-  const debounceSearch = useMemo(() => debounce(onSearch, 500), []);
+  const debounceSearch = useMemo(() => debounce(onSearch, 700), []);
 
   return (
     <Select
       size="small"
       value={props.value}
-      className={cs("search-select", className)}
+      className={className}
       placeholder="Search"
       onChange={onChange}
       onSearch={debounceSearch}
