@@ -13,7 +13,7 @@ export const searchStockData = async (query: string) => {
   const data: { list: { code: string; name: string }[] } = await res.json();
   return (
     data.list?.map(item => ({
-      label: item.name,
+      label: item.name + "(" + item.code + ")",
       value: item.code,
     })) || []
   );
