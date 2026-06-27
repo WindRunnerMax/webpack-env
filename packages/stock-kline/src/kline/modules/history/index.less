@@ -1,0 +1,33 @@
+.history-modal {
+  box-sizing: border-box;
+  width: 670px;
+
+  .stock-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    > .stock-item {
+      background-color: var(--color-fill-2);
+      box-sizing: border-box;
+      cursor: pointer;
+      flex-shrink: 0;
+      font-size: 13px;
+      overflow: hidden;
+      padding: 5px;
+      text-overflow: ellipsis;
+      user-select: none;
+      white-space: nowrap;
+      width: 150px;
+    }
+
+    > .stock-item:hover {
+      background-color: var(--color-fill-3);
+    }
+  }
+
+  .arco-modal-close-icon {
+    right: 6px;
+    top: 6px;
+  }
+}

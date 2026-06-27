@@ -1,9 +1,13 @@
 /* stylelint-disable CssSyntaxError */
-@import "../../../node_modules/@block-kit/utils/dist/style/vars.less";
+@import '../../../node_modules/@block-kit/utils/dist/style/vars.less';
 
 html,
 body {
-  .min-scrollbar();
-  scrollbar-gutter: stable;
-}
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

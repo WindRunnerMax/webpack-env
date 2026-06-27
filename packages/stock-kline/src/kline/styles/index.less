@@ -29,14 +29,23 @@
     margin-right: 10px;
     margin-top: @gap - 7px;
 
-    > .button-group {
+    > .console-group-line-1 {
       display: flex;
       gap: @gap;
+
+      > .search-select {
+        display: block;
+        margin-bottom: @gap - 5px;
+      }
+
+      > .arco-btn {
+        flex-shrink: 0;
+      }
     }
 
-    > .search-select {
-      display: block;
-      margin-bottom: @gap - 5px;
+    > .console-group-line-2 {
+      display: flex;
+      gap: @gap;
     }
   }
 }

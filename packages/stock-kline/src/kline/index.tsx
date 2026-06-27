@@ -9,6 +9,7 @@ import ReactDOM from "react-dom";
 
 import { Chart } from "./modules/chart";
 import { PANEL_ID } from "./modules/chart/config";
+import { History } from "./modules/history";
 import { Search } from "./modules/search";
 
 const App = () => {
@@ -82,8 +83,11 @@ const App = () => {
           </Radio.Group>
         </div>
         <div className="console-group">
-          <Search className="search-select" value={radioValue} onChange={setRadioValue}></Search>
-          <div className="button-group">
+          <div className="console-group-line-1">
+            <Search className="search-select" value={radioValue} onChange={setRadioValue}></Search>
+            <History onSetCode={setRadioValue}></History>
+          </div>
+          <div className="console-group-line-2">
             <Button size="small" type="primary" onClick={onDrawHorizontalStraightLine}>
               水平线
             </Button>

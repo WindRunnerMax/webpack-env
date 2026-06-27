@@ -80,7 +80,7 @@ export const Console: FC<{
       </div>
       <strong>相关链接</strong>
       <div className="links">
-        <a href="https://dapanyuntu.com" target="_blank" rel="noopener noreferrer">
+        <a href="https://52etf.site/" target="_blank" rel="noopener noreferrer">
           大盘云图
         </a>
         <a href="https://funddb.cn/tool/fear" target="_blank" rel="noopener noreferrer">
