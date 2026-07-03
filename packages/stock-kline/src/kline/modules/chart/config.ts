@@ -74,6 +74,13 @@ export const setChartConfig = (chart: Chart) => {
           color: "#333",
         },
       },
+      bars: [
+        {
+          upColor: RED,
+          downColor: GREEN,
+          noChangeColor: GRAY,
+        },
+      ],
     },
   });
 
@@ -141,4 +148,14 @@ export const setChartConfig = (chart: Chart) => {
       ];
     },
   });
+
+  // https://klinecharts.com/api/instance/createIndicator
+  chart.createIndicator(
+    {
+      name: "VOL",
+      calcParams: [5, 10, 20],
+    },
+    false,
+    { id: "pane_volume", height: 100 }
+  );
 };

@@ -19,6 +19,11 @@ export const History: FC<{
     return visible ? Storage.local.get<ListItem[]>(HISTORY_KEY) || [] : [];
   }, [visible]);
 
+  const onConfirm = (code: string) => {
+    props.onSetCode(code);
+    setVisible(false);
+  };
+
   return (
     <Fragment>
       <Modal
@@ -32,11 +37,7 @@ export const History: FC<{
       >
         <div className="stock-list-container">
           {list.map(item => (
-            <div
-              className="stock-item"
-              key={item.value}
-              onClick={() => props.onSetCode(item.value)}
-            >
+            <div className="stock-item" key={item.value} onClick={() => onConfirm(item.value)}>
               {item.label}
             </div>
           ))}

@@ -39,5 +39,5 @@ export const Chart: FC<{
     };
   }, [debounceResize, props.onRef, props.code]);
 
-  return <div ref={ref} style={{ width: "100%", height: 600 }} />;
+  return <div ref={ref} style={{ width: "100%", height: 700 }} />;
 };
