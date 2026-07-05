@@ -58,7 +58,7 @@ for (let i = 0; i < table.length; i++) {
       }
 
       // 普通单元格至少要保留一个空格, 避免与合并单元格混淆
-      rowText.push(content || " ");
+      rowText.push(!content ? " " : " " + content + " ");
     }
 
     // 仅最后的切分行不需要添加尾合并符
@@ -68,7 +68,7 @@ for (let i = 0; i < table.length; i++) {
 
   // 首行后需要添加表头分隔线
   if (i === 0) {
-    md.push("|" + Array(rawRow.length).fill("---").join(" | ") + "|");
+    md.push("| " + Array(rawRow.length).fill("---").join(" | ") + " |");
   }
 }
 
