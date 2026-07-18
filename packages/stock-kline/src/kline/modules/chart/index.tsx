@@ -25,16 +25,17 @@ export const Chart: FC<{
     const chart = init(ref.current!)!;
     props.onRef.current = chart;
     chartInstance.current = chart;
+    Object.assign(window, { __chart_instance: chart });
     chart.setSymbol({ ticker: props.code, pricePrecision: 4 });
     chart.setPeriod({ span: 1, type: "day" });
     setChartConfig(chart);
     chart.setDataLoader(getStockLoader(props.code));
-
     window.addEventListener("resize", debounceResize);
     return () => {
-      dispose(chart!);
+      dispose(chart);
+      props.onRef.current = null;
       chartInstance.current = null;
-
+      Object.assign(window, { __chart_instance: null });
       window.removeEventListener("resize", debounceResize);
     };
   }, [debounceResize, props.onRef, props.code]);
