@@ -55,20 +55,17 @@ const App = () => {
                 code="CSI930955"
                 slice={slice}
                 source="snow-stock"
-                ma={200}
               ></BasicChart>
               <BasicChart
                 title="H20955 红利低波100全收益指数"
                 code="H20955"
                 slice={slice}
-                ma={200}
               ></BasicChart>
               <BasicChart
                 title="Z159307 博时红利低波ETF(前复权)"
                 code="Z159307"
                 slice={slice}
                 source="snow-stock"
-                ma={200}
               ></BasicChart>
             </Fragment>
           )}

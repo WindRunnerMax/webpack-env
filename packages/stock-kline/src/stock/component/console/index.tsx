@@ -90,6 +90,13 @@ export const Console: FC<{
           股债性价比
         </a>
         <a
+          href="https://m.nffund.com/cache/bondbarometer/index.html"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          债市晴雨表
+        </a>
+        <a
           href="https://funddb.cn/site/index?_q=红利低波"
           target="_blank"
           rel="noopener noreferrer"
@@ -103,6 +110,7 @@ export const Console: FC<{
         >
           指数估值(雪球)
         </a>
+
         <a href="https://github.com/WindRunnerMax/webpack-env/releases" target="_blank">
           GitHub Release
         </a>
