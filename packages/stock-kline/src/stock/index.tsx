@@ -2,19 +2,28 @@ import "./styles/index.less";
 import "@arco-design/web-react/es/style/index.less";
 
 import { useForceUpdate } from "@block-kit/utils/dist/es/hooks";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 
+import { Bounds } from "./component/bounds";
 import { BasicChart } from "./component/charts/basic-chart";
 import { FundChart } from "./component/charts/fund-chart";
 import { Console } from "./component/console";
 import { GlobalContext } from "./context/global";
 
 const App = () => {
-  const [activeKey, setActiveKey] = useState(0);
+  const [activeKey, setActiveKey] = useState(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlIndex = urlParams.get("key");
+    return urlIndex ? Number(urlIndex) : 0;
+  });
   const slice = 100;
 
   const { index, forceUpdate } = useForceUpdate();
+
+  useEffect(() => {
+    window.history.replaceState({}, "", `?key=${activeKey}`);
+  }, [activeKey]);
 
   return (
     <GlobalContext.Provider value={{ updateIndex: index, forceUpdate }}>
@@ -89,6 +98,8 @@ const App = () => {
               ></FundChart>
             </Fragment>
           )}
+
+          {activeKey === 3 && <Bounds />}
         </div>
 
         <Console radio={activeKey} onChange={setActiveKey} />

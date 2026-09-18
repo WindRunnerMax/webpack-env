@@ -62,7 +62,7 @@ const App = () => {
       <div className="chart-menus">
         <div className="radio-group">
           <Radio.Group value={radioValue} onChange={setRadioValue}>
-            <Radio value="CSIH30269">红利低波 50</Radio>
+            <Radio value="CSIH30269">中证红利低波</Radio>
             <Radio value="SH563020">易方达 50</Radio>
             <Radio value="SH512890">华泰柏瑞 50</Radio>
             <Radio value="CSI930955">红利低波 100</Radio>

@@ -55,9 +55,10 @@ export const Console: FC<{
     <div className="console-container">
       <strong>红利低波类型</strong>
       <RadioGroup direction="vertical" onChange={props.onChange} defaultValue={props.radio}>
-        <Radio value={0}>红利低波</Radio>
+        <Radio value={0}>中证红利低波</Radio>
         <Radio value={1}>红利低波100</Radio>
         <Radio value={2}>场外联结基金</Radio>
+        <Radio value={3}>债市晴雨表</Radio>
       </RadioGroup>
       <strong>扩展操作</strong>
       <div className="operations">
@@ -110,7 +111,9 @@ export const Console: FC<{
         >
           指数估值(雪球)
         </a>
-
+        <a href="https://ysz-xiao.github.io/ETF_FLOW/" target="_blank" rel="noopener noreferrer">
+          ETF 份额流向表
+        </a>
         <a href="https://github.com/WindRunnerMax/webpack-env/releases" target="_blank">
           GitHub Release
         </a>
