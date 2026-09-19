@@ -59,6 +59,7 @@ export const Console: FC<{
         <Radio value={1}>红利低波100</Radio>
         <Radio value={2}>场外联结基金</Radio>
         <Radio value={3}>债市晴雨表</Radio>
+        <Radio value={4}>股息率性价比</Radio>
       </RadioGroup>
       <strong>扩展操作</strong>
       <div className="operations">
@@ -89,13 +90,6 @@ export const Console: FC<{
         </a>
         <a href="https://funddb.cn/site/fed" target="_blank" rel="noopener noreferrer">
           股债性价比
-        </a>
-        <a
-          href="https://m.nffund.com/cache/bondbarometer/index.html"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          债市晴雨表
         </a>
         <a
           href="https://funddb.cn/site/index?_q=红利低波"

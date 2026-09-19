@@ -1,21 +1,21 @@
-// https://xueqiu.com/S/SH512890
-// https://stock.xueqiu.com/v5/stock/chart/kline.json?symbol=SH512890&begin=1775466294362&period=day&type=before&count=-284&indicator=kline,pe,pb,ps,pcf,market_capital,agt,ggt,balance
-
 import { DateTime, isNil, sleep } from "@block-kit/utils";
 import type { F, P } from "@block-kit/utils/dist/es/types";
 
+import { SNOW_H, SNOW_STOCK_H } from "../../shared/constant/env";
 import { getHeaders } from "../../shared/utils/request";
 import type { DailyKline } from "../types/stock";
 
-export const SNOW_URL = "https://stock.xueqiu.com/v5/stock/chart/kline.json";
+// /S/SH512890
+// /v5/stock/chart/kline.json?symbol=SH512890&begin=1775466294362&period=day&type=before&count=-284&indicator=kline,pe,pb,ps,pcf,market_capital,agt,ggt,balance
+export const SNOW_URL = `${SNOW_STOCK_H}/v5/stock/chart/kline.json`;
 
 /** 全局登录锁 */
 let resolveLock: F.Plain | null = null;
 let promiseLock: Promise<void> | null = null;
 
 export const isLoggedIn = async () => {
-  const a = await chrome.cookies.get({ url: "https://xueqiu.com", name: "xq_a_token" });
-  const b = await chrome.cookies.get({ url: "https://xueqiu.com", name: "u" });
+  const a = await chrome.cookies.get({ url: SNOW_H, name: "xq_a_token" });
+  const b = await chrome.cookies.get({ url: SNOW_H, name: "u" });
   return !!a && !!b;
 };
 
@@ -26,7 +26,7 @@ export const syncCookies = async () => {
   let reject!: (s: string) => void;
   const p = new Promise<void>((r1, r2) => (resolve = r1) && (reject = r2));
   const iframe = document.createElement("iframe");
-  iframe.src = "https://xueqiu.com";
+  iframe.src = SNOW_H;
   iframe.hidden = true;
   document.body.appendChild(iframe);
   let index = 0;

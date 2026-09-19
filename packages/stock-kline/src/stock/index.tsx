@@ -9,6 +9,7 @@ import { Bounds } from "./component/bounds";
 import { BasicChart } from "./component/charts/basic-chart";
 import { FundChart } from "./component/charts/fund-chart";
 import { Console } from "./component/console";
+import { Dividend } from "./component/dividend";
 import { GlobalContext } from "./context/global";
 
 const App = () => {
@@ -100,6 +101,7 @@ const App = () => {
           )}
 
           {activeKey === 3 && <Bounds />}
+          {activeKey === 4 && <Dividend />}
         </div>
 
         <Console radio={activeKey} onChange={setActiveKey} />

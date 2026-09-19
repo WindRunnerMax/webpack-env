@@ -3,6 +3,7 @@ import "./index.less";
 import type { FC } from "react";
 import { useEffect, useState } from "react";
 
+import { NF_H } from "../../../shared/constant/env";
 import type { BarometerData, RatePriceData } from "./types";
 
 export const Bounds: FC = () => {
@@ -10,21 +11,21 @@ export const Bounds: FC = () => {
   const [data, setData] = useState<RatePriceData | null>(null);
 
   useEffect(() => {
-    fetch("https://m.nffund.com/operation_lnk/barometerInfo/queryBarometerRateData", {
+    fetch(`${NF_H}/operation_lnk/barometerInfo/queryBarometerRateData`, {
       headers: {
         "content-type": "application/json;charset=UTF-8",
       },
-      referrer: "https://m.nffund.com/cache/bondbarometer/index.html",
+      referrer: `${NF_H}/cache/bondbarometer/index.html`,
       body: '{"loading":2,"function":"queryBarometerRateData","bond_channel":"2"}',
       method: "POST",
     })
       .then(res => res.json())
       .then(json => setBp(json.data));
-    fetch("https://m.nffund.com/operation_lnk/barometerInfo/queryBaoDanDataInfo", {
+    fetch(`${NF_H}/operation_lnk/barometerInfo/queryBaoDanDataInfo`, {
       headers: {
         "content-type": "application/json;charset=UTF-8",
       },
-      referrer: "https://m.nffund.com/cache/bondbarometer/index.html",
+      referrer: `${NF_H}/cache/bondbarometer/index.html`,
       body: '{"function":"queryBaoDanDataInfo","bond_channel":"2"}',
       method: "POST",
     })

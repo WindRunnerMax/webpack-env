@@ -1,13 +1,13 @@
-// https://gu.qq.com/jj020602
-// https://stockjs.finance.qq.com/fundUnitNavAll/data/year_all/020602.js
-
 import { DateTime, isNil } from "@block-kit/utils";
 import type { P } from "@block-kit/utils/dist/es/types";
 
+import { QQ_STOCK_H } from "../../shared/constant/env";
 import { getHeaders } from "../../shared/utils/request";
 import type { DailyKline } from "../types/stock";
 
-export const T_FUND_URL = "https://stockjs.finance.qq.com/fundUnitNavAll/data/year_all";
+// /jj020602
+// /fundUnitNavAll/data/year_all/020602.js
+export const T_FUND_URL = `${QQ_STOCK_H}/fundUnitNavAll/data/year_all`;
 
 export const fetchTencentFund = async (
   index: string,

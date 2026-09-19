@@ -1,14 +1,14 @@
-// https://www.csindex.com.cn/#/indices/family/detail?indexCode=H30269
-// https://www.csindex.com.cn/csindex-home/perf/index-perf?indexCode=H30269&startDate=20260304&endDate=20260403
-
 import type { DateTime } from "@block-kit/utils";
 import { isNil } from "@block-kit/utils";
 import type { P } from "@block-kit/utils/dist/es/types";
 
+import { CS_H } from "../../shared/constant/env";
 import { getHeaders } from "../../shared/utils/request";
 import type { DailyKline } from "../types/stock";
 
-export const CS_URL = "https://www.csindex.com.cn/csindex-home/perf/index-perf";
+// /#/indices/family/detail?indexCode=H30269
+// /csindex-home/perf/index-perf?indexCode=H30269&startDate=20260304&endDate=20260403
+export const CS_URL = `${CS_H}/csindex-home/perf/index-perf`;
 
 export const fetchCsStock = async (
   index: string,

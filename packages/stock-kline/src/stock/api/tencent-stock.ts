@@ -1,13 +1,13 @@
-// https://gu.qq.com/sh512890
-// https://proxy.finance.qq.com/cgi/cgi-bin/stockinfoquery/kline/app/get?code=sh512890&fromDate=2026-01-01&toDate=2026-12-31&ktype=day&limit=370
-
 import { DateTime, isNil } from "@block-kit/utils";
 import type { P } from "@block-kit/utils/dist/es/types";
 
+import { QQ_STOCK_H } from "../../shared/constant/env";
 import { getHeaders } from "../../shared/utils/request";
 import type { DailyKline } from "../types/stock";
 
-export const T_STOCK_URL = "https://proxy.finance.qq.com/cgi/cgi-bin/stockinfoquery/kline/app/get";
+// /sh512890
+// /cgi/cgi-bin/stockinfoquery/kline/app/get?code=sh512890&fromDate=2026-01-01&toDate=2026-12-31&ktype=day&limit=370
+export const T_STOCK_URL = `${QQ_STOCK_H}/cgi/cgi-bin/stockinfoquery/kline/app/get`;
 
 export const fetchTencentStock = async (
   index: string,
