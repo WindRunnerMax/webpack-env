@@ -21,7 +21,10 @@ export const fetch10YearTreasuryBond = async () => {
     credentials: "omit",
   });
   const data = await res.json();
-  return data.data.result.series[0] as { name: string; data: [number, number][] };
+  return data.data.result.series[0] as {
+    name: string;
+    data: [timestamp: number, percentage: number][];
+  };
 };
 
 export const fetchH30269Dividend = async () => {
@@ -46,7 +49,10 @@ export const fetchH30269Dividend = async () => {
   });
 
   const data = await res.json();
-  return data.data.tubiao.series[1] as { name: string; data: [number, number][] };
+  return data.data.tubiao.series[1] as {
+    name: string;
+    data: [timestamp: number, percentage: number][];
+  };
 };
 
 export const fetch930955Dividend = async () => {
@@ -70,5 +76,8 @@ export const fetch930955Dividend = async () => {
     credentials: "omit",
   });
   const data = await res.json();
-  return data.data.tubiao.series[1] as { name: string; data: [number, number][] };
+  return data.data.tubiao.series[1] as {
+    name: string;
+    data: [timestamp: number, percentage: number][];
+  };
 };
