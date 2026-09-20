@@ -23,8 +23,10 @@ function buildInfoBar(item: DividendChartItem): React.ReactNode {
   const diffColor = item.diff >= 0 ? "#F53F3F" : "#00B42A";
   return (
     <>
+      <span>{item.date}</span>
+      <span className="dividend-info-sep">|</span>
       <span>
-        {item.date} 股息率: {pct2(item.dividendYield)}%
+        股息率: {pct2(item.dividendYield)}%
         <span className="dividend-info-dim"> 分位: {pct(item.dividendPercentile)}%</span>
       </span>
       <span className="dividend-info-sep">|</span>
@@ -111,7 +113,7 @@ const DividendChart: FC<DividendChartProps> = ({ height = 200, data, title }) =>
       <div className="relative" style={{ height }}>
         <div className="chart-canvas" ref={chartRef} style={{ width: "100%", height }} />
         {data.length <= 0 && (
-          <div className="absolute ml-10" style={{ top: 0, left: 0 }}>
+          <div className="absolute " style={{ top: 0, left: 0 }}>
             Loading...
           </div>
         )}
