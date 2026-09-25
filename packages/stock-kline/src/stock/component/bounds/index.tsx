@@ -89,15 +89,15 @@ export const Bounds: FC = () => {
             <td colSpan={2}>信用债</td>
           </tr>
           <tr className="text-center">
-            <td>短期债</td>
-            <td>中期债</td>
-            <td>长期债</td>
-            <td>短期债</td>
+            <td>预估</td>
+            <td>短债</td>
+            <td>中长债</td>
+            <td>短债</td>
             <td>中长债</td>
           </tr>
           <tr className="text-center">
-            <td style={{ color: calcProfitColor(data.llz_short_price) }}>{data.llz_short_price}</td>
             <td style={{ color: calcProfitColor(data.llz_price) }}>{data.llz_price}</td>
+            <td style={{ color: calcProfitColor(data.llz_short_price) }}>{data.llz_short_price}</td>
             <td style={{ color: calcProfitColor(data.llz_long_price) }}>{data.llz_long_price}</td>
             <td style={{ color: calcProfitColor(data.yxz_short_price) }}>{data.yxz_short_price}</td>
             <td style={{ color: calcProfitColor(data.yxz_long_price) }}>{data.yxz_long_price}</td>
