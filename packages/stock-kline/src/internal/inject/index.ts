@@ -3,7 +3,7 @@ import { callSnowHook } from "./snow";
 
 console.clear = () => void 0;
 
-if (location.host === "funddb.cn" && location.pathname === "/site/index") {
+if (location.host === "funddb.cn") {
   callChiveHook();
 }
 

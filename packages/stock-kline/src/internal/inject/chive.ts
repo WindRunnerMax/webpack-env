@@ -1,49 +1,67 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-this-alias */
-
-import type { P } from "@block-kit/utils/dist/es/types";
-
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const log = console.log;
-const XHROSend = XMLHttpRequest.prototype.send;
-const XHROOpen = XMLHttpRequest.prototype.open;
+const Fetch = window.fetch;
+const XHRSend = XMLHttpRequest.prototype.send;
+const XHROpen = XMLHttpRequest.prototype.open;
 const search = new URLSearchParams(location.search);
 
+log(333);
+
 export const callChiveHook = () => {
+  const q = search.get("_q");
+
   const onOpen = function (...args: unknown[]) {
     // @ts-expect-error ...
     this._requestURL = args[1];
     // @ts-expect-error ...
-    return XHROOpen.apply(this, args);
+    return XHROpen.apply(this, args);
   };
 
   const onSend = function (this: XMLHttpRequest, body?: Document | XMLHttpRequestBodyInit | null) {
     const xhr = this;
     // @ts-expect-error ...
     const requestURL = xhr._requestURL;
-    const q = search.get("_q");
 
     if (requestURL.includes("/v2/guzhi/showcategory") && q) {
       const getText = () => {
         try {
           const json = JSON.parse(xhr.response);
-          json.data.right_list = json.data.right_list.filter((item: P.Any) => {
-            log(item.gu_name);
-            return item.gu_name.includes(q);
-          });
           return JSON.stringify(json);
         } catch (error) {
           log(error);
         }
         return xhr.response;
       };
+
       Object.defineProperty(xhr, "responseText", {
         configurable: true,
         get: getText,
       });
     }
-    XHROSend.apply(this, [body]);
+    XHRSend.apply(this, [body]);
   };
 
+  const onFetch: typeof fetch = async function (
+    input: string | URL | globalThis.Request,
+    init?: RequestInit
+  ) {
+    // @ts-expect-error ...
+    const res = await Fetch.apply(this, [input, init]);
+    if (typeof input === "string" && input.includes("/api/index-valuation?category=zt") && q) {
+      const data = await res.json();
+      data.rows = data.rows.filter((item: any) => item.name.includes(q));
+      return new Response(JSON.stringify(data), {
+        status: res.status,
+        statusText: res.statusText,
+        headers: res.headers,
+      });
+    }
+    return res;
+  };
+
+  globalThis.fetch = onFetch;
   XMLHttpRequest.prototype.open = onOpen;
   XMLHttpRequest.prototype.send = onSend;
 };

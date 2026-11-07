@@ -89,7 +89,7 @@ export const Bounds: FC = () => {
             <td colSpan={2}>信用债</td>
           </tr>
           <tr className="text-center">
-            <td>预估</td>
+            <td>总览</td>
             <td>短债</td>
             <td>中长债</td>
             <td>短债</td>

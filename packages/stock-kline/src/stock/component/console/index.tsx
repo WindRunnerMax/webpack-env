@@ -88,11 +88,11 @@ export const Console: FC<{
         <a href="https://funddb.cn/tool/fear" target="_blank" rel="noopener noreferrer">
           恐贪指数
         </a>
-        <a href="https://funddb.cn/site/fed" target="_blank" rel="noopener noreferrer">
+        <a href="https://funddb.cn/indicators?tab=gap" target="_blank" rel="noopener noreferrer">
           股债性价比
         </a>
         <a
-          href="https://funddb.cn/site/index?_q=红利低波"
+          href="https://funddb.cn/indicators?tab=index&category=zt&_q=红利低波"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -105,9 +105,9 @@ export const Console: FC<{
         >
           指数估值(雪球)
         </a>
-        <a href="https://ysz-xiao.github.io/ETF_FLOW/" target="_blank" rel="noopener noreferrer">
+        {/* <a href="https://ysz-xiao.github.io/ETF_FLOW/" target="_blank" rel="noopener noreferrer">
           ETF 份额流向表
-        </a>
+        </a> */}
         <a href="https://github.com/WindRunnerMax/webpack-env/releases" target="_blank">
           GitHub Release
         </a>
